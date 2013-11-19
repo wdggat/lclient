@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">WhoAmI</string>
+    <string name="action_settings">Settings</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="partyb">乙方:</string>
+    <string name="make_draft_text">草稿先</string>
+    <string name="submit">发送</string>
+    <string name="email_hint">多地址请用;分隔</string>
+    <string name="take_draft_text">草稿来</string>
+    <string name="topicV">主题</string>
+
+</resources>
