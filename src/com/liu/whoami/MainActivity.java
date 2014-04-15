@@ -15,8 +15,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.liu.whoami.mail.MailSender;
-
 public class MainActivity extends Activity {
 
 	@Override
@@ -67,9 +65,9 @@ public class MainActivity extends Activity {
 					return;
 				}
 				Toast.makeText(MainActivity.this, "Mail sent successfully. ", Toast.LENGTH_SHORT).show();
-				MailSender.sendMail(
-						StringUtils.split(mailTos.getText().toString().trim()),
-						topicEt.getText().toString(), tv.getText().toString());
+//				MailSender.sendMail(
+//						StringUtils.split(mailTos.getText().toString().trim()),
+//						topicEt.getText().toString(), tv.getText().toString());
 				clearETs(new EditText[] {mailTos, topicEt, tv});
 			}
 

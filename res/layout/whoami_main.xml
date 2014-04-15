@@ -46,7 +46,7 @@
         android:layout_centerHorizontal="true"
         android:hint="@string/email_hint"
         android:layout_toRightOf="@id/partyb"
-        android:background="@android:color/holo_orange_dark"
+        android:background="#431202"
         android:ems="10"
         android:inputType="textEmailAddress" >
 
