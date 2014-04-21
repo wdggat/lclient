@@ -1,0 +1,1113 @@
+﻿$axure.loadCurrentPage({
+  "url":"password_change.html",
+  "generationDate":new Date(1397661643052.84),
+  "isCanvasEnabled":false,
+  "variables":["OnLoadVariable",
+"yz_msg",
+"DroplistOption"],
+  "page":{
+    "packageId":"33735d0965ed4db0b5983910633aaf50",
+    "type":"Axure:Page",
+    "name":"password_change",
+    "notes":{
+},
+    "style":{
+      "baseStyle":"627587b6038d43cca051c114ac41ad32",
+      "pageAlignment":"near",
+      "fill":{
+        "fillType":"solid",
+        "color":0xFFFFFFFF},
+      "image":null,
+      "imageHorizontalAlignment":"near",
+      "imageVerticalAlignment":"near",
+      "imageRepeat":"auto",
+      "favicon":null,
+      "sketchFactor":"0",
+      "colorStyle":"appliedColor",
+      "fontName":"Applied Font",
+      "borderWidth":"0"},
+    "adaptiveStyles":{
+},
+    "interactionMap":{
+},
+    "diagram":{
+      "objects":[{
+          "id":"fa09ba3658364854a6beee13275e67c1",
+          "label":"",
+          "type":"buttonShape",
+          "styleType":"buttonShape",
+          "visible":true,
+          "style":{
+            "fontName":"'Microsoft Sans Serif Normal', 'Microsoft Sans Serif'",
+            "fontSize":"14px",
+            "baseStyle":"627587b6038d43cca051c114ac41ad32",
+            "location":{
+              "x":262,
+              "y":52},
+            "size":{
+              "width":295,
+              "height":380},
+            "borderWidth":"2",
+            "borderFill":{
+              "fillType":"solid",
+              "color":0xFFCCCCCC},
+            "linePattern":"dashed",
+            "cornerRadiusTopLeft":"5"},
+          "adaptiveStyles":{
+},
+          "objects":[{
+              "id":"a6d5c5793530482899a7562d7291aa19",
+              "label":"",
+              "isContained":true,
+              "type":"richTextPanel",
+              "styleType":"paragraph",
+              "visible":true,
+              "style":{
+                "fontName":"'Microsoft Sans Serif Normal', 'Microsoft Sans Serif'",
+                "fontSize":"14px",
+                "baseStyle":"627587b6038d43cca051c114ac41ad32",
+                "location":{
+                  "x":262,
+                  "y":52},
+                "size":{
+                  "width":295,
+                  "height":380},
+                "borderWidth":"2",
+                "borderFill":{
+                  "fillType":"solid",
+                  "color":0xFFCCCCCC},
+                "linePattern":"dashed",
+                "cornerRadiusTopLeft":"5"},
+              "adaptiveStyles":{
+}}],
+          "images":{
+            "normal~":"images/timeline/u0.png"}},
+{
+          "id":"bd890a10dd4a401cb6a8b97c011712f9",
+          "label":"",
+          "type":"buttonShape",
+          "styleType":"buttonShape",
+          "visible":true,
+          "style":{
+            "foreGroundFill":{
+              "fillType":"solid",
+              "color":0xFF000000,
+              "opacity":1},
+            "baseStyle":"627587b6038d43cca051c114ac41ad32",
+            "fill":{
+              "fillType":"solid",
+              "color":0xFF00CCCC},
+            "location":{
+              "x":264,
+              "y":52},
+            "size":{
+              "width":293,
+              "height":41},
+            "borderFill":{
+              "fillType":"solid",
+              "color":0xFFFFFF},
+            "cornerRadiusTopLeft":"5"},
+          "adaptiveStyles":{
+},
+          "objects":[{
+              "id":"42848e327c5b41c7b43344a13b8ef2b3",
+              "label":"",
+              "isContained":true,
+              "type":"richTextPanel",
+              "styleType":"paragraph",
+              "visible":true,
+              "style":{
+                "foreGroundFill":{
+                  "fillType":"solid",
+                  "color":0xFF000000,
+                  "opacity":1},
+                "baseStyle":"627587b6038d43cca051c114ac41ad32",
+                "fill":{
+                  "fillType":"solid",
+                  "color":0xFF00CCCC},
+                "location":{
+                  "x":264,
+                  "y":52},
+                "size":{
+                  "width":293,
+                  "height":41},
+                "borderFill":{
+                  "fillType":"solid",
+                  "color":0xFFFFFF},
+                "cornerRadiusTopLeft":"5"},
+              "adaptiveStyles":{
+}}],
+          "images":{
+            "normal~":"images/timeline/u2.png"}},
+{
+          "id":"1f5ac0c8e092471f8063a8bc8c6b5181",
+          "label":"",
+          "type":"buttonShape",
+          "styleType":"paragraph",
+          "visible":true,
+          "style":{
+            "fontName":"'Droid Sans Regular', 'Droid Sans'",
+            "fontSize":"21px",
+            "foreGroundFill":{
+              "fillType":"solid",
+              "color":0xFFFFFFFF,
+              "opacity":1},
+            "location":{
+              "x":70,
+              "y":430},
+            "size":{
+              "width":150,
+              "height":26},
+            "rotation":"0",
+            "textRotation":"0"},
+          "adaptiveStyles":{
+},
+          "objects":[{
+              "id":"d99489cacb2f4046bc3b969b83e4a8f4",
+              "label":"",
+              "isContained":true,
+              "type":"richTextPanel",
+              "styleType":"paragraph",
+              "visible":true,
+              "style":{
+                "fontName":"'Droid Sans Regular', 'Droid Sans'",
+                "fontSize":"21px",
+                "foreGroundFill":{
+                  "fillType":"solid",
+                  "color":0xFFFFFFFF,
+                  "opacity":1},
+                "location":{
+                  "x":70,
+                  "y":430},
+                "size":{
+                  "width":150,
+                  "height":26},
+                "rotation":"0",
+                "textRotation":"0"},
+              "adaptiveStyles":{
+}}],
+          "images":{
+            "normal~":"resources/images/transparent.gif"}},
+{
+          "id":"596495fa83134f4eb1d07ef1c34f70fd",
+          "label":"",
+          "type":"imageBox",
+          "styleType":"imageBox",
+          "visible":true,
+          "style":{
+            "baseStyle":"627587b6038d43cca051c114ac41ad32",
+            "location":{
+              "x":359,
+              "y":309},
+            "size":{
+              "width":99,
+              "height":40}},
+          "adaptiveStyles":{
+},
+          "objects":[{
+              "id":"0435f14a2c524902b3ba2c91a8d73e4d",
+              "label":"",
+              "isContained":true,
+              "type":"richTextPanel",
+              "styleType":"paragraph",
+              "visible":true,
+              "style":{
+                "baseStyle":"627587b6038d43cca051c114ac41ad32",
+                "location":{
+                  "x":359,
+                  "y":309},
+                "size":{
+                  "width":99,
+                  "height":40}},
+              "adaptiveStyles":{
+}}],
+          "interactionMap":{
+            "onClick":{
+              "description":"OnClick",
+              "cases":[{
+                  "description":"Case 1",
+                  "isNewIfGroup":false,
+                  "actions":[{
+                      "action":"fadeWidget",
+                      "description":"Show password_change_submit_ok fade 500 ms",
+                      "objectsToFades":[{
+                          "objectPath":["08d7ee0db433487cbf9f2e0c593b006e"],
+                          "fadeInfo":{
+                            "fadeType":"show",
+                            "options":{
+                              "easing":"fade",
+                              "duration":500,
+                              "showType":"none"}}}]}]},
+{
+                  "description":"Case 2",
+                  "isNewIfGroup":false,
+                  "actions":[{
+                      "action":"linkWindow",
+                      "description":"Open timeline in Current Window",
+                      "target":{
+                        "targetType":"page",
+                        "url":"timeline.html",
+                        "includeVariables":true},
+                      "linkType":"current"}]}]}},
+          "tabbable":true,
+          "images":{
+            "normal~":"images/person_info/u20.png"}},
+{
+          "id":"540fc3942a7a4619ba10b628b664c81c",
+          "label":"",
+          "type":"buttonShape",
+          "styleType":"paragraph",
+          "visible":true,
+          "style":{
+            "fontName":"'Droid Sans Regular', 'Droid Sans'",
+            "fontSize":"16px",
+            "horizontalAlignment":"center",
+            "location":{
+              "x":365,
+              "y":321},
+            "size":{
+              "width":82,
+              "height":19},
+            "rotation":"0",
+            "textRotation":"0"},
+          "adaptiveStyles":{
+},
+          "objects":[{
+              "id":"5f26218fc1354189b82e27db4a1ce933",
+              "label":"",
+              "isContained":true,
+              "type":"richTextPanel",
+              "styleType":"paragraph",
+              "visible":true,
+              "style":{
+                "fontName":"'Droid Sans Regular', 'Droid Sans'",
+                "fontSize":"16px",
+                "horizontalAlignment":"center",
+                "location":{
+                  "x":365,
+                  "y":321},
+                "size":{
+                  "width":82,
+                  "height":19},
+                "rotation":"0",
+                "textRotation":"0"},
+              "adaptiveStyles":{
+}}],
+          "images":{
+            "normal~":"resources/images/transparent.gif"}},
+{
+          "id":"7ea1760e21fe402ba05a2115e41130eb",
+          "label":"",
+          "type":"imageBox",
+          "styleType":"imageBox",
+          "visible":true,
+          "style":{
+            "baseStyle":"627587b6038d43cca051c114ac41ad32",
+            "location":{
+              "x":261,
+              "y":59},
+            "size":{
+              "width":19,
+              "height":29}},
+          "adaptiveStyles":{
+},
+          "objects":[{
+              "id":"bf13c3bf3df04150ab209dce17c094c5",
+              "label":"",
+              "isContained":true,
+              "type":"richTextPanel",
+              "styleType":"paragraph",
+              "visible":true,
+              "style":{
+                "baseStyle":"627587b6038d43cca051c114ac41ad32",
+                "location":{
+                  "x":261,
+                  "y":59},
+                "size":{
+                  "width":19,
+                  "height":29}},
+              "adaptiveStyles":{
+}}],
+          "interactionMap":{
+            "onClick":{
+              "description":"OnClick",
+              "cases":[{
+                  "description":"Case 1",
+                  "isNewIfGroup":false,
+                  "actions":[{
+                      "action":"linkWindow",
+                      "description":"Open person_info in Current Window",
+                      "target":{
+                        "targetType":"page",
+                        "url":"person_info.html",
+                        "includeVariables":true},
+                      "linkType":"current"}]}]}},
+          "tabbable":true,
+          "images":{
+            "normal~":"images/msginfo/u21.png"}},
+{
+          "id":"08d7ee0db433487cbf9f2e0c593b006e",
+          "label":"password_change_submit_ok",
+          "type":"flowShape",
+          "styleType":"flowShape",
+          "visible":true,
+          "style":{
+            "location":{
+              "x":620,
+              "y":334.5},
+            "size":{
+              "width":100,
+              "height":60}},
+          "adaptiveStyles":{
+},
+          "objects":[{
+              "id":"b0262ce15fd8401691c44f4054160962",
+              "label":"",
+              "isContained":true,
+              "type":"richTextPanel",
+              "styleType":"paragraph",
+              "visible":true,
+              "style":{
+                "location":{
+                  "x":620,
+                  "y":334.5},
+                "size":{
+                  "width":100,
+                  "height":60}},
+              "adaptiveStyles":{
+}}],
+          "images":{
+            "normal~":"images/regist/regist_submit_ok_u41.png"}},
+{
+          "id":"0eaa4ea3f60b4e989bb6de97b4eea113",
+          "label":"",
+          "type":"horizontalLine",
+          "styleType":"horizontalLine",
+          "visible":true,
+          "style":{
+            "baseStyle":"627587b6038d43cca051c114ac41ad32",
+            "location":{
+              "x":261,
+              "y":150},
+            "size":{
+              "width":290,
+              "height":10},
+            "borderFill":{
+              "fillType":"linearGradient",
+              "colors":[{
+                  "color":0x1C00FFFF},
+{
+                  "color":0x1C00FFFF},
+{
+                  "color":0xFFAEABAE},
+{
+                  "color":0xFFAEABAE},
+{
+                  "color":0xAEABAE},
+{
+                  "color":0xAEABAE}]}},
+          "adaptiveStyles":{
+},
+          "images":{
+            "start~":"resources/images/transparent.gif",
+            "end~":"resources/images/transparent.gif",
+            "line~":"images/password_change/u14_line.png"}},
+{
+          "id":"bdc19d4386c94143a595a0087f17b1ad",
+          "label":"textfield control",
+          "type":"dynamicPanel",
+          "styleType":"dynamicPanel",
+          "visible":false,
+          "style":{
+            "location":{
+              "x":310,
+              "y":130},
+            "size":{
+              "width":8,
+              "height":10},
+            "visible":false},
+          "adaptiveStyles":{
+},
+          "scrollbars":"none",
+          "fitToContent":false,
+          "propagate":false,
+          "diagrams":[{
+              "id":"dc8fd9448507419aaafc0fe17d3fef2b",
+              "label":"State1",
+              "type":"Axure:PanelDiagram",
+              "objects":[{
+                  "id":"18ca969a9138403d988673e7244176fa",
+                  "label":"label storage (ignore)",
+                  "parentDynamicPanel":"bdc19d4386c94143a595a0087f17b1ad",
+                  "panelIndex":0,
+                  "type":"textBox",
+                  "styleType":"textBox",
+                  "visible":true,
+                  "style":{
+                    "size":{
+                      "width":195,
+                      "height":25}},
+                  "adaptiveStyles":{
+}}],
+              "style":{
+                "fill":{
+                  "fillType":"solid",
+                  "color":0xFFFFFF},
+                "image":null,
+                "imageHorizontalAlignment":"near",
+                "imageVerticalAlignment":"near",
+                "imageRepeat":"auto"},
+              "adaptiveStyles":{
+}}]},
+{
+          "id":"db6931bdfa4f4064848ef5b767d51996",
+          "label":"textfield",
+          "type":"textBox",
+          "styleType":"textBox",
+          "visible":true,
+          "style":{
+            "foreGroundFill":{
+              "fillType":"solid",
+              "color":0xFFCCCCCC,
+              "opacity":1},
+            "location":{
+              "x":310,
+              "y":130},
+            "size":{
+              "width":180,
+              "height":22}},
+          "adaptiveStyles":{
+},
+          "interactionMap":{
+            "onFocus":{
+              "description":"OnFocus",
+              "cases":[{
+                  "description":"clear and store label<br> (If text on label storage (ignore) equals &quot;&quot;)",
+                  "isNewIfGroup":false,
+                  "condition":{
+                    "exprType":"binaryOp",
+                    "op":"==",
+                    "leftExpr":{
+                      "exprType":"fcall",
+                      "functionName":"GetWidgetText",
+                      "arguments":[{
+                          "exprType":"pathLiteral",
+                          "isThis":false,
+                          "isFocused":false,
+                          "isTarget":false,
+                          "value":["18ca969a9138403d988673e7244176fa"]}]},
+                    "rightExpr":{
+                      "exprType":"stringLiteral",
+                      "value":"",
+                      "stos":[]}},
+                  "actions":[{
+                      "action":"setFunction",
+                      "description":"Set text on label storage (ignore) equal to text on textfield",
+                      "expr":{
+                        "exprType":"block",
+                        "subExprs":[{
+                            "exprType":"fcall",
+                            "functionName":"SetWidgetFormText",
+                            "arguments":[{
+                                "exprType":"pathLiteral",
+                                "isThis":false,
+                                "isFocused":false,
+                                "isTarget":false,
+                                "value":["18ca969a9138403d988673e7244176fa"]},
+{
+                                "exprType":"fcall",
+                                "functionName":"GetWidgetText",
+                                "arguments":[{
+                                    "exprType":"pathLiteral",
+                                    "isThis":false,
+                                    "isFocused":false,
+                                    "isTarget":false,
+                                    "value":["db6931bdfa4f4064848ef5b767d51996"]}]}]}]}},
+{
+                      "action":"setFunction",
+                      "description":"Set text on textfield equal to &quot;&quot;",
+                      "expr":{
+                        "exprType":"block",
+                        "subExprs":[{
+                            "exprType":"fcall",
+                            "functionName":"SetWidgetFormText",
+                            "arguments":[{
+                                "exprType":"pathLiteral",
+                                "isThis":false,
+                                "isFocused":false,
+                                "isTarget":false,
+                                "value":["db6931bdfa4f4064848ef5b767d51996"]},
+{
+                                "exprType":"stringLiteral",
+                                "value":"",
+                                "stos":[]}]}]}}]}]},
+            "onLostFocus":{
+              "description":"OnLostFocus",
+              "cases":[{
+                  "description":"replace label<br> (If text on textfield equals &quot;&quot;)",
+                  "isNewIfGroup":false,
+                  "condition":{
+                    "exprType":"binaryOp",
+                    "op":"==",
+                    "leftExpr":{
+                      "exprType":"fcall",
+                      "functionName":"GetWidgetText",
+                      "arguments":[{
+                          "exprType":"pathLiteral",
+                          "isThis":false,
+                          "isFocused":false,
+                          "isTarget":false,
+                          "value":["db6931bdfa4f4064848ef5b767d51996"]}]},
+                    "rightExpr":{
+                      "exprType":"stringLiteral",
+                      "value":"",
+                      "stos":[]}},
+                  "actions":[{
+                      "action":"setFunction",
+                      "description":"Set text on textfield equal to text on label storage (ignore)",
+                      "expr":{
+                        "exprType":"block",
+                        "subExprs":[{
+                            "exprType":"fcall",
+                            "functionName":"SetWidgetFormText",
+                            "arguments":[{
+                                "exprType":"pathLiteral",
+                                "isThis":false,
+                                "isFocused":false,
+                                "isTarget":false,
+                                "value":["db6931bdfa4f4064848ef5b767d51996"]},
+{
+                                "exprType":"fcall",
+                                "functionName":"GetWidgetText",
+                                "arguments":[{
+                                    "exprType":"pathLiteral",
+                                    "isThis":false,
+                                    "isFocused":false,
+                                    "isTarget":false,
+                                    "value":["18ca969a9138403d988673e7244176fa"]}]}]}]}},
+{
+                      "action":"setFunction",
+                      "description":"Set text on label storage (ignore) equal to &quot;&quot;",
+                      "expr":{
+                        "exprType":"block",
+                        "subExprs":[{
+                            "exprType":"fcall",
+                            "functionName":"SetWidgetFormText",
+                            "arguments":[{
+                                "exprType":"pathLiteral",
+                                "isThis":false,
+                                "isFocused":false,
+                                "isTarget":false,
+                                "value":["18ca969a9138403d988673e7244176fa"]},
+{
+                                "exprType":"stringLiteral",
+                                "value":"",
+                                "stos":[]}]}]}}]}]}},
+          "tabbable":true},
+{
+          "id":"c53a7a1298a148e99f9dbe1235ac7f16",
+          "label":"",
+          "type":"horizontalLine",
+          "styleType":"horizontalLine",
+          "visible":true,
+          "style":{
+            "baseStyle":"627587b6038d43cca051c114ac41ad32",
+            "location":{
+              "x":263,
+              "y":239},
+            "size":{
+              "width":290,
+              "height":10},
+            "borderFill":{
+              "fillType":"linearGradient",
+              "colors":[{
+                  "color":0x1C00FFFF},
+{
+                  "color":0x1C00FFFF},
+{
+                  "color":0xFFAEABAE},
+{
+                  "color":0xFFAEABAE},
+{
+                  "color":0xAEABAE},
+{
+                  "color":0xAEABAE}]}},
+          "adaptiveStyles":{
+},
+          "images":{
+            "start~":"resources/images/transparent.gif",
+            "end~":"resources/images/transparent.gif",
+            "line~":"images/password_change/u18_line.png"}},
+{
+          "id":"4bacaaff6c2740fea33b872455e1e2ce",
+          "label":"textfield control",
+          "type":"dynamicPanel",
+          "styleType":"dynamicPanel",
+          "visible":false,
+          "style":{
+            "location":{
+              "x":311,
+              "y":175},
+            "size":{
+              "width":8,
+              "height":10},
+            "visible":false},
+          "adaptiveStyles":{
+},
+          "scrollbars":"none",
+          "fitToContent":false,
+          "propagate":false,
+          "diagrams":[{
+              "id":"0590eb0c945f4c7fbea24d13ebc96eef",
+              "label":"State1",
+              "type":"Axure:PanelDiagram",
+              "objects":[{
+                  "id":"a284220c164a4639bcc2bf141c77e775",
+                  "label":"label storage (ignore)",
+                  "parentDynamicPanel":"4bacaaff6c2740fea33b872455e1e2ce",
+                  "panelIndex":0,
+                  "type":"textBox",
+                  "styleType":"textBox",
+                  "visible":true,
+                  "style":{
+                    "size":{
+                      "width":195,
+                      "height":25}},
+                  "adaptiveStyles":{
+}}],
+              "style":{
+                "fill":{
+                  "fillType":"solid",
+                  "color":0xFFFFFF},
+                "image":null,
+                "imageHorizontalAlignment":"near",
+                "imageVerticalAlignment":"near",
+                "imageRepeat":"auto"},
+              "adaptiveStyles":{
+}}]},
+{
+          "id":"fd6b3d651b1040168e2d822203c603e1",
+          "label":"textfield",
+          "type":"textBox",
+          "styleType":"textBox",
+          "visible":true,
+          "style":{
+            "foreGroundFill":{
+              "fillType":"solid",
+              "color":0xFFCCCCCC,
+              "opacity":1},
+            "location":{
+              "x":311,
+              "y":175},
+            "size":{
+              "width":180,
+              "height":22}},
+          "adaptiveStyles":{
+},
+          "interactionMap":{
+            "onFocus":{
+              "description":"OnFocus",
+              "cases":[{
+                  "description":"clear and store label<br> (If text on label storage (ignore) equals &quot;&quot;)",
+                  "isNewIfGroup":false,
+                  "condition":{
+                    "exprType":"binaryOp",
+                    "op":"==",
+                    "leftExpr":{
+                      "exprType":"fcall",
+                      "functionName":"GetWidgetText",
+                      "arguments":[{
+                          "exprType":"pathLiteral",
+                          "isThis":false,
+                          "isFocused":false,
+                          "isTarget":false,
+                          "value":["a284220c164a4639bcc2bf141c77e775"]}]},
+                    "rightExpr":{
+                      "exprType":"stringLiteral",
+                      "value":"",
+                      "stos":[]}},
+                  "actions":[{
+                      "action":"setFunction",
+                      "description":"Set text on label storage (ignore) equal to text on textfield",
+                      "expr":{
+                        "exprType":"block",
+                        "subExprs":[{
+                            "exprType":"fcall",
+                            "functionName":"SetWidgetFormText",
+                            "arguments":[{
+                                "exprType":"pathLiteral",
+                                "isThis":false,
+                                "isFocused":false,
+                                "isTarget":false,
+                                "value":["a284220c164a4639bcc2bf141c77e775"]},
+{
+                                "exprType":"fcall",
+                                "functionName":"GetWidgetText",
+                                "arguments":[{
+                                    "exprType":"pathLiteral",
+                                    "isThis":false,
+                                    "isFocused":false,
+                                    "isTarget":false,
+                                    "value":["fd6b3d651b1040168e2d822203c603e1"]}]}]}]}},
+{
+                      "action":"setFunction",
+                      "description":"Set text on textfield equal to &quot;&quot;",
+                      "expr":{
+                        "exprType":"block",
+                        "subExprs":[{
+                            "exprType":"fcall",
+                            "functionName":"SetWidgetFormText",
+                            "arguments":[{
+                                "exprType":"pathLiteral",
+                                "isThis":false,
+                                "isFocused":false,
+                                "isTarget":false,
+                                "value":["fd6b3d651b1040168e2d822203c603e1"]},
+{
+                                "exprType":"stringLiteral",
+                                "value":"",
+                                "stos":[]}]}]}}]}]},
+            "onLostFocus":{
+              "description":"OnLostFocus",
+              "cases":[{
+                  "description":"replace label<br> (If text on textfield equals &quot;&quot;)",
+                  "isNewIfGroup":false,
+                  "condition":{
+                    "exprType":"binaryOp",
+                    "op":"==",
+                    "leftExpr":{
+                      "exprType":"fcall",
+                      "functionName":"GetWidgetText",
+                      "arguments":[{
+                          "exprType":"pathLiteral",
+                          "isThis":false,
+                          "isFocused":false,
+                          "isTarget":false,
+                          "value":["fd6b3d651b1040168e2d822203c603e1"]}]},
+                    "rightExpr":{
+                      "exprType":"stringLiteral",
+                      "value":"",
+                      "stos":[]}},
+                  "actions":[{
+                      "action":"setFunction",
+                      "description":"Set text on textfield equal to text on label storage (ignore)",
+                      "expr":{
+                        "exprType":"block",
+                        "subExprs":[{
+                            "exprType":"fcall",
+                            "functionName":"SetWidgetFormText",
+                            "arguments":[{
+                                "exprType":"pathLiteral",
+                                "isThis":false,
+                                "isFocused":false,
+                                "isTarget":false,
+                                "value":["fd6b3d651b1040168e2d822203c603e1"]},
+{
+                                "exprType":"fcall",
+                                "functionName":"GetWidgetText",
+                                "arguments":[{
+                                    "exprType":"pathLiteral",
+                                    "isThis":false,
+                                    "isFocused":false,
+                                    "isTarget":false,
+                                    "value":["a284220c164a4639bcc2bf141c77e775"]}]}]}]}},
+{
+                      "action":"setFunction",
+                      "description":"Set text on label storage (ignore) equal to &quot;&quot;",
+                      "expr":{
+                        "exprType":"block",
+                        "subExprs":[{
+                            "exprType":"fcall",
+                            "functionName":"SetWidgetFormText",
+                            "arguments":[{
+                                "exprType":"pathLiteral",
+                                "isThis":false,
+                                "isFocused":false,
+                                "isTarget":false,
+                                "value":["a284220c164a4639bcc2bf141c77e775"]},
+{
+                                "exprType":"stringLiteral",
+                                "value":"",
+                                "stos":[]}]}]}}]}]}},
+          "tabbable":true},
+{
+          "id":"e848b95641194af6894aa21ceabb4067",
+          "label":"textfield control",
+          "type":"dynamicPanel",
+          "styleType":"dynamicPanel",
+          "visible":false,
+          "style":{
+            "location":{
+              "x":312,
+              "y":221},
+            "size":{
+              "width":8,
+              "height":10},
+            "visible":false},
+          "adaptiveStyles":{
+},
+          "scrollbars":"none",
+          "fitToContent":false,
+          "propagate":false,
+          "diagrams":[{
+              "id":"c2c7d4f0c7bf4e8084d27211c0540766",
+              "label":"State1",
+              "type":"Axure:PanelDiagram",
+              "objects":[{
+                  "id":"29a7734a69e34ac5b40f330f01a49526",
+                  "label":"label storage (ignore)",
+                  "parentDynamicPanel":"e848b95641194af6894aa21ceabb4067",
+                  "panelIndex":0,
+                  "type":"textBox",
+                  "styleType":"textBox",
+                  "visible":true,
+                  "style":{
+                    "size":{
+                      "width":195,
+                      "height":25}},
+                  "adaptiveStyles":{
+}}],
+              "style":{
+                "fill":{
+                  "fillType":"solid",
+                  "color":0xFFFFFF},
+                "image":null,
+                "imageHorizontalAlignment":"near",
+                "imageVerticalAlignment":"near",
+                "imageRepeat":"auto"},
+              "adaptiveStyles":{
+}}]},
+{
+          "id":"10d9862850d842859fcc827f7b9d746d",
+          "label":"textfield",
+          "type":"textBox",
+          "styleType":"textBox",
+          "visible":true,
+          "style":{
+            "foreGroundFill":{
+              "fillType":"solid",
+              "color":0xFFCCCCCC,
+              "opacity":1},
+            "location":{
+              "x":312,
+              "y":221},
+            "size":{
+              "width":180,
+              "height":22}},
+          "adaptiveStyles":{
+},
+          "interactionMap":{
+            "onFocus":{
+              "description":"OnFocus",
+              "cases":[{
+                  "description":"clear and store label<br> (If text on label storage (ignore) equals &quot;&quot;)",
+                  "isNewIfGroup":false,
+                  "condition":{
+                    "exprType":"binaryOp",
+                    "op":"==",
+                    "leftExpr":{
+                      "exprType":"fcall",
+                      "functionName":"GetWidgetText",
+                      "arguments":[{
+                          "exprType":"pathLiteral",
+                          "isThis":false,
+                          "isFocused":false,
+                          "isTarget":false,
+                          "value":["29a7734a69e34ac5b40f330f01a49526"]}]},
+                    "rightExpr":{
+                      "exprType":"stringLiteral",
+                      "value":"",
+                      "stos":[]}},
+                  "actions":[{
+                      "action":"setFunction",
+                      "description":"Set text on label storage (ignore) equal to text on textfield",
+                      "expr":{
+                        "exprType":"block",
+                        "subExprs":[{
+                            "exprType":"fcall",
+                            "functionName":"SetWidgetFormText",
+                            "arguments":[{
+                                "exprType":"pathLiteral",
+                                "isThis":false,
+                                "isFocused":false,
+                                "isTarget":false,
+                                "value":["29a7734a69e34ac5b40f330f01a49526"]},
+{
+                                "exprType":"fcall",
+                                "functionName":"GetWidgetText",
+                                "arguments":[{
+                                    "exprType":"pathLiteral",
+                                    "isThis":false,
+                                    "isFocused":false,
+                                    "isTarget":false,
+                                    "value":["10d9862850d842859fcc827f7b9d746d"]}]}]}]}},
+{
+                      "action":"setFunction",
+                      "description":"Set text on textfield equal to &quot;&quot;",
+                      "expr":{
+                        "exprType":"block",
+                        "subExprs":[{
+                            "exprType":"fcall",
+                            "functionName":"SetWidgetFormText",
+                            "arguments":[{
+                                "exprType":"pathLiteral",
+                                "isThis":false,
+                                "isFocused":false,
+                                "isTarget":false,
+                                "value":["10d9862850d842859fcc827f7b9d746d"]},
+{
+                                "exprType":"stringLiteral",
+                                "value":"",
+                                "stos":[]}]}]}}]}]},
+            "onLostFocus":{
+              "description":"OnLostFocus",
+              "cases":[{
+                  "description":"replace label<br> (If text on textfield equals &quot;&quot;)",
+                  "isNewIfGroup":false,
+                  "condition":{
+                    "exprType":"binaryOp",
+                    "op":"==",
+                    "leftExpr":{
+                      "exprType":"fcall",
+                      "functionName":"GetWidgetText",
+                      "arguments":[{
+                          "exprType":"pathLiteral",
+                          "isThis":false,
+                          "isFocused":false,
+                          "isTarget":false,
+                          "value":["10d9862850d842859fcc827f7b9d746d"]}]},
+                    "rightExpr":{
+                      "exprType":"stringLiteral",
+                      "value":"",
+                      "stos":[]}},
+                  "actions":[{
+                      "action":"setFunction",
+                      "description":"Set text on textfield equal to text on label storage (ignore)",
+                      "expr":{
+                        "exprType":"block",
+                        "subExprs":[{
+                            "exprType":"fcall",
+                            "functionName":"SetWidgetFormText",
+                            "arguments":[{
+                                "exprType":"pathLiteral",
+                                "isThis":false,
+                                "isFocused":false,
+                                "isTarget":false,
+                                "value":["10d9862850d842859fcc827f7b9d746d"]},
+{
+                                "exprType":"fcall",
+                                "functionName":"GetWidgetText",
+                                "arguments":[{
+                                    "exprType":"pathLiteral",
+                                    "isThis":false,
+                                    "isFocused":false,
+                                    "isTarget":false,
+                                    "value":["29a7734a69e34ac5b40f330f01a49526"]}]}]}]}},
+{
+                      "action":"setFunction",
+                      "description":"Set text on label storage (ignore) equal to &quot;&quot;",
+                      "expr":{
+                        "exprType":"block",
+                        "subExprs":[{
+                            "exprType":"fcall",
+                            "functionName":"SetWidgetFormText",
+                            "arguments":[{
+                                "exprType":"pathLiteral",
+                                "isThis":false,
+                                "isFocused":false,
+                                "isTarget":false,
+                                "value":["29a7734a69e34ac5b40f330f01a49526"]},
+{
+                                "exprType":"stringLiteral",
+                                "value":"",
+                                "stos":[]}]}]}}]}]}},
+          "tabbable":true},
+{
+          "id":"120bb0138f8840a49e09ec4b1f038c5d",
+          "label":"",
+          "type":"horizontalLine",
+          "styleType":"horizontalLine",
+          "visible":true,
+          "style":{
+            "baseStyle":"627587b6038d43cca051c114ac41ad32",
+            "location":{
+              "x":266,
+              "y":195},
+            "size":{
+              "width":290,
+              "height":10},
+            "borderFill":{
+              "fillType":"linearGradient",
+              "colors":[{
+                  "color":0x1C00FFFF},
+{
+                  "color":0x1C00FFFF},
+{
+                  "color":0xFFAEABAE},
+{
+                  "color":0xFFAEABAE},
+{
+                  "color":0xAEABAE},
+{
+                  "color":0xAEABAE}]}},
+          "adaptiveStyles":{
+},
+          "images":{
+            "start~":"resources/images/transparent.gif",
+            "end~":"resources/images/transparent.gif",
+            "line~":"images/password_change/u14_line.png"}}]}},
+  "masters":{
+},
+  "objectPaths":{
+    "fa09ba3658364854a6beee13275e67c1":{
+      "scriptId":"u0"},
+    "a6d5c5793530482899a7562d7291aa19":{
+      "scriptId":"u1"},
+    "bd890a10dd4a401cb6a8b97c011712f9":{
+      "scriptId":"u2"},
+    "42848e327c5b41c7b43344a13b8ef2b3":{
+      "scriptId":"u3"},
+    "1f5ac0c8e092471f8063a8bc8c6b5181":{
+      "scriptId":"u4"},
+    "d99489cacb2f4046bc3b969b83e4a8f4":{
+      "scriptId":"u5"},
+    "596495fa83134f4eb1d07ef1c34f70fd":{
+      "scriptId":"u6"},
+    "0435f14a2c524902b3ba2c91a8d73e4d":{
+      "scriptId":"u7"},
+    "540fc3942a7a4619ba10b628b664c81c":{
+      "scriptId":"u8"},
+    "5f26218fc1354189b82e27db4a1ce933":{
+      "scriptId":"u9"},
+    "7ea1760e21fe402ba05a2115e41130eb":{
+      "scriptId":"u10"},
+    "bf13c3bf3df04150ab209dce17c094c5":{
+      "scriptId":"u11"},
+    "08d7ee0db433487cbf9f2e0c593b006e":{
+      "scriptId":"u12"},
+    "b0262ce15fd8401691c44f4054160962":{
+      "scriptId":"u13"},
+    "0eaa4ea3f60b4e989bb6de97b4eea113":{
+      "scriptId":"u14"},
+    "bdc19d4386c94143a595a0087f17b1ad":{
+      "scriptId":"u15"},
+    "18ca969a9138403d988673e7244176fa":{
+      "scriptId":"u16"},
+    "db6931bdfa4f4064848ef5b767d51996":{
+      "scriptId":"u17"},
+    "c53a7a1298a148e99f9dbe1235ac7f16":{
+      "scriptId":"u18"},
+    "4bacaaff6c2740fea33b872455e1e2ce":{
+      "scriptId":"u19"},
+    "a284220c164a4639bcc2bf141c77e775":{
+      "scriptId":"u20"},
+    "fd6b3d651b1040168e2d822203c603e1":{
+      "scriptId":"u21"},
+    "e848b95641194af6894aa21ceabb4067":{
+      "scriptId":"u22"},
+    "29a7734a69e34ac5b40f330f01a49526":{
+      "scriptId":"u23"},
+    "10d9862850d842859fcc827f7b9d746d":{
+      "scriptId":"u24"},
+    "120bb0138f8840a49e09ec4b1f038c5d":{
+      "scriptId":"u25"}}});
