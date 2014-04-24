@@ -10,5 +10,6 @@
     <string name="topicV">主题</string>
     <string name="username">用户名</string>
     <string name="password">密码</string>
+    <string name="login_img">登录账户图片</string>
 
 </resources>

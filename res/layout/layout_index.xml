@@ -3,29 +3,46 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical" >
-    
+
     <LinearLayout
         android:id="@+id/index_app_logo_col1"
-        android:orientation="vertical"
-        android:layout_gravity="center"
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:layout_marginTop="30dp"
-        android:layout_marginBottom="30dp"
-        android:background="@drawable/app_logo">
-    </LinearLayout>
-<!--     <EditText -->
-	<TableRow
-        android:id="@+id/username"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="@string/username"
-        android:selectAllOnFocus="true"
-        android:paddingLeft="20dp"
-        android:paddingRight="20dp"
-        android:paddingTop="10dp"
-        android:paddingBottom="10dp"
         android:layout_gravity="center"
-        android:background="@drawable/rounded_outer"/>
+        android:layout_marginBottom="30dp"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/app_logo"
+        android:orientation="vertical" >
+    </LinearLayout>
+
+    <TableLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content">
+
+        <TableRow 
+            android:id="@+id/tableRow1"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center" >
+                
+        <ImageView
+            android:contentDescription="@string/login_img"
+            android:src="@drawable/login_account" 
+            android:layout_marginLeft="10dp"/>
+
+        <EditText
+            android:id="@+id/username"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="@drawable/rounded_outer"
+            android:hint="@string/username"
+            android:paddingBottom="10dp"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            android:paddingTop="10dp"
+            android:selectAllOnFocus="true" />
+        </TableRow>
+    </TableLayout>
 
 </LinearLayout>
