@@ -11,5 +11,7 @@
     <string name="username">用户名</string>
     <string name="password">密码</string>
     <string name="login_img">登录账户图片</string>
+    <string name="regist">注册</string>
+    <string name="login">登陆</string>
 
 </resources>

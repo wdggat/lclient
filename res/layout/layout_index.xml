@@ -17,31 +17,78 @@
 
     <TableLayout
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content" >
 
-        <TableRow 
-            android:id="@+id/tableRow1"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center" >
-                
-        <ImageView
-            android:contentDescription="@string/login_img"
-            android:src="@drawable/login_account" 
-            android:layout_marginLeft="10dp"/>
-
-        <EditText
-            android:id="@+id/username"
+        <TableRow
+            android:id="@+id/row_username"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:background="@drawable/rounded_outer"
-            android:hint="@string/username"
+            android:gravity="center" >
+
+            <ImageView
+                android:layout_paddingLeft="10dp"
+                android:contentDescription="@string/login_img"
+                android:src="@drawable/login_account" 
+                android:layout_gravity="left"/>
+
+            <EditText
+                android:id="@+id/username"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/rounded_outer"
+                android:hint="@string/username"
+                android:paddingBottom="10dp"
+                android:paddingLeft="10dp"
+                android:paddingTop="10dp"
+                android:selectAllOnFocus="true" />
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/row_password"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
             android:paddingBottom="10dp"
-            android:paddingLeft="20dp"
-            android:paddingRight="20dp"
-            android:paddingTop="10dp"
-            android:selectAllOnFocus="true" />
+            android:gravity="center" >
+
+            <ImageView
+                android:layout_paddingLeft="10dp"
+                android:contentDescription="@string/login_img"
+                android:src="@drawable/login_password" 
+                android:layout_gravity="left"/>
+
+            <EditText
+                android:id="@+id/password"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/rounded_outer"
+                android:hint="@string/password"
+                android:inputType="textPassword"
+                android:paddingBottom="10dp"
+                android:paddingLeft="10dp"
+                android:paddingTop="10dp"
+                android:selectAllOnFocus="true" />
+        </TableRow>
+
+        <TableRow android:paddingTop="10dp">
+
+            <Button
+                android:id="@+id/registbt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/light_blue"
+                android:layout_marginLeft="20dp"
+                android:text="@string/regist"
+                android:layout_gravity="center" />
+            
+            <Button
+                android:id="@+id/loginbt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/light_blue"
+                android:layout_marginRight="2dp"
+                android:text="@string/login"
+                android:layout_gravity="center" />
         </TableRow>
     </TableLayout>
 
