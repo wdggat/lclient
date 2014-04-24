@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
+    android:layout_width="fill_parent"
     android:layout_height="match_parent"
     android:orientation="vertical" >
 
@@ -22,11 +22,10 @@
         <TableRow
             android:id="@+id/row_username"
             android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center" >
+            android:layout_height="wrap_content">
 
             <ImageView
-                android:layout_paddingLeft="10dp"
+                android:layout_marginLeft="10dp"
                 android:contentDescription="@string/login_img"
                 android:src="@drawable/login_account" 
                 android:layout_gravity="left"/>
@@ -40,6 +39,7 @@
                 android:paddingBottom="10dp"
                 android:paddingLeft="10dp"
                 android:paddingTop="10dp"
+                android:ems="10"
                 android:selectAllOnFocus="true" />
         </TableRow>
 
@@ -48,11 +48,10 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:paddingBottom="10dp"
-            android:gravity="center" >
+            android:paddingBottom="10dp">
 
             <ImageView
-                android:layout_paddingLeft="10dp"
+                android:layout_marginLeft="10dp"
                 android:contentDescription="@string/login_img"
                 android:src="@drawable/login_password" 
                 android:layout_gravity="left"/>
@@ -80,16 +79,28 @@
                 android:layout_marginLeft="20dp"
                 android:text="@string/regist"
                 android:layout_gravity="center" />
-            
+
             <Button
                 android:id="@+id/loginbt"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginRight="20dp"
                 android:background="@color/light_blue"
-                android:layout_marginRight="2dp"
-                android:text="@string/login"
-                android:layout_gravity="center" />
+                android:text="@string/login" 
+                android:layout_gravity="center"/>
+
         </TableRow>
+        
+        <TextView
+                android:id="@+id/login_forget_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="right"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="15dp"
+                android:text="@string/forget_password"
+                android:textColor="#000000" />
+        
     </TableLayout>
 
 </LinearLayout>
