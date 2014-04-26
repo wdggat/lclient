@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="fill_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical" >
+    android:orientation="vertical">
 
     <LinearLayout
         android:id="@+id/index_app_logo_col1"
@@ -75,19 +76,19 @@
                 android:id="@+id/registbt"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@color/light_blue"
                 android:layout_marginLeft="20dp"
                 android:text="@string/regist"
-                android:layout_gravity="center" />
+                android:layout_gravity="center"
+                style="@style/round_corner"/>
 
             <Button
                 android:id="@+id/loginbt"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="20dp"
-                android:background="@color/light_blue"
                 android:text="@string/login" 
-                android:layout_gravity="center"/>
+                android:layout_gravity="center"
+                style="@style/round_corner"/>
 
         </TableRow>
         

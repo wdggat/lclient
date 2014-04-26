@@ -1,6 +1,6 @@
 ﻿$axure.loadCurrentPage({
   "url":"person_info.html",
-  "generationDate":new Date(1397661642956.83),
+  "generationDate":new Date(1398431701239.18),
   "isCanvasEnabled":false,
   "variables":["OnLoadVariable",
 "yz_msg",
@@ -482,7 +482,7 @@
                       "linkType":"current"}]}]}},
           "tabbable":true,
           "images":{
-            "normal~":"images/msginfo/u21.png"}},
+            "normal~":"images/msginfo/u12.png"}},
 {
           "id":"9132e9d7f2f94c5c8991ad27e5a2a428",
           "label":"",

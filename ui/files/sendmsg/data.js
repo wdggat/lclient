@@ -1,6 +1,6 @@
 ﻿$axure.loadCurrentPage({
   "url":"sendmsg.html",
-  "generationDate":new Date(1397661643102.84),
+  "generationDate":new Date(1398431701395.19),
   "isCanvasEnabled":false,
   "variables":["OnLoadVariable",
 "yz_msg",
@@ -590,7 +590,7 @@
               "adaptiveStyles":{
 }}],
           "images":{
-            "normal~":"images/msginfo/msg_info_del_popup_u14.png"}},
+            "normal~":"images/msginfo/delmsg_popup_u26.png"}},
 {
           "id":"e3239ce5bc3b45828e5b0bbae9cecdc0",
           "label":"",
@@ -674,7 +674,7 @@
           "images":{
             "start~":"resources/images/transparent.gif",
             "end~":"resources/images/transparent.gif",
-            "line~":"images/msginfo/u18_line.png"}},
+            "line~":"images/msginfo/u30_line.png"}},
 {
           "id":"782ea5a8dd814a9589c284b0d4460f78",
           "label":"",

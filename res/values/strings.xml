@@ -14,5 +14,7 @@
     <string name="regist">注册</string>
     <string name="login">登陆</string>
     <string name="forget_password">忘记密码?</string>
+    <string name="timeline_menu">timeline菜单</string>
+    <string name="me_bt">我</string>
 
 </resources>

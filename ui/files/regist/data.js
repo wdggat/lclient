@@ -1,6 +1,6 @@
 ﻿$axure.loadCurrentPage({
   "url":"regist.html",
-  "generationDate":new Date(1397661643001.84),
+  "generationDate":new Date(1398431701288.18),
   "isCanvasEnabled":false,
   "variables":["OnLoadVariable",
 "yz_msg",
@@ -934,7 +934,7 @@
                       "linkType":"current"}]}]}},
           "tabbable":true,
           "images":{
-            "normal~":"images/msginfo/u21.png"}},
+            "normal~":"images/msginfo/u12.png"}},
 {
           "id":"08d7ee0db433487cbf9f2e0c593b006e",
           "label":"regist_submit_ok",

@@ -1,6 +1,6 @@
 ﻿$axure.loadCurrentPage({
   "url":"password_change.html",
-  "generationDate":new Date(1397661643052.84),
+  "generationDate":new Date(1398431701349.18),
   "isCanvasEnabled":false,
   "variables":["OnLoadVariable",
 "yz_msg",
@@ -344,7 +344,7 @@
                       "linkType":"current"}]}]}},
           "tabbable":true,
           "images":{
-            "normal~":"images/msginfo/u21.png"}},
+            "normal~":"images/msginfo/u12.png"}},
 {
           "id":"08d7ee0db433487cbf9f2e0c593b006e",
           "label":"password_change_submit_ok",
