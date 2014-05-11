@@ -52,7 +52,8 @@
             </RadioGroup>
         </TableRow>
 
-        <TableRow android:layout_marginTop="5dp" >
+        <TableRow android:layout_marginTop="5dp"
+            android:layout_width="match_parent" >
 
             <TextView
                 android:layout_gravity="left|center"
@@ -63,7 +64,6 @@
                 android:id="@+id/provinces"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="5dp"
                 android:entries="@array/provinces"
                 android:paddingBottom="5dp"
                 android:paddingTop="5dp" />
