@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFFFF"
+    android:orientation="vertical" >
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#FFFFFF" >
+
+        <TableRow
+            android:id="@+id/timeline_topbar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/green_strip"
+            android:gravity="center" >
+
+            <TextView
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:text="@string/app_name" />
+        </TableRow>
+
+        <TableRow
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp" >
+
+            <TextView
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:text="@string/receiver" />
+
+            <EditText
+                android:id="@+id/receiver"
+                style="@style/edittext_bottomline" >
+            </EditText>
+        </TableRow>
+
+        <TableRow
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp" >
+
+            <TextView
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:text="@string/subject" />
+
+            <EditText
+                android:id="@+id/subject"
+                style="@style/edittext_bottomline" >
+            </EditText>
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:weightSum="1" >
+
+            <EditText
+                android:id="@+id/newmsg_content"
+                style="@style/edittext_multilines"
+                android:layout_weight="1"
+                android:minHeight="120dp" />
+        </TableRow>
+    </TableLayout>
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:weightSum="2" >
+
+        <Button
+            android:id="@+id/newmsg_calloff"
+            style="@style/button_round"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:gravity="center"
+            android:text="@string/calloff" />
+
+        <Button
+            android:id="@+id/newmsg_submit"
+            style="@style/button_round"
+            android:layout_width="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:gravity="center"
+            android:text="@string/send" />
+    </TableRow>
+
+</LinearLayout>

@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical" >
+
+    <include layout="@layout/backto_topbar" />
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white">
+
+        <TableRow android:layout_marginTop="10dp" >
+
+            <TextView
+                android:layout_marginLeft="10dp"
+                android:layout_weight="1"
+                android:text="@string/mail_colon" />
+
+            <TextView
+                android:id="@+id/mail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="8" />
+        </TableRow>
+
+        <TableRow android:paddingTop="10dp" >
+
+            <TextView
+                android:layout_gravity="left|center"
+                android:layout_marginLeft="10dp"
+                android:layout_weight="1"
+                android:text="@string/gender_colon" />
+
+            <TextView
+                android:id="@+id/gender"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="8" />
+        </TableRow>
+
+        <TableRow android:layout_marginTop="10dp" >
+
+            <TextView
+                android:layout_gravity="left|center"
+                android:layout_marginLeft="10dp"
+                android:text="@string/province_colon" />
+
+            <TextView
+                android:id="@+id/province"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="8" />
+        </TableRow>
+
+        <TableRow android:layout_marginTop="10dp" >
+
+            <TextView
+                android:layout_gravity="left|center"
+                android:layout_marginLeft="10dp"
+                android:text="@string/birthday_colon" />
+
+            <TextView
+                android:id="@+id/birthday"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="8" />
+        </TableRow>
+
+        <TableRow android:layout_marginTop="10dp" >
+
+            <TextView
+                android:layout_marginLeft="10dp"
+                android:layout_weight="1"
+                android:text="@string/phone_colon" />
+
+            <TextView
+                android:id="@+id/phone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="8" />
+        </TableRow>
+
+        <TableRow
+            android:layout_marginTop="30dp"
+            android:gravity="center" >
+
+            <Button
+                android:id="@+id/change_infobt"
+                style="@style/button_round"
+                android:text="@string/change" />
+        </TableRow>
+    </TableLayout>
+
+</LinearLayout>

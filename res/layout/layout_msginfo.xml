@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="fill_parent"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
     android:orientation="vertical" >
@@ -13,11 +12,11 @@
         android:background="@drawable/green_strip" >
 
         <Button
-            android:id="@+id/create_msgbt"
+            android:id="@+id/backto_timelinebt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="left"
-            android:background="@drawable/cross_bt" />
+            android:background="@drawable/left" />
 
         <TextView
             android:layout_width="match_parent"
@@ -27,34 +26,44 @@
             android:text="@string/app_name" />
 
         <Button
-            android:id="@+id/selfinfo_bt"
-            style="@style/button_round"
+            android:id="@+id/mebt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="right"
-            android:text="@string/me_bt" />
+            android:background="@drawable/delete3" />
     </FrameLayout>
 
-    <LinearLayout
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="#FFFFFF"
-        android:orientation="vertical" >
+        android:layout_height="match_parent" >
 
-        <TableLayout
+        <TextView
+            android:id="@+id/msgs"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scrollbarStyle="insideInset"/>
+
+        <TableRow
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#FFFFFF"
-            android:gravity="center" >
+            android:layout_gravity="bottom" >
 
-            <ListView
-                android:id="@+id/msg_items"
-                android:layout_width="match_parent"
+            <EditText
+                android:id="@+id/reply_inmsginfo"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:divider="@drawable/text_bottom_line"
-                android:entries="@array/msg_items_init"
-                android:scrollbars="none" />
-        </TableLayout>
-    </LinearLayout>
+                android:inputType="textMultiLine"
+                android:layout_weight="8" />
+
+            <Button
+                android:id="@+id/msg_send"
+                style="@style/button_round"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_gravity="right"
+                android:text="@string/send" />
+        </TableRow>
+    </FrameLayout>
 
 </LinearLayout>

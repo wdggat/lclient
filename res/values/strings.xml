@@ -2,12 +2,11 @@
 <resources>
 
     <string name="app_name">whoami</string>
-    <string name="action_settings">Settings</string>
     <string name="hello_world">Hello world!</string>
-    <string name="partyb">乙方:</string>
-    <string name="submit">发送</string>
+    <string name="receiver">收件人</string>
+    <string name="send">发送</string>
     <string name="email_hint">多地址请用;分隔</string>
-    <string name="topicV">主题</string>
+    <string name="subject">主题</string>
     <string name="username">用户名</string>
     <string name="password">密码</string>
     <string name="login_img">登录账户图片</string>
@@ -16,5 +15,23 @@
     <string name="forget_password">忘记密码?</string>
     <string name="timeline_menu">timeline菜单</string>
     <string name="me_bt">我</string>
+    <string name="timeline_inittext">\.\.\.</string>
+    <string name="calloff">取消</string>
+    <string name="sure">确定</string>
+    <string name="uid">UID</string>
+    <string name="mail_colon">邮箱: </string>
+    <string name="gender_colon">性别: </string>
+    <string name="province_colon">省市: </string>
+    <string name="birthday_colon">生日: </string>
+    <string name="phone_colon">电话: </string>
+    <string name="password_colon">密码: </string>
+    <string name="password_confirm_colon">确认密码: </string>
+    <string name="change">修改</string>
+    <string name="male">汉子</string>
+    <string name="female">妹子</string>
+    <string name="gender_unset">保密</string>
+    <string name="password_old">输入旧密码</string>
+    <string name="password_new">新密码</string>
+    <string name="password_new_confirm">确认新密码</string>
 
 </resources>
