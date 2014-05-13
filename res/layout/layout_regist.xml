@@ -28,12 +28,11 @@
                 android:layout_weight="8" />
         </TableRow>
 
-        <TableRow android:paddingTop="5dp" >
+        <TableRow android:paddingTop="2dp" >
 
             <TextView
                 android:layout_gravity="left|center"
                 android:layout_marginLeft="10dp"
-                android:layout_weight="1"
                 android:text="@string/gender_colon" />
 
             <RadioGroup
@@ -49,6 +48,10 @@
                 <RadioButton
                     android:id="@+id/genderbt_female"
                     android:text="@string/female" />
+                
+                <RadioButton
+                    android:id="@+id/genderbt_unset"
+                    android:text="@string/gender_unset" />
             </RadioGroup>
         </TableRow>
 
@@ -65,8 +68,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:entries="@array/provinces"
-                android:paddingBottom="5dp"
-                android:paddingTop="5dp" />
+                android:paddingBottom="2dp"
+                android:paddingTop="2dp" />
         </TableRow>
 
         <TableRow android:layout_marginTop="5dp" >
@@ -80,7 +83,8 @@
                 android:id="@+id/birthday"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal" />
+                android:layout_gravity="center_horizontal"
+                android:maxDate="01/01/2014" />
         </TableRow>
 
         <TableRow android:layout_marginTop="5dp" >
@@ -95,6 +99,7 @@
                 style="@style/un_editable_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:inputType="phone"
                 android:layout_weight="8" />
         </TableRow>
 
@@ -131,7 +136,7 @@
         </TableRow>
 
         <TableRow
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="5dp"
             android:gravity="center" >
 
             <Button

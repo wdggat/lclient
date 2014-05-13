@@ -29,7 +29,7 @@
     <string name="change">修改</string>
     <string name="male">汉子</string>
     <string name="female">妹子</string>
-    <string name="gender_unset">保密</string>
+    <string name="gender_unset">路人而已</string>
     <string name="password_old">输入旧密码</string>
     <string name="password_new">新密码</string>
     <string name="password_new_confirm">确认新密码</string>
