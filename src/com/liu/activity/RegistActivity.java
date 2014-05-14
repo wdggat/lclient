@@ -1,9 +1,13 @@
 package com.liu.activity;
 
-import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
+
+import com.alibaba.fastjson.JSON;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -14,6 +18,14 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 public class RegistActivity extends BaseActivity {
+	private String emailAddr = "";
+	private int genderRadioId = 0;
+	private String province = "";
+	private long birthday = 0;
+	private String phone = "";
+	private String password = "";
+	private String passwordConfirm = "";
+	private HttpClientVM clientVM = HttpClientVM.getClientVM();
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -34,8 +46,15 @@ public class RegistActivity extends BaseActivity {
 
 			@Override
 			public void onClick(View v) {
+				if(!Utils.isNetWorkAvailable(RegistActivity.this)){
+					Toast.makeText(RegistActivity.this, "Network unavailable.", Toast.LENGTH_SHORT).show();
+					return;
+				}
 				if(validateRegist()) {
 					boolean registResult = registServer();
+					if(registResult) {
+						//TODO
+					}
 				}
 			}
 
@@ -44,13 +63,13 @@ public class RegistActivity extends BaseActivity {
 	
 	@SuppressLint("NewApi")
 	private boolean validateRegist() {
-		String emailAddr = ((EditText)findViewById(R.id.mail)).getText().toString();
-		int genderRadioId = ((RadioGroup)findViewById(R.id.gender_group)).getCheckedRadioButtonId();
-		String province = ((Spinner)findViewById(R.id.province)).getSelectedItem().toString();
-		long birthday = ((DatePicker)findViewById(R.id.birthday)).getCalendarView().getDate();
-		String phone = ((EditText)findViewById(R.id.phone)).getText().toString();
-		String password = ((EditText)findViewById(R.id.password)).getText().toString();
-		String passwordConfirm = ((EditText)findViewById(R.id.password)).getText().toString();
+		emailAddr = ((EditText)findViewById(R.id.mail)).getText().toString();
+		genderRadioId = ((RadioGroup)findViewById(R.id.gender_group)).getCheckedRadioButtonId();
+		province = ((Spinner)findViewById(R.id.province)).getSelectedItem().toString();
+		birthday = ((DatePicker)findViewById(R.id.birthday)).getCalendarView().getDate();
+		phone = ((EditText)findViewById(R.id.phone)).getText().toString();
+		password = ((EditText)findViewById(R.id.password)).getText().toString();
+		passwordConfirm = ((EditText)findViewById(R.id.password)).getText().toString();
 		if(emailAddr.isEmpty()) {
 			Toast.makeText(RegistActivity.this, "Email empty.", Toast.LENGTH_SHORT).show();
 			return false;
@@ -71,7 +90,41 @@ public class RegistActivity extends BaseActivity {
 	}
 	
 	private boolean registServer() {
-		// TODO
+		Map<String, String> infos = new HashMap<String, String>();
+		infos.put("email", emailAddr);
+		infos.put("province", province);
+		infos.put("birthday", birthday + "");
+		infos.put("phone", phone);
+		infos.put("password", password);
+		infos.put("gender", getGender(genderRadioId) + "");
+		//{"code":200, "content":"successful."}
+		String response = clientVM.post(Config.server, infos);
+		if(response == null) {
+			Log.d("REGIST", "Posting regist info failed.");
+			Toast.makeText(RegistActivity.this, "Posting regist info error, network may has problem.", Toast.LENGTH_SHORT).show();
+			return false;
+		}
+		RegistResponse res = JSON.parseObject(response, RegistResponse.class);
+		if(!res.succeed()) {
+			Log.d("REGIST", "Regist failed: " + res.getContent());
+			Toast.makeText(RegistActivity.this, "Failed: " + res.getContent(), Toast.LENGTH_SHORT).show();
+			return false;
+		}
+		Log.d("REGIST", "Regist successfully.");
+		Toast.makeText(RegistActivity.this, "Succeed.", Toast.LENGTH_SHORT).show();
 		return true;
 	}
+	
+	private int getGender(int genderRadioId) {
+		switch(genderRadioId){
+			case R.id.genderbt_male: return Config.MALE;
+			case R.id.genderbt_female: return Config.FEMALE;
+			default: return Config.GENDER_UNSET;
+		}
+	}
+	
+	/*private boolean passwordEncrypt(String password) {
+		char[] chars = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'};
+		 RandomUtils.nextInt();
+	}*/
 }
