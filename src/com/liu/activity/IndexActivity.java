@@ -2,6 +2,10 @@ package com.liu.activity;
 
 import org.apache.commons.lang.StringUtils;
 
+import com.alibaba.fastjson.JSON;
+import com.liu.other.DataType;
+import com.liu.other.RequestHelper;
+import com.liu.other.Response;
 import com.liu.other.Utils;
 
 import android.os.Bundle;
@@ -53,7 +57,11 @@ public class IndexActivity extends BaseActivity{
 	}
 	
 	private boolean login(String username, String password) {
-		//TODO
-		return true;
+		String jsonStr = String.format("{\"username\":\"{}\", \"password\":\"{}\"}", username, password);
+		String response = RequestHelper.sendData(DataType.LOGIN, jsonStr);
+		if(StringUtils.isEmpty(response))
+			return false;
+		Response res = JSON.parseObject(response, Response.class);
+		return res.succeed();
 	}
 }

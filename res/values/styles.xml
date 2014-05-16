@@ -43,9 +43,7 @@
         <item name="android:mode">oneLine</item>
     </style>
     
-    <style name="un_editable_text">
-        <item name="android:editable">false</item>
-        <item name="android:textColor">@color/grey</item>
+    <style name="round_editable_text">
         <item name="android:background">@drawable/rounded_outer</item>
         <item name="android:padding">5dp</item>
     </style>

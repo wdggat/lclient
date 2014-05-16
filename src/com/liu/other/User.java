@@ -13,6 +13,17 @@ public class User {
 	private long birthday;
 	private String phone;
 	private String password;
+	
+	public User(String emailAddr, int gender, String province, long birthday,
+			String phone, String password) {
+		super();
+		this.emailAddr = emailAddr;
+		this.gender = gender;
+		this.province = province;
+		this.birthday = birthday;
+		this.phone = phone;
+		this.password = password;
+	}
 	public String getEmailAddr() {
 		return emailAddr;
 	}

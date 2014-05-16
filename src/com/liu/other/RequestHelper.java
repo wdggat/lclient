@@ -14,39 +14,71 @@ import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.ByteArrayEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
 
+import com.alibaba.fastjson.JSON;
+
 import android.util.Log;
 
 public class RequestHelper {
 	private static final String TAG = RequestHelper.class.getSimpleName();
 	private static final HttpClientVM clientVM = HttpClientVM.getClientVM();
 	
-	boolean sendData(String jsonStr) {
-		return sendData(jsonStr, Config.server);
+	public static String sendData(DataType dataType, String jsonStr) {
+		return sendData(new Request(dataType, jsonStr).toJson(), Config.server);
 	}
+	
+	private static class Request {
+		private DataType dataType;
+		private String jsonStr;
+		public Request(DataType dataType, String jsonStr) {
+			this.dataType = dataType;
+			this.jsonStr = jsonStr;
+		}
+		
+		public DataType getDataType() {
+			return dataType;
+		}
+
+		public void setDataType(DataType dataType) {
+			this.dataType = dataType;
+		}
+
+		public String getJsonStr() {
+			return jsonStr;
+		}
+
+		public void setJsonStr(String jsonStr) {
+			this.jsonStr = jsonStr;
+		}
+
+		public String toJson() {
+			return JSON.toJSONString(this);
+		}
+	}
+	
 	/*
     Should add follow line to AndroidManifest.xml
         <uses-permission android:name="android.permission.INTERNET"/>
     */
-    private boolean sendData(String jsonStr, String url) {
+    private static String sendData(String jsonStr, String url) {
         Log.d(TAG, "Begin to send data to " + url);
         if (url == null) {
             Log.d(TAG, "No server url is specified, abort");
-            return false;
+            return null;
         }
         if (jsonStr.length() == 0) {
             Log.d(TAG, "Data is about to upload is empty, abort");
-            return false;
+            return null;
         }
 
         byte[] deflatedData = gzipDeflatedData(jsonStr);
         if (deflatedData == null) {
             Log.d(TAG, "Failed to compress data, abort");
-            return false;
+            return null;
         }
         byte[] dataEncrypted = encryptData(deflatedData, Config.AES128_ECB_KEY);
         if (dataEncrypted == null) {
             Log.d(TAG, "Failed to encrypt data, abort");
-            return false;
+            return null;
         }
 
         final HttpClient httpClient = new DefaultHttpClient();
@@ -61,16 +93,16 @@ public class RequestHelper {
             final int statusCode = response.getStatusLine().getStatusCode();
             if (statusCode == 200) {
                 Log.d(TAG, "Finish uploading");
-                return true;
+                return response.getEntity().getContent().toString();
             } else {
                 Log.d(TAG, "Failed to upload, resonse code: " +
                         Integer.toString(statusCode));
-                return false;
+                return null;
             }
         } catch (Exception e) {
             Log.d(TAG, "Error occured during data sending, abort reason: " +
                     e.getMessage());
-            return false;
+            return null;
         }
     }
 

@@ -5,8 +5,10 @@ import java.util.Map;
 
 import com.alibaba.fastjson.JSON;
 import com.liu.other.Config;
+import com.liu.other.DataType;
 import com.liu.other.HttpClientVM;
-import com.liu.other.RegistResponse;
+import com.liu.other.Response;
+import com.liu.other.RequestHelper;
 import com.liu.other.User;
 import com.liu.other.Utils;
 
@@ -95,21 +97,15 @@ public class RegistActivity extends BaseActivity {
 	}
 	
 	private boolean registServer() {
-		Map<String, String> infos = new HashMap<String, String>();
-		infos.put("email", emailAddr);
-		infos.put("province", province);
-		infos.put("birthday", birthday + "");
-		infos.put("phone", phone);
-		infos.put("password", password);
-		infos.put("gender", getGender(genderRadioId) + "");
+		User user = new User(emailAddr, getGender(genderRadioId), province, birthday, phone, password);
 		//{"code":200, "content":"successful."}
-		String response = clientVM.post(Config.server, infos);
+		String response = RequestHelper.sendData(DataType.REGIST, user.toJson());
 		if(response == null) {
 			Log.d("REGIST", "Posting regist info failed.");
 			Toast.makeText(RegistActivity.this, "Posting regist info error, network may has problem.", Toast.LENGTH_SHORT).show();
 			return false;
 		}
-		RegistResponse res = JSON.parseObject(response, RegistResponse.class);
+		Response res = JSON.parseObject(response, Response.class);
 		if(!res.succeed()) {
 			Log.d("REGIST", "Regist failed: " + res.getContent());
 			Toast.makeText(RegistActivity.this, "Failed: " + res.getContent(), Toast.LENGTH_SHORT).show();

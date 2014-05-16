@@ -22,7 +22,7 @@
 
             <EditText
                 android:id="@+id/mail"
-                style="@style/un_editable_text"
+                style="@style/round_editable_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="8" />
@@ -96,7 +96,7 @@
 
             <EditText
                 android:id="@+id/phone"
-                style="@style/un_editable_text"
+                style="@style/round_editable_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="phone"
@@ -112,7 +112,7 @@
 
             <EditText
                 android:id="@+id/password"
-                style="@style/un_editable_text"
+                style="@style/round_editable_text"
                 android:inputType="textPassword"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -128,7 +128,7 @@
 
             <EditText
                 android:id="@+id/password_confirm"
-                style="@style/un_editable_text"
+                style="@style/round_editable_text"
                 android:inputType="textPassword"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

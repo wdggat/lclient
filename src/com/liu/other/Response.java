@@ -1,6 +1,6 @@
 package com.liu.other;
 
-public class RegistResponse {
+public class Response {
 	private static final int SUCCESS_CODE = 200;
 	
 	private int code;
