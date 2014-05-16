@@ -1,9 +1,14 @@
 package com.liu.activity;
 
+import org.apache.commons.lang.StringUtils;
+
+import com.liu.other.Utils;
+
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.Toast;
 
 public class IndexActivity extends BaseActivity{
 	@Override
@@ -26,14 +31,28 @@ public class IndexActivity extends BaseActivity{
 
 			@Override
 			public void onClick(View v) {
-				if(login())
+				String username = Utils.getEditTextString(IndexActivity.this, R.id.username);
+				String password = Utils.getEditTextString(IndexActivity.this, R.id.password);
+				if(!checkParams(username, password)) {
+					Toast.makeText(IndexActivity.this, "Username or password not property.", Toast.LENGTH_SHORT).show();
+					return;
+				}
+				if(login(username, password))
 				    setContentView(R.layout.layout_timeline);
+				else
+					Toast.makeText(IndexActivity.this, "Username and password isn't a couple.", Toast.LENGTH_SHORT).show();
 			}
 			
 		});
 	}
 	
-	private boolean login() {
+	private boolean checkParams(String username, String password) {
+		if(StringUtils.isBlank(username) || StringUtils.isBlank(password))
+			return false;
+		return true;
+	}
+	
+	private boolean login(String username, String password) {
 		//TODO
 		return true;
 	}

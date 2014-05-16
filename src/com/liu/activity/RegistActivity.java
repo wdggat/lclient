@@ -7,6 +7,7 @@ import com.alibaba.fastjson.JSON;
 import com.liu.other.Config;
 import com.liu.other.HttpClientVM;
 import com.liu.other.RegistResponse;
+import com.liu.other.User;
 import com.liu.other.Utils;
 
 import android.annotation.SuppressLint;
@@ -57,7 +58,7 @@ public class RegistActivity extends BaseActivity {
 				if(validateRegist()) {
 					boolean registResult = registServer();
 					if(registResult) {
-						//TODO
+						setContentView(R.layout.layout_timeline);
 					}
 				}
 			}
@@ -121,9 +122,9 @@ public class RegistActivity extends BaseActivity {
 	
 	private int getGender(int genderRadioId) {
 		switch(genderRadioId){
-			case R.id.genderbt_male: return Config.MALE;
-			case R.id.genderbt_female: return Config.FEMALE;
-			default: return Config.GENDER_UNSET;
+			case R.id.genderbt_male: return User.MALE;
+			case R.id.genderbt_female: return User.FEMALE;
+			default: return User.GENDER_UNSET;
 		}
 	}
 	
