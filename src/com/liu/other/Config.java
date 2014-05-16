@@ -1,4 +1,4 @@
-package com.liu.activity;
+package com.liu.other;
 
 public class Config {
 	public static final String server = "http://localhost:9527";

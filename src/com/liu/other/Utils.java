@@ -1,4 +1,4 @@
-package com.liu.activity;
+package com.liu.other;
 
 import android.content.Context;
 import android.net.ConnectivityManager;

@@ -1,4 +1,4 @@
-package com.liu.activity;
+package com.liu.other;
 
 public class RegistResponse {
 	private static final int SUCCESS_CODE = 200;

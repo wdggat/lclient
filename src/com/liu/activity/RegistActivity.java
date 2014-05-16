@@ -4,6 +4,10 @@ import java.util.HashMap;
 import java.util.Map;
 
 import com.alibaba.fastjson.JSON;
+import com.liu.other.Config;
+import com.liu.other.HttpClientVM;
+import com.liu.other.RegistResponse;
+import com.liu.other.Utils;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
