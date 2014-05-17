@@ -41,8 +41,10 @@ public class IndexActivity extends BaseActivity{
 					Toast.makeText(IndexActivity.this, "Username or password not property.", Toast.LENGTH_SHORT).show();
 					return;
 				}
-				if(login(username, password))
+				if(login(username, password)) {
 				    setContentView(R.layout.layout_timeline);
+				    cacheUserInfo(username, password);
+				}
 				else
 					Toast.makeText(IndexActivity.this, "Username and password isn't a couple.", Toast.LENGTH_SHORT).show();
 			}
@@ -63,5 +65,9 @@ public class IndexActivity extends BaseActivity{
 			return false;
 		Response res = JSON.parseObject(response, Response.class);
 		return res.succeed();
+	}
+	
+	private void cacheUserInfo(String username, String password) {
+		//TODO
 	}
 }

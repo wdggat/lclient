@@ -1,17 +1,5 @@
 package com.liu.activity;
 
-import java.util.HashMap;
-import java.util.Map;
-
-import com.alibaba.fastjson.JSON;
-import com.liu.other.Config;
-import com.liu.other.DataType;
-import com.liu.other.HttpClientVM;
-import com.liu.other.Response;
-import com.liu.other.RequestHelper;
-import com.liu.other.User;
-import com.liu.other.Utils;
-
 import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.util.Log;
@@ -24,15 +12,15 @@ import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.alibaba.fastjson.JSON;
+import com.liu.other.DataType;
+import com.liu.other.RequestHelper;
+import com.liu.other.Response;
+import com.liu.other.User;
+import com.liu.other.Utils;
+
 public class RegistActivity extends BaseActivity {
-	private String emailAddr = "";
-	private int genderRadioId = 0;
-	private String province = "";
-	private long birthday = 0;
-	private String phone = "";
-	private String password = "";
-	private String passwordConfirm = "";
-	private HttpClientVM clientVM = HttpClientVM.getClientVM();
+	private User user;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -60,6 +48,7 @@ public class RegistActivity extends BaseActivity {
 				if(validateRegist()) {
 					boolean registResult = registServer();
 					if(registResult) {
+						cacheUserInfo();
 						setContentView(R.layout.layout_timeline);
 					}
 				}
@@ -70,13 +59,13 @@ public class RegistActivity extends BaseActivity {
 	
 	@SuppressLint("NewApi")
 	private boolean validateRegist() {
-		emailAddr = ((EditText)findViewById(R.id.mail)).getText().toString();
-		genderRadioId = ((RadioGroup)findViewById(R.id.gender_group)).getCheckedRadioButtonId();
-		province = ((Spinner)findViewById(R.id.province)).getSelectedItem().toString();
-		birthday = ((DatePicker)findViewById(R.id.birthday)).getCalendarView().getDate();
-		phone = ((EditText)findViewById(R.id.phone)).getText().toString();
-		password = ((EditText)findViewById(R.id.password)).getText().toString();
-		passwordConfirm = ((EditText)findViewById(R.id.password)).getText().toString();
+		String emailAddr = ((EditText)findViewById(R.id.mail)).getText().toString();
+		int genderRadioId = ((RadioGroup)findViewById(R.id.gender_group)).getCheckedRadioButtonId();
+		String province = ((Spinner)findViewById(R.id.province)).getSelectedItem().toString();
+		long birthday = ((DatePicker)findViewById(R.id.birthday)).getCalendarView().getDate();
+		String phone = ((EditText)findViewById(R.id.phone)).getText().toString();
+		String password = ((EditText)findViewById(R.id.password)).getText().toString();
+		String passwordConfirm = ((EditText)findViewById(R.id.password)).getText().toString();
 		if(emailAddr.isEmpty()) {
 			Toast.makeText(RegistActivity.this, "Email empty.", Toast.LENGTH_SHORT).show();
 			return false;
@@ -93,11 +82,11 @@ public class RegistActivity extends BaseActivity {
 			Toast.makeText(RegistActivity.this, "Password comfirms wrong.", Toast.LENGTH_SHORT).show();
 			return false;
 		}
+		user = new User(emailAddr, getGender(genderRadioId), province, birthday, phone, password);
 		return true;
 	}
 	
 	private boolean registServer() {
-		User user = new User(emailAddr, getGender(genderRadioId), province, birthday, phone, password);
 		//{"code":200, "content":"successful."}
 		String response = RequestHelper.sendData(DataType.REGIST, user.toJson());
 		if(response == null) {
@@ -122,6 +111,10 @@ public class RegistActivity extends BaseActivity {
 			case R.id.genderbt_female: return User.FEMALE;
 			default: return User.GENDER_UNSET;
 		}
+	}
+	
+	private void cacheUserInfo() {
+		
 	}
 	
 	/*private boolean passwordEncrypt(String password) {
