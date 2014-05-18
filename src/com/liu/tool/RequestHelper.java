@@ -1,4 +1,4 @@
-package com.liu.other;
+package com.liu.tool;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -15,6 +15,7 @@ import org.apache.http.entity.ByteArrayEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
 
 import com.alibaba.fastjson.JSON;
+import com.liu.bean.DataType;
 
 import android.util.Log;
 

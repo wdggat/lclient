@@ -1,4 +1,4 @@
-package com.liu.other;
+package com.liu.bean;
 
 public class Response {
 	private static final int SUCCESS_CODE = 200;

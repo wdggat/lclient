@@ -3,10 +3,10 @@ package com.liu.activity;
 import org.apache.commons.lang.StringUtils;
 
 import com.alibaba.fastjson.JSON;
-import com.liu.other.DataType;
-import com.liu.other.RequestHelper;
-import com.liu.other.Response;
-import com.liu.other.Utils;
+import com.liu.bean.DataType;
+import com.liu.bean.Response;
+import com.liu.tool.RequestHelper;
+import com.liu.tool.Utils;
 
 import android.os.Bundle;
 import android.view.View;

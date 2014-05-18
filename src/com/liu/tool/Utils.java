@@ -1,4 +1,4 @@
-package com.liu.other;
+package com.liu.tool;
 
 import android.app.Activity;
 import android.content.Context;

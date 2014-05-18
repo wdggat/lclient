@@ -1,4 +1,4 @@
-package com.liu.other;
+package com.liu.tool;
 
 import java.io.IOException;
 import java.net.InetAddress;

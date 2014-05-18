@@ -1,4 +1,4 @@
-package com.liu.other;
+package com.liu.bean;
 
 import com.alibaba.fastjson.JSON;
 
