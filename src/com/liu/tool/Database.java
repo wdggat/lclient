@@ -1,9 +1,7 @@
 package com.liu.tool;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import org.apache.commons.lang.BooleanUtils;
 
@@ -51,8 +49,8 @@ public class Database {
         db.endTransaction();
     }
     
-    Map<String, List<Message>> readAllMessages() {
-    	Map<String, List<Message>> messages = new HashMap<String, List<Message>>();
+    public List<Message> readAllMessages() {
+    	List<Message> messages = new ArrayList<Message>();
     	final String sql = "select associate,subject,strftime('%s',time),content,type,sendbyme from messages;";
     	Cursor cursor = db.rawQuery(sql, null);
     	while(cursor.moveToNext()) {
@@ -63,11 +61,14 @@ public class Database {
     		int type = cursor.getInt(5);
     		int sendbyme = cursor.getInt(6);
     		Message message = new Message(associate, subject, time, content, DataType.getByValue(type), BooleanUtils.toBoolean(sendbyme));
-    		if(!messages.containsKey(message.getAssociate()))
-    			messages.put(message.getAssociate(), new ArrayList<Message>());
-    		//TODO
+    		messages.add(message);
     	}
     	return messages;
+    }
+    
+    public void insertMessage(Message message) {
+    	final String sql = "INSERT INTO messages(subject, time, content, associate, type, sendbyme) VALUES (?, ?, ?, ?, ?, ?);";
+    	db.execSQL(sql, new Object[]{message.getSubject(), message.getTime(), message.getContent(), message.getAssociate(), message.getDataType().getValue(), message.isSentByMe() ? 1 : 0});
     }
 	
 	private final static class DatabaseHelper extends SQLiteOpenHelper {

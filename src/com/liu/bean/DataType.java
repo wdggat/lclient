@@ -7,6 +7,10 @@ public enum DataType {
 	private DataType(int code) {
 		this.code = code;
 	}
+	
+	public int getValue() {
+		return code;
+	}
 
 	public static DataType getByValue(int code) {
 		switch (code) {

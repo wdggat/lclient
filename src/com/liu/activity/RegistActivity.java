@@ -1,6 +1,8 @@
 package com.liu.activity;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
+import android.content.SharedPreferences.Editor;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -16,6 +18,7 @@ import com.alibaba.fastjson.JSON;
 import com.liu.bean.DataType;
 import com.liu.bean.Response;
 import com.liu.bean.User;
+import com.liu.tool.Config;
 import com.liu.tool.RequestHelper;
 import com.liu.tool.Utils;
 
@@ -45,10 +48,10 @@ public class RegistActivity extends BaseActivity {
 					Toast.makeText(RegistActivity.this, "Network unavailable.", Toast.LENGTH_SHORT).show();
 					return;
 				}
-				if(validateRegist()) {
+				if(checkParams()) {
 					boolean registResult = registServer();
 					if(registResult) {
-						cacheUserInfo();
+						cacheUserInfo(user);
 						setContentView(R.layout.layout_timeline);
 					}
 				}
@@ -58,7 +61,7 @@ public class RegistActivity extends BaseActivity {
 	}
 	
 	@SuppressLint("NewApi")
-	private boolean validateRegist() {
+	private boolean checkParams() {
 		String emailAddr = ((EditText)findViewById(R.id.mail)).getText().toString();
 		int genderRadioId = ((RadioGroup)findViewById(R.id.gender_group)).getCheckedRadioButtonId();
 		String province = ((Spinner)findViewById(R.id.province)).getSelectedItem().toString();
@@ -113,8 +116,10 @@ public class RegistActivity extends BaseActivity {
 		}
 	}
 	
-	private void cacheUserInfo() {
-		
+	private boolean cacheUserInfo(User user) {
+		Editor sp = RegistActivity.this.getSharedPreferences(Config.SHAREDPREFERENCES_NAME, Context.MODE_PRIVATE).edit();
+		sp.putString("uinfo", user.toJson());
+		return sp.commit();
 	}
 	
 	/*private boolean passwordEncrypt(String password) {

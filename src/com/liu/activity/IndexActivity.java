@@ -5,9 +5,12 @@ import org.apache.commons.lang.StringUtils;
 import com.alibaba.fastjson.JSON;
 import com.liu.bean.DataType;
 import com.liu.bean.Response;
+import com.liu.tool.Config;
 import com.liu.tool.RequestHelper;
 import com.liu.tool.Utils;
 
+import android.content.Context;
+import android.content.SharedPreferences.Editor;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -67,7 +70,10 @@ public class IndexActivity extends BaseActivity{
 		return res.succeed();
 	}
 	
-	private void cacheUserInfo(String username, String password) {
-		//TODO
+	private boolean cacheUserInfo(String username, String password) {
+		Editor sp = IndexActivity.this.getSharedPreferences(Config.SHAREDPREFERENCES_NAME, Context.MODE_PRIVATE).edit();
+		sp.putString("username", username);
+		sp.putString("password", password);
+		return sp.commit();
 	}
 }
