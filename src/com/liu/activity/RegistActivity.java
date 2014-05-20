@@ -23,6 +23,7 @@ import com.liu.tool.RequestHelper;
 import com.liu.tool.Utils;
 
 public class RegistActivity extends BaseActivity {
+	private static final String TAG = "REGIST";
 	private User user;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +45,7 @@ public class RegistActivity extends BaseActivity {
 
 			@Override
 			public void onClick(View v) {
+				Log.d(TAG, "submit button pressed.");
 				if(!Utils.isNetWorkAvailable(RegistActivity.this)){
 					Toast.makeText(RegistActivity.this, "Network unavailable.", Toast.LENGTH_SHORT).show();
 					return;
@@ -92,6 +94,7 @@ public class RegistActivity extends BaseActivity {
 	private boolean registServer() {
 		//{"code":200, "content":"successful."}
 		String response = RequestHelper.sendData(DataType.REGIST, user.toJson());
+		Log.d(TAG, "user_regist, " + user.toJson());
 		if(response == null) {
 			Log.d("REGIST", "Posting regist info failed.");
 			Toast.makeText(RegistActivity.this, "Posting regist info error, network may has problem.", Toast.LENGTH_SHORT).show();
@@ -103,7 +106,7 @@ public class RegistActivity extends BaseActivity {
 			Toast.makeText(RegistActivity.this, "Failed: " + res.getContent(), Toast.LENGTH_SHORT).show();
 			return false;
 		}
-		Log.d("REGIST", "Regist successfully.");
+		Log.d(TAG, "Regist successfully.");
 		Toast.makeText(RegistActivity.this, "Succeed.", Toast.LENGTH_SHORT).show();
 		return true;
 	}
@@ -120,6 +123,15 @@ public class RegistActivity extends BaseActivity {
 		Editor sp = RegistActivity.this.getSharedPreferences(Config.SHAREDPREFERENCES_NAME, Context.MODE_PRIVATE).edit();
 		sp.putString("uinfo", user.toJson());
 		return sp.commit();
+	}
+	
+	class RegistThread implements Runnable {
+
+		@Override
+		public void run() {
+			
+		}
+		
 	}
 	
 	/*private boolean passwordEncrypt(String password) {

@@ -22,7 +22,7 @@ public class Utils {
 		return Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED);
 	}
     
-    public static String getEditTextString(Activity activity, int rid) {
+/*    public static String getEditTextString(Activity activity, int rid) {
     	return ((EditText)activity.findViewById(R.id.mail)).getText().toString();
-    }
+    }*/
 }
