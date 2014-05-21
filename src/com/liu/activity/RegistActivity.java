@@ -73,37 +73,29 @@ public class RegistActivity extends BaseActivity {
 		Message msg = handler.obtainMessage();
 		String emailAddr = ((EditText)findViewById(R.id.mail)).getText().toString();
 		int genderRadioId = ((RadioGroup)findViewById(R.id.gender_group)).getCheckedRadioButtonId();
-//		Spinner provinceSpinner = (Spinner)findViewById(R.id.provinces_spinner);
-//		String province = "";
-//		if(provinceSpinner.getSelectedItem() != null)
-//			province = provinceSpinner.getSelectedItem().toString();
 		String province = ((Spinner)findViewById(R.id.provinces_spinner)).getSelectedItem().toString();
 		long birthday = ((DatePicker)findViewById(R.id.birthday)).getCalendarView().getDate();
 		String phone = ((EditText)findViewById(R.id.phone)).getText().toString();
 		String password = ((EditText)findViewById(R.id.password)).getText().toString();
-		String passwordConfirm = ((EditText)findViewById(R.id.password)).getText().toString();
+		String passwordConfirm = ((EditText)findViewById(R.id.password_confirm)).getText().toString();
 		if(emailAddr.isEmpty()) {
 			msg.what = 1;
 			handler.sendMessage(msg);
-//			Toast.makeText(RegistActivity.this, "Email empty.", Toast.LENGTH_SHORT).show();
 			return false;
 		}
 		if(phone.isEmpty()) {
 			msg.what = 2;
 			handler.sendMessage(msg);
-//			Toast.makeText(RegistActivity.this, "Phone empty.", Toast.LENGTH_SHORT).show();
 			return false;
 		}
 		if(password.isEmpty() || password.length() < 6 || password.length() > 18) {
 			msg.what = 3;
 			handler.sendMessage(msg);
-//			Toast.makeText(RegistActivity.this, "Password's length should be larger than 5.", Toast.LENGTH_SHORT).show();
 			return false;
 		}
 		if(!password.equals(passwordConfirm)) {
 			msg.what = 4;
 			handler.sendMessage(msg);
-//			Toast.makeText(RegistActivity.this, "Password comfirms wrong.", Toast.LENGTH_SHORT).show();
 			return false;
 		}
 		user = new User(emailAddr, getGender(genderRadioId), province, birthday, phone, password);
@@ -111,23 +103,27 @@ public class RegistActivity extends BaseActivity {
 	}
 	
 	private boolean registServer() {
+		Message msg = handler.obtainMessage();
 		//{"code":200, "content":"successful."}
-		String response = RequestHelper.sendData(DataType.REGIST, user.toJson());
-		Log.d(TAG, "user_regist, " + user.toJson());
+//		String response = RequestHelper.sendData(DataType.REGIST, user.toJson());
+		String response = "{\"code\":200,\"content\":\"\"}";
+		Log.i(TAG, "user_regist, " + user.toJson());
 		if(response == null) {
-			Log.d("REGIST", "Posting regist info failed.");
-			//TODO
-			Toast.makeText(RegistActivity.this, "Posting regist info error, network may has problem.", Toast.LENGTH_SHORT).show();
+			Log.e("REGIST", "Posting regist info failed.");
+			msg.what = 5;
+			handler.sendMessage(msg);
 			return false;
 		}
 		Response res = JSON.parseObject(response, Response.class);
 		if(!res.succeed()) {
-			Log.d("REGIST", "Regist failed: " + res.getContent());
-			Toast.makeText(RegistActivity.this, "Failed: " + res.getContent(), Toast.LENGTH_SHORT).show();
+			Log.e("REGIST", "Regist failed: " + res.getContent());
+			Bundle bundler = new Bundle();
+			bundler.putString("content", res.getContent());
+			msg.setData(bundler);
+			msg.what = 6;
+			handler.sendMessage(msg);
 			return false;
 		}
-		Log.d(TAG, "Regist successfully.");
-		Toast.makeText(RegistActivity.this, "Succeed.", Toast.LENGTH_SHORT).show();
 		return true;
 	}
 	
@@ -142,6 +138,7 @@ public class RegistActivity extends BaseActivity {
 	private boolean cacheUserInfo(User user) {
 		Editor sp = RegistActivity.this.getSharedPreferences(Config.SHAREDPREFERENCES_NAME, Context.MODE_PRIVATE).edit();
 		sp.putString("uinfo", user.toJson());
+		sp.putBoolean(Config.LOGINED_KEY, true);
 		return sp.commit();
 	}
 	
@@ -161,6 +158,17 @@ public class RegistActivity extends BaseActivity {
 			case 4:
 				Toast.makeText(RegistActivity.this, "Password comfirms wrong.", Toast.LENGTH_SHORT).show();
 				return;
+			case 5:
+				Toast.makeText(RegistActivity.this, "Posting regist info error, network may has problem.", Toast.LENGTH_LONG).show();
+				return;
+			case 6:
+				Toast.makeText(RegistActivity.this, "Failed, " + message.getData().getString("content"), Toast.LENGTH_SHORT).show();
+				return;
+			case 7:
+				Toast.makeText(RegistActivity.this, "Succeed.", Toast.LENGTH_SHORT).show();
+				Intent intent = new Intent();
+				intent.setClass(RegistActivity.this, TimelineActivity.class);
+				startActivity(intent);
 			}
 		}
 	};
@@ -172,8 +180,12 @@ public class RegistActivity extends BaseActivity {
 			if(checkParams()) {
 				boolean registResult = registServer();
 				if(registResult) {
+					Log.i(TAG, "Regist successfully.");
 					cacheUserInfo(user);
-					setContentView(R.layout.layout_timeline);
+					Log.i(TAG, "user info cached.");
+					Message msg = handler.obtainMessage();
+					msg.what = 7;
+					handler.sendMessage(msg);
 					return true;
 				}
 			}

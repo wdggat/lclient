@@ -4,6 +4,7 @@ import org.apache.commons.lang.StringUtils;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.os.Bundle;
 import android.util.Log;
@@ -25,6 +26,13 @@ public class IndexActivity extends BaseActivity{
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.layout_index);
+		
+		SharedPreferences sp = IndexActivity.this.getSharedPreferences(Config.SHAREDPREFERENCES_NAME, Context.MODE_PRIVATE);
+		if(sp.getBoolean(Config.LOGINED_KEY, false)) {
+			Intent intent = new Intent();
+			intent.setClass(IndexActivity.this, TimelineActivity.class);
+			startActivity(intent);
+		}
 		
 		Button registBt = (Button)findViewById(R.id.registbt);
 		registBt.setOnClickListener(new OnClickListener() {
@@ -82,6 +90,7 @@ public class IndexActivity extends BaseActivity{
 		Editor sp = IndexActivity.this.getSharedPreferences(Config.SHAREDPREFERENCES_NAME, Context.MODE_PRIVATE).edit();
 		sp.putString("username", username);
 		sp.putString("password", password);
+		sp.putBoolean(Config.LOGINED_KEY, true);
 		return sp.commit();
 	}
 }

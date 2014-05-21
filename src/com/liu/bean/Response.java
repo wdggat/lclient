@@ -5,6 +5,13 @@ public class Response {
 	
 	private int code;
 	private String content;
+	
+	public Response() {}
+	public Response(int code, String content) {
+		super();
+		this.code = code;
+		this.content = content;
+	}
 	public int getCode() {
 		return code;
 	}
