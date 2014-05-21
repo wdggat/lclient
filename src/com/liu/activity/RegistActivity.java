@@ -2,8 +2,12 @@ package com.liu.activity;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences.Editor;
+import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -35,12 +39,14 @@ public class RegistActivity extends BaseActivity {
 
 			@Override
 			public void onClick(View v) {
-				setContentView(R.layout.layout_index);
+				Intent intent = new Intent();
+				intent.setClass(RegistActivity.this, IndexActivity.class);
+				startActivity(intent);
 			}
 			
 		});
 		
-		Button registBt = (Button)findViewById(R.id.registbt);
+		Button registBt = (Button)findViewById(R.id.submit_bt);
 		registBt.setOnClickListener(new OnClickListener() {
 
 			@Override
@@ -50,41 +56,54 @@ public class RegistActivity extends BaseActivity {
 					Toast.makeText(RegistActivity.this, "Network unavailable.", Toast.LENGTH_SHORT).show();
 					return;
 				}
-				if(checkParams()) {
-					boolean registResult = registServer();
-					if(registResult) {
-						cacheUserInfo(user);
-						setContentView(R.layout.layout_timeline);
-					}
-				}
+				new RegistAction().execute("");
 			}
 
 		});
 	}
 	
+	@Override
+	protected void onDestroy() {
+		Log.i(TAG, "activity is destroying...");
+		super.onDestroy();
+	}
+	
 	@SuppressLint("NewApi")
 	private boolean checkParams() {
+		Message msg = handler.obtainMessage();
 		String emailAddr = ((EditText)findViewById(R.id.mail)).getText().toString();
 		int genderRadioId = ((RadioGroup)findViewById(R.id.gender_group)).getCheckedRadioButtonId();
-		String province = ((Spinner)findViewById(R.id.province)).getSelectedItem().toString();
+//		Spinner provinceSpinner = (Spinner)findViewById(R.id.provinces_spinner);
+//		String province = "";
+//		if(provinceSpinner.getSelectedItem() != null)
+//			province = provinceSpinner.getSelectedItem().toString();
+		String province = ((Spinner)findViewById(R.id.provinces_spinner)).getSelectedItem().toString();
 		long birthday = ((DatePicker)findViewById(R.id.birthday)).getCalendarView().getDate();
 		String phone = ((EditText)findViewById(R.id.phone)).getText().toString();
 		String password = ((EditText)findViewById(R.id.password)).getText().toString();
 		String passwordConfirm = ((EditText)findViewById(R.id.password)).getText().toString();
 		if(emailAddr.isEmpty()) {
-			Toast.makeText(RegistActivity.this, "Email empty.", Toast.LENGTH_SHORT).show();
+			msg.what = 1;
+			handler.sendMessage(msg);
+//			Toast.makeText(RegistActivity.this, "Email empty.", Toast.LENGTH_SHORT).show();
 			return false;
 		}
 		if(phone.isEmpty()) {
-			Toast.makeText(RegistActivity.this, "Phone empty.", Toast.LENGTH_SHORT).show();
+			msg.what = 2;
+			handler.sendMessage(msg);
+//			Toast.makeText(RegistActivity.this, "Phone empty.", Toast.LENGTH_SHORT).show();
 			return false;
 		}
 		if(password.isEmpty() || password.length() < 6 || password.length() > 18) {
-			Toast.makeText(RegistActivity.this, "Password's length should be larger than 5.", Toast.LENGTH_SHORT).show();
+			msg.what = 3;
+			handler.sendMessage(msg);
+//			Toast.makeText(RegistActivity.this, "Password's length should be larger than 5.", Toast.LENGTH_SHORT).show();
 			return false;
 		}
 		if(!password.equals(passwordConfirm)) {
-			Toast.makeText(RegistActivity.this, "Password comfirms wrong.", Toast.LENGTH_SHORT).show();
+			msg.what = 4;
+			handler.sendMessage(msg);
+//			Toast.makeText(RegistActivity.this, "Password comfirms wrong.", Toast.LENGTH_SHORT).show();
 			return false;
 		}
 		user = new User(emailAddr, getGender(genderRadioId), province, birthday, phone, password);
@@ -97,6 +116,7 @@ public class RegistActivity extends BaseActivity {
 		Log.d(TAG, "user_regist, " + user.toJson());
 		if(response == null) {
 			Log.d("REGIST", "Posting regist info failed.");
+			//TODO
 			Toast.makeText(RegistActivity.this, "Posting regist info error, network may has problem.", Toast.LENGTH_SHORT).show();
 			return false;
 		}
@@ -125,11 +145,39 @@ public class RegistActivity extends BaseActivity {
 		return sp.commit();
 	}
 	
-	class RegistThread implements Runnable {
+	final Handler handler = new Handler() {
+		@Override
+		public void handleMessage(Message message) {
+			switch(message.what){
+			case 1:
+				Toast.makeText(RegistActivity.this, "Email empty.", Toast.LENGTH_SHORT).show();
+				return;
+			case 2:
+				Toast.makeText(RegistActivity.this, "Phone empty.", Toast.LENGTH_SHORT).show();
+				return;
+			case 3:
+				Toast.makeText(RegistActivity.this, "Password's length should be larger than 5.", Toast.LENGTH_SHORT).show();
+				return;
+			case 4:
+				Toast.makeText(RegistActivity.this, "Password comfirms wrong.", Toast.LENGTH_SHORT).show();
+				return;
+			}
+		}
+	};
+	
+	private class RegistAction extends AsyncTask<String, Void, Boolean> {
 
 		@Override
-		public void run() {
-			
+		protected Boolean doInBackground(String... params) {
+			if(checkParams()) {
+				boolean registResult = registServer();
+				if(registResult) {
+					cacheUserInfo(user);
+					setContentView(R.layout.layout_timeline);
+					return true;
+				}
+			}
+			return false;
 		}
 		
 	}

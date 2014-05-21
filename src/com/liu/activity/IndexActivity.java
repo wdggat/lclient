@@ -3,6 +3,7 @@ package com.liu.activity;
 import org.apache.commons.lang.StringUtils;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences.Editor;
 import android.os.Bundle;
 import android.util.Log;
@@ -30,7 +31,9 @@ public class IndexActivity extends BaseActivity{
 
 			@Override
 			public void onClick(View v) {
-				setContentView(R.layout.layout_regist);
+				Intent intent = new Intent();
+				intent.setClass(IndexActivity.this, RegistActivity.class);
+				startActivity(intent);
 			}
 			
 		});
@@ -47,7 +50,9 @@ public class IndexActivity extends BaseActivity{
 					return;
 				}
 				if(login(username, password)) {
-				    setContentView(R.layout.layout_timeline);
+					Intent intent = new Intent();
+					intent.setClass(IndexActivity.this, TimelineActivity.class);
+					startActivity(intent);
 				    cacheUserInfo(username, password);
 				}
 				else
