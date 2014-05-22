@@ -32,6 +32,7 @@ public class IndexActivity extends BaseActivity{
 			Intent intent = new Intent();
 			intent.setClass(IndexActivity.this, TimelineActivity.class);
 			startActivity(intent);
+			finish();
 		}
 		
 		Button registBt = (Button)findViewById(R.id.registbt);

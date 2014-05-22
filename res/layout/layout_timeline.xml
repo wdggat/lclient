@@ -13,7 +13,7 @@
         android:background="@drawable/green_strip" >
 
         <Button
-            android:id="@+id/create_msgbt"
+            android:id="@+id/timeline_create_msgbt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="left"
