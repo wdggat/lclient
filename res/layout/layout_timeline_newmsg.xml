@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="match_parent" >
+
+    <TableRow
+        android:id="@+id/timeline_popup_newmsg"
+        android:layout_width="wrap_content" >
+
+        <TextView
+            android:background="@android:color/background_dark"
+            android:text="@string/timeline_newmsg"
+            android:padding="10dp"
+            android:textColor="@android:color/white"/>
+    </TableRow>
+
+    <TableRow
+        android:id="@+id/timeline_popup_replymsg"
+        android:layout_width="wrap_content">
+
+        <TextView android:text="@string/timeline_replymsg"
+            android:padding="10dp"
+            android:background="@android:color/background_dark"
+            android:textColor="@android:color/white" />
+    </TableRow>
+
+</TableLayout>
