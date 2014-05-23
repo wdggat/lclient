@@ -7,12 +7,10 @@ import java.util.Map;
 
 import android.annotation.SuppressLint;
 import android.app.ActionBar.LayoutParams;
+import android.content.Intent;
 import android.graphics.Color;
-import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.Gravity;
-import android.view.MenuInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ArrayAdapter;
@@ -59,31 +57,44 @@ public class TimelineActivity extends BaseActivity {
 	
 	@SuppressLint("NewApi")
 	private void showPopUp(View v) {
-		/*LinearLayout layout = new LinearLayout(this);
-		layout.setBackgroundColor(Color.GRAY);
-		layout.setOrientation(LinearLayout.HORIZONTAL);
-		TextView tv = new TextView(this);
-		tv.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
-		tv.setText("新建消息");
-		tv.setTextColor(Color.BLACK);
-		layout.addView(tv);
-		
-		TextView tv2 = new TextView(this);
-		tv2.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
-		tv2.setText("回复消息");
-		tv2.setTextColor(Color.BLACK);
-		layout.addView(tv2);*/
-		TableLayout layout = (TableLayout) findViewById(R.layout.layout_timeline_newmsg);
+//		TableLayout layout = new TableLayout(this);
+//		layout.setBackgroundColor(Color.BLACK);
+//		layout.setOrientation(LinearLayout.HORIZONTAL);
+//		TextView tv = new TextView(this);
+//		tv.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
+//		tv.setText("新建消息");
+//		layout.addView(tv);
+//		
+//		TextView tv2 = new TextView(this);
+//		tv2.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
+//		tv2.setText("回复消息");
+//		layout.addView(tv2);
+		TableLayout layout = (TableLayout) findViewById(R.id.timeline_newmsg_menu);
 
 		PopupWindow popupWindow = new PopupWindow(layout, 200, 200, true);
 		
 		popupWindow.setOutsideTouchable(true);
 		popupWindow.setBackgroundDrawable(getWallpaper());
+		popupWindow.setClippingEnabled(true);
 		
 		int[] location = new int[2];
 		v.getLocationOnScreen(location);
 		
-		popupWindow.showAtLocation(v, Gravity.NO_GRAVITY, location[0], location[1]-popupWindow.getHeight());
+//		popupWindow.showAtLocation(v, Gravity.NO_GRAVITY, location[0], location[1]-popupWindow.getHeight());
+		popupWindow.showAsDropDown(v, location[0], location[1]-popupWindow.getHeight());
+		popupWindow.update();
+		Log.d(TAG, "popupWindow.isShowing() = " + popupWindow.isShowing());
+//		popupWindow.showAtLocation(v, Gravity.NO_GRAVITY, 100, 100);
+	}
+	
+	public void onNewmsgClick(View v) {
+		Intent intent = new Intent();
+		intent.setClass(TimelineActivity.this, NewMsgActivity.class);
+		startActivity(intent);
+	}
+	
+	public void onReplyMsgClick(View v) {
+		//TODO
 	}
 	
 	public static Map<String, List<Message>> groupMessage(List<Message> messages) {
