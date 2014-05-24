@@ -32,6 +32,9 @@
         </activity>
         <activity android:name="com.liu.activity.TimelineActivity"></activity>
         <activity android:name="com.liu.activity.RegistActivity"></activity>
+        <activity android:name="com.liu.activity.NewMsgActivity"></activity>
+        <activity android:name="com.liu.activity.ReplyMsgActivity"></activity>
+        <activity android:name="com.liu.activity.MeActivity"></activity>
         
         <uses-library android:name="android.test.runner" />
     </application>

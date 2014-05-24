@@ -31,7 +31,7 @@
     
     <style name="edittext_multilines">
         <item name="android:background">@drawable/rounded_outer</item>
-        <item name="android:inputType">text</item>
+        <item name="android:inputType">textMultiLine</item>
         <item name="android:stretchMode">spacingWidth</item>
     </style>
     

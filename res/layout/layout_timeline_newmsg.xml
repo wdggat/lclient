@@ -1,31 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="wrap_content"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:id="@+id/timeline_newmsg_menu">
 
     <TableRow
         android:id="@+id/timeline_popup_newmsg"
-        android:layout_width="match_parent" >
+        android:layout_width="match_parent"
+        android:onClick="onNewmsgClick">
 
         <TextView
             android:background="@android:color/background_dark"
             android:text="@string/timeline_newmsg"
             android:padding="10dp"
             android:alpha="1.0"
-            android:textColor="@android:color/white"
-            android:onClick="onNewmsgClick"/>
+            android:textColor="@android:color/white"/>
     </TableRow>
 
     <TableRow
         android:id="@+id/timeline_popup_replymsg"
-        android:layout_width="wrap_content">
+        android:layout_width="wrap_content"
+        android:onClick="onReplymsgClick">
 
         <TextView android:text="@string/timeline_replymsg"
             android:padding="10dp"
             android:alpha="1.0"
             android:background="@android:color/background_dark"
-            android:textColor="@android:color/white"
-            android:onClick="onReplymsgClick" />
+            android:textColor="@android:color/white"/>
     </TableRow>
 
 </TableLayout>

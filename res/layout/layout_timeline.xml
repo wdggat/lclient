@@ -32,7 +32,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="right"
-            android:text="@string/me_bt" />
+            android:text="@string/me_bt"
+            android:onClick="onClickME" />
     </FrameLayout>
 
     <LinearLayout
@@ -56,37 +57,4 @@
                 android:scrollbars="none" />
         </TableLayout>
     </LinearLayout>
-    
-    <TableLayout
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:id="@+id/timeline_newmsg_menu" >
-
-        <TableRow
-            android:id="@+id/timeline_popup_newmsg"
-            android:layout_width="match_parent" >
-
-            <TextView
-                android:alpha="1.0"
-                android:background="@android:color/background_dark"
-                android:onClick="onNewmsgClick"
-                android:padding="10dp"
-                android:text="@string/timeline_newmsg"
-                android:textColor="@android:color/white" />
-        </TableRow>
-
-        <TableRow
-            android:id="@+id/timeline_popup_replymsg"
-            android:layout_width="wrap_content" >
-
-            <TextView
-                android:alpha="1.0"
-                android:background="@android:color/background_dark"
-                android:onClick="onReplymsgClick"
-                android:padding="10dp"
-                android:text="@string/timeline_replymsg"
-                android:textColor="@android:color/white" />
-        </TableRow>
-    </TableLayout>
-
 </LinearLayout>

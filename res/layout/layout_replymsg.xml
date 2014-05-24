@@ -47,7 +47,9 @@
                 android:id="@+id/newmsg_content"
                 style="@style/edittext_multilines"
                 android:layout_weight="1"
-                android:minHeight="150dp" />
+                android:minHeight="150dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp" />
         </TableRow>
 
     </TableLayout>
