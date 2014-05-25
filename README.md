@@ -7,3 +7,5 @@
     Uid or Email           time 
     msg_content_prefix15
 
+3. Message.time 是10位的timestamp
+

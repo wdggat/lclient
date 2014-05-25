@@ -2,6 +2,7 @@ package com.liu.bean;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Locale;
 
 public class TimelineListItem {
 	private static final int MSG_PREVIEW = 15;
@@ -27,7 +28,7 @@ public class TimelineListItem {
 	
 	private String toShow() {
 		String msgGlimpse = content.length() <= MSG_PREVIEW ? content : content.substring(0, MSG_PREVIEW) + "..."; 
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-		return associate + "    " + sdf.format(new Date(time)) + "\n" +  msgGlimpse;
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.US);
+		return associate + "    " + sdf.format(new Date((long)time * 1000)) + "\n" +  msgGlimpse;
 	}
 }

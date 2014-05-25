@@ -44,10 +44,15 @@ public class TimelineActivity extends BaseActivity {
 			Log.d(TAG, "read 0 messages, so fill some test data.");
 			FillDBTestData.fillTimelineMsgs();
 			allMessages = groupMessage(db.readAllMessages());
-			Log.d(TAG, "read " + allMessages.size() + " users' messages now.");
+//			Log.d(TAG, "read " + allMessages.size() + " users' messages now.");
 		}
 		
-//		Log.d(TAG, "Read " + allMessages.size() + " users' messages");
+		//TODO, delete
+		for(TreeSet<Message> msgs : allMessages.values())
+			for(Message msg : msgs)
+			    Log.d(TAG, "READ MSG: " + msg.toJson());
+		Log.d(TAG, "Read " + allMessages.size() + " users' messages");
+		
 		List listItems  = getListItems(allMessages);
 		ListView listView = (ListView) findViewById(R.id.msg_items);
 		ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, listItems);
