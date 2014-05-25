@@ -1,9 +1,9 @@
 package com.liu.activity;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
+import java.util.TreeMap;
+import java.util.TreeSet;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -15,6 +15,8 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
@@ -22,11 +24,13 @@ import android.widget.PopupWindow;
 import android.widget.TableLayout;
 
 import com.liu.bean.Message;
+import com.liu.bean.TimelineListItem;
 import com.liu.tool.Database;
 
 public class TimelineActivity extends BaseActivity {
 	private static final String TAG = "TIMELINE";
 	private Database db;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -34,11 +38,24 @@ public class TimelineActivity extends BaseActivity {
 		
 		Log.d(TAG, "come in timeline activity.");
 		db = Database.getDatabase(this);
-		Map<String, List<Message>> allMessages = groupMessage(db.readAllMessages());
+		TreeMap<String, TreeSet<Message>> allMessages = groupMessage(db.readAllMessages());
+		
+		if(allMessages.isEmpty()) {
+			Log.d(TAG, "read 0 messages, so fill some test data.");
+			FillDBTestData.fillTimelineMsgs();
+			allMessages = groupMessage(db.readAllMessages());
+			Log.d(TAG, "read " + allMessages.size() + " users' messages now.");
+		}
+		
+//		Log.d(TAG, "Read " + allMessages.size() + " users' messages");
+		List listItems  = getListItems(allMessages);
 		ListView listView = (ListView) findViewById(R.id.msg_items);
+		ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, listItems);
+		listView.setAdapter(arrayAdapter);
+//		LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+//		inflater.inflate(R.id.msg_items, (ViewGroup)findViewById(R.id.msg_items_parentlayout));
 		//TODO
 		
-		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.layout_timeline, R.id.timeline_create_msgbt, new String[]{"新建消息", "回复消息"});
 		Button newmsgBt = (Button)findViewById(R.id.timeline_create_msgbt);
 		newmsgBt.setOnClickListener(new OnClickListener() {
 
@@ -49,8 +66,29 @@ public class TimelineActivity extends BaseActivity {
 			}
 			
 		});
+		
+		listView.setOnItemClickListener(new OnItemClickListener() {
+
+			@Override
+			public void onItemClick(AdapterView<?> parent, View view,
+					int position, long id) {
+				// TODO Auto-generated method stub
+				Log.d(TAG, "position clicked: " + position);
+			}
+			
+		});
 	}
 	
+	private List<TimelineListItem> getListItems(
+			TreeMap<String, TreeSet<Message>> allMessages) {
+		List<TimelineListItem> listItems = new ArrayList<TimelineListItem>();
+		for(TreeSet<Message> messages : allMessages.values()) {
+			TimelineListItem item = TimelineListItem.fromMsg(messages.last());
+			listItems.add(item);
+		}
+		return listItems;
+	}
+
 	@SuppressLint("NewApi")
 	private void showPopUp(View v) {
 		LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -77,7 +115,7 @@ public class TimelineActivity extends BaseActivity {
 		startActivity(intent);
 	}
 	
-	public void onReplyMsgClick(View v) {
+	public void onReplymsgClick(View v) {
 		//TODO
 	}
 	
@@ -87,10 +125,10 @@ public class TimelineActivity extends BaseActivity {
 		startActivity(intent);
 	}
 	
-	public static Map<String, List<Message>> groupMessage(List<Message> messages) {
-		Map<String, List<Message>> allMessages = new HashMap<String, List<Message>>();
+	public static TreeMap<String, TreeSet<Message>> groupMessage(List<Message> messages) {
+		TreeMap<String, TreeSet<Message>> allMessages = new TreeMap<String, TreeSet<Message>>();
 		for(Message message : messages) {
-			List<Message> uMsgs = new ArrayList<Message>();
+			TreeSet<Message> uMsgs = new TreeSet<Message>();
 			if(allMessages.containsKey(message.getAssociate()))
 				uMsgs = allMessages.get(message.getAssociate());
 			uMsgs.add(message);

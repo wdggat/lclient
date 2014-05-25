@@ -1,9 +1,10 @@
 package com.liu.activity;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.TreeMap;
+import java.util.TreeSet;
 
 import android.test.AndroidTestCase;
 
@@ -16,11 +17,11 @@ public class TimelineActivityTest extends AndroidTestCase {
 		Message m2 = new Message("wdggat@163.com", "test_subject", 1400520549, "test_content", DataType.NEW_MSG, true);
 		Message m3 = new Message("hzliuxiaolong@163.com", "test_subject", 1400520549, "test_content", DataType.NEW_MSG, true);
 		Message m4 = new Message("wdggat@163.com", "test_subject", 1400520549, "test_content", DataType.NEW_MSG, true);
-		List<Message> msgs = new ArrayList<Message>();
+		TreeSet<Message> msgs = new TreeSet<Message>();
 		msgs.add(m1);
 		msgs.add(m2);
 		msgs.add(m4);
-		List<Message> msgs2 = new ArrayList<Message>();
+		TreeSet<Message> msgs2 = new TreeSet<Message>();
 		msgs2.add(m3);
 		
 		List<Message> msgs3 = new ArrayList<Message>();
@@ -29,11 +30,11 @@ public class TimelineActivityTest extends AndroidTestCase {
 		msgs3.add(m4);
 		msgs3.add(m3);
 		
-		Map<String, List<Message>> expected = new HashMap<String, List<Message>>();
+		TreeMap<String, TreeSet<Message>> expected = new TreeMap<String, TreeSet<Message>>();
 		expected.put("wdggat@163.com", msgs);
 		expected.put("hzliuxiaolong@163.com", msgs2);
 		
-		Map<String, List<Message>> actual = TimelineActivity.groupMessage(msgs3);
+		Map<String, TreeSet<Message>> actual = TimelineActivity.groupMessage(msgs3);
 		assertEquals(expected, actual);
 	}
 }

@@ -36,17 +36,18 @@
             android:onClick="onClickME" />
     </FrameLayout>
 
-    <LinearLayout
+<!--     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="#FFFFFF"
-        android:orientation="vertical" >
+        android:orientation="vertical"
+        android:id="@+id/msg_items_parentlayout" > -->
 
-        <TableLayout
+<!--         <TableLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="#FFFFFF"
-            android:gravity="center" >
+            android:gravity="center" > -->
 
             <ListView
                 android:id="@+id/msg_items"
@@ -55,6 +56,4 @@
                 android:divider="@drawable/text_bottom_line"
                 android:entries="@array/msg_items_init"
                 android:scrollbars="none" />
-        </TableLayout>
-    </LinearLayout>
 </LinearLayout>

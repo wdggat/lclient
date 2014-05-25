@@ -2,7 +2,8 @@
 <resources>
 
     <string-array name="msg_items_init">
-        <item>@string/timeline_inittext</item>
+        <item>hello1</item>
+        <item>hello2</item>
     </string-array>
     <string-array name="provinces">
         <item>北京</item>

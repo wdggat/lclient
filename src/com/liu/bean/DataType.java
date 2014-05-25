@@ -1,7 +1,7 @@
 package com.liu.bean;
 
 public enum DataType {
-	NONE(-1), REGIST(1), LOGIN(2), NEW_MSG(3), REPLY(4);
+	NONE(-1), REGIST(1), LOGIN(2), NEW_MSG(3), REPLY(4), QUICK_MSG(5);
 	private int code;
 
 	private DataType(int code) {
@@ -22,6 +22,8 @@ public enum DataType {
 			return NEW_MSG;
 		case 4:
 			return REPLY;
+		case 5:
+			return QUICK_MSG;
 		default:
 			return NONE;
 		}

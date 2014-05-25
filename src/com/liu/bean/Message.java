@@ -2,7 +2,7 @@ package com.liu.bean;
 
 import com.alibaba.fastjson.JSON;
 
-public class Message {
+public class Message implements Comparable<Message>{
 	private String associate;
 	private String subject;
 	private long time;
@@ -71,5 +71,11 @@ public class Message {
 
 	public String toJson() {
 		return JSON.toJSONString(this);
+	}
+	
+	@Override
+	public int compareTo(Message another) {
+		long anotherTime = another.getTime();
+		return time > anotherTime ? 1 : (time == anotherTime ? 0 : -1);
 	}
 }

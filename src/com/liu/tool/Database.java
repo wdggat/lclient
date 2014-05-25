@@ -28,7 +28,7 @@ public class Database {
         return database;
 	}
 	
-	boolean selfDestroy(final Context context) {
+	public boolean selfDestroy(final Context context) {
         synchronized (Database.class) {
             database = null;
             return context.deleteDatabase(Config.DATABASE_NAME);
@@ -37,15 +37,15 @@ public class Database {
 	
 	private SQLiteDatabase db;
 	
-    void beginTransaction() {
+    public void beginTransaction() {
         db.beginTransaction();
     }
 
-    void commitTransaction() {
+    public void commitTransaction() {
         db.setTransactionSuccessful();
     }
 
-    void endTransaction() {
+    public void endTransaction() {
         db.endTransaction();
     }
     
@@ -54,12 +54,12 @@ public class Database {
     	final String sql = "select associate,subject,strftime('%s',time),content,type,sendbyme from messages;";
     	Cursor cursor = db.rawQuery(sql, null);
     	while(cursor.moveToNext()) {
-    		String associate = cursor.getString(1);
-    		String subject = cursor.getString(2);
-    		long time = cursor.getLong(3);
-    		String content = cursor.getString(4);
-    		int type = cursor.getInt(5);
-    		int sendbyme = cursor.getInt(6);
+    		String associate = cursor.getString(0);
+    		String subject = cursor.getString(1);
+    		long time = cursor.getLong(2);
+    		String content = cursor.getString(3);
+    		int type = cursor.getInt(4);
+    		int sendbyme = cursor.getInt(5);
     		Message message = new Message(associate, subject, time, content, DataType.getByValue(type), BooleanUtils.toBoolean(sendbyme));
     		messages.add(message);
     	}
