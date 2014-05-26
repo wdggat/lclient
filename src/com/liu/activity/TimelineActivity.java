@@ -5,6 +5,8 @@ import java.util.List;
 import java.util.TreeMap;
 import java.util.TreeSet;
 
+import org.apache.commons.lang.ArrayUtils;
+
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
@@ -82,6 +84,8 @@ public class TimelineActivity extends BaseActivity {
 				for(Message msg : allMessages.get(item.getAssociate()))
 					msgList.add(msg.toJson());
 				bundle.putStringArrayList("msgs", msgList);
+				bundle.putString("uid", item.getAssociate());
+				Log.d(TAG, "msgs put into bundle, " + msgList);
 				Intent intent = new Intent();
 				intent.putExtras(bundle);
 				intent.setClass(TimelineActivity.this, MsgInfoActivity.class);

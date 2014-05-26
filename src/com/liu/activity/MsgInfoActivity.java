@@ -2,11 +2,10 @@ package com.liu.activity;
 
 import java.util.ArrayList;
 
-import org.apache.commons.lang.ArrayUtils;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.TextView;
 
 public class MsgInfoActivity extends BaseActivity {
 	private static final String TAG = "MsgInfo";
@@ -17,6 +16,9 @@ public class MsgInfoActivity extends BaseActivity {
 		
 		Intent intent = getIntent();
 		ArrayList<String> msgList  = intent.getExtras().getStringArrayList("msgs");
-		Log.d(TAG, "msgs put in, " + ArrayUtils.toString(msgList));
+		String associate = intent.getExtras().getString("uid");
+		((TextView)findViewById(R.id.msginfo_uid)).setText(associate);
+		Log.d(TAG, "msgs read from bundle, " + msgList);
+		
 	}
 }

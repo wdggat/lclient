@@ -48,4 +48,7 @@
         <item name="android:padding">5dp</item>
     </style>
     
+    <style name="msginfo_left">
+        <item name="android:background">@drawable/rounded_outer</item></style>
+    
 </resources>
