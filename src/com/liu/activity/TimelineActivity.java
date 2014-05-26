@@ -36,14 +36,14 @@ public class TimelineActivity extends BaseActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.layout_timeline);
 		
-		Log.d(TAG, "come in timeline activity.");
+//		Log.d(TAG, "come in timeline activity.");
 		db = Database.getDatabase(this);
-		TreeMap<String, TreeSet<Message>> allMessages = groupMessage(db.readAllMessages());
+		final TreeMap<String, TreeSet<Message>> allMessages = groupMessage(db.readAllMessages());
 		
 		if(allMessages.isEmpty()) {
 			Log.d(TAG, "read 0 messages, so fill some test data.");
 			FillDBTestData.fillTimelineMsgs();
-			allMessages = groupMessage(db.readAllMessages());
+			allMessages.putAll(groupMessage(db.readAllMessages()));
 //			Log.d(TAG, "read " + allMessages.size() + " users' messages now.");
 		}
 		
@@ -57,9 +57,6 @@ public class TimelineActivity extends BaseActivity {
 		ListView listView = (ListView) findViewById(R.id.msg_items);
 		ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, listItems);
 		listView.setAdapter(arrayAdapter);
-//		LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-//		inflater.inflate(R.id.msg_items, (ViewGroup)findViewById(R.id.msg_items_parentlayout));
-		//TODO
 		
 		Button newmsgBt = (Button)findViewById(R.id.timeline_create_msgbt);
 		newmsgBt.setOnClickListener(new OnClickListener() {
@@ -79,6 +76,16 @@ public class TimelineActivity extends BaseActivity {
 					int position, long id) {
 				// TODO Auto-generated method stub
 				Log.d(TAG, "position clicked: " + position);
+				Bundle bundle = new Bundle();
+				ArrayList<String> msgList = new ArrayList<String>();
+				TimelineListItem item = (TimelineListItem)parent.getItemAtPosition(position);
+				for(Message msg : allMessages.get(item.getAssociate()))
+					msgList.add(msg.toJson());
+				bundle.putStringArrayList("msgs", msgList);
+				Intent intent = new Intent();
+				intent.putExtras(bundle);
+				intent.setClass(TimelineActivity.this, MsgInfoActivity.class);
+				startActivity(intent);
 			}
 			
 		});
@@ -109,9 +116,7 @@ public class TimelineActivity extends BaseActivity {
 		
 		popupWindow.update();
 		popupWindow.showAtLocation(v, Gravity.NO_GRAVITY, location[0], location[1] + v.getHeight());
-//		popupWindow.showAsDropDown(v, location[0], location[1] + v.getHeight());
-		Log.d(TAG, "popupWindow.isShowing() = " + popupWindow.isShowing() + String.format(", layout.width = %d, layout.height = %d", layout.getWidth(), layout.getHeight()));
-//		popupWindow.showAtLocation(v, Gravity.NO_GRAVITY, 100, 100);
+//		Log.d(TAG, "popupWindow.isShowing() = " + popupWindow.isShowing() + String.format(", layout.width = %d, layout.height = %d", layout.getWidth(), layout.getHeight()));
 	}
 	
 	public void onNewmsgClick(View v) {

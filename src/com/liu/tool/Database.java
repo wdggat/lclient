@@ -51,7 +51,7 @@ public class Database {
     
     public List<Message> readAllMessages() {
     	List<Message> messages = new ArrayList<Message>();
-    	final String sql = "select associate,subject,strftime('%s',time),content,type,sendbyme from messages;";
+    	final String sql = "select associate,subject,time,content,type,sendbyme from messages;";
     	Cursor cursor = db.rawQuery(sql, null);
     	while(cursor.moveToNext()) {
     		String associate = cursor.getString(0);

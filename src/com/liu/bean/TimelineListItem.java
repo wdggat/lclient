@@ -16,6 +16,10 @@ public class TimelineListItem {
 		this.content = content;
 	}
 	
+	public String getAssociate() {
+		return associate;
+	}
+	
 	public static TimelineListItem fromMsg(Message msg) {
 		return new TimelineListItem(msg.getAssociate(), msg.getTime(), msg.getContent());
 	}

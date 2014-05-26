@@ -31,6 +31,7 @@
             </intent-filter>
         </activity>
         <activity android:name="com.liu.activity.TimelineActivity"></activity>
+        <activity android:name="com.liu.activity.MsgInfoActivity"></activity>
         <activity android:name="com.liu.activity.RegistActivity"></activity>
         <activity android:name="com.liu.activity.NewMsgActivity"></activity>
         <activity android:name="com.liu.activity.ReplyMsgActivity"></activity>
