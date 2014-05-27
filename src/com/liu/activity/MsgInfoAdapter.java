@@ -3,6 +3,7 @@ package com.liu.activity;
 import java.util.List;
 
 import android.content.Context;
+import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -38,10 +39,16 @@ public class MsgInfoAdapter extends BaseAdapter{
 	public View getView(int position, View convertView, ViewGroup parent) {
 		Message msg = (Message)getItem(position);
 		TextView v = new TextView(context);
-		if(!msg.isSentByMe())
+		if(!msg.isSentByMe()) {
 		    v.setTextAppearance(context, R.style.msginfo_left);
-		else
+		    v.setGravity(Gravity.LEFT);
+		    v.setPadding(5, 5, 150, 5);
+		} else {
 			v.setTextAppearance(context, R.style.msginfo_right);
+			v.setBackgroundResource(R.color.light_blue);
+			v.setGravity(Gravity.RIGHT);
+			v.setPadding(150, 5, 5, 5);
+		}
 		
 		v.setText(msg.toShowInMsgInfo());
 		return v;

@@ -61,6 +61,8 @@ public class Message implements Comparable<Message>{
 	public void setSentByMe(boolean sentByMe) {
 		this.sentByMe = sentByMe;
 	}
+	
+	public Message(){}
 
 	public Message(String associate, String subject, long time, String content,
 			DataType dataType, boolean sentByMe) {
