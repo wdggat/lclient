@@ -1,5 +1,9 @@
 package com.liu.bean;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
+
 import com.alibaba.fastjson.JSON;
 
 public class Message implements Comparable<Message>{
@@ -71,6 +75,11 @@ public class Message implements Comparable<Message>{
 
 	public String toJson() {
 		return JSON.toJSONString(this);
+	}
+	
+	public String toShowInMsgInfo() {
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.US);
+		return content + "\n" + sdf.format(new Date((long)time * 1000));
 	}
 	
 	@Override

@@ -26,23 +26,18 @@
             android:layout_gravity="center"
             android:gravity="center" />
 
-        <Button
-            android:id="@+id/mebt"
+        <!-- Do not provide this way to delete msg for now -->
+        <!-- <Button
+            android:id="@+id/delete_msg_bt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="right"
-            android:background="@drawable/delete3" />
+            android:background="@drawable/delete3" /> -->
     </FrameLayout>
 
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent" >
-
-        <TextView
-            android:id="@+id/msgs"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:scrollbarStyle="insideInset"/>
 
         <TableRow
             android:layout_width="match_parent"
@@ -65,6 +60,14 @@
                 android:layout_gravity="right"
                 android:text="@string/send" />
         </TableRow>
+
+        <ListView
+            android:id="@+id/msgs"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scrollbarStyle="insideInset" >
+        </ListView>
+
     </FrameLayout>
 
 </LinearLayout>
