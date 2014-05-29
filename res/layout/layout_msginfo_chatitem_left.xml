@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="left"
+    style="@style/msginfo_left"
+    android:layout_marginRight="100dp" >
+    
+    <TableRow>
+
+        <TextView
+            android:id="@+id/msginfo_chatitem_content"
+            android:layout_width="match_parent"
+            android:text="电子工业出版社，哥伦比亚大学yoyo" />
+
+    </TableRow>
+    
+    <TableRow
+        android:layout_marginTop="5dp"
+        android:gravity="right">
+        
+        <TextView android:id="@+id/msginfo_chatitem_datetime"
+            android:textColor="@color/grey"
+            android:layout_width="match_parent"
+            android:textSize="12sp"
+            android:gravity="right"
+            android:text="2014-05-29 19:18:32"/>
+        
+    </TableRow>
+
+</TableLayout>

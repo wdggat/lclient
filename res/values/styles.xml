@@ -50,10 +50,12 @@
     
     <style name="msginfo_left">
         <item name="android:background">@drawable/rounded_outer</item>
+        <item name="android:padding">10dp</item>
     </style>
     
     <style name="msginfo_right">
         <item name="android:background">@drawable/rounded_outer_colored</item>
+        <item name="android:padding">10dp</item>
     </style>
     
 </resources>

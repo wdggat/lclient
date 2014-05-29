@@ -79,10 +79,15 @@ public class Message implements Comparable<Message>{
 		return JSON.toJSONString(this);
 	}
 	
-	public String toShowInMsgInfo() {
+	public String getFormatedTime() {
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.US);
+		return sdf.format(new Date((long)time * 1000));
+	}
+	
+/*	public String toShowInMsgInfo() {
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.US);
 		return content + "\n" + sdf.format(new Date((long)time * 1000));
-	}
+	}*/
 	
 	@Override
 	public int compareTo(Message another) {

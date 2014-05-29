@@ -19,6 +19,19 @@ public class TimelineListItem {
 	public String getAssociate() {
 		return associate;
 	}
+
+	public long getTime() {
+		return time;
+	}
+	
+	public String getContent() {
+		return content;
+	}
+	
+	public String getFormatedTime() {
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.US);
+		return sdf.format(new Date((long)time * 1000));
+	}
 	
 	public static TimelineListItem fromMsg(Message msg) {
 		return new TimelineListItem(msg.getAssociate(), msg.getTime(), msg.getContent());

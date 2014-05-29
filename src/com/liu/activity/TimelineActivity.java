@@ -5,8 +5,6 @@ import java.util.List;
 import java.util.TreeMap;
 import java.util.TreeSet;
 
-import org.apache.commons.lang.ArrayUtils;
-
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
@@ -19,7 +17,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
-import android.widget.ArrayAdapter;
+import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.PopupWindow;
@@ -57,7 +55,8 @@ public class TimelineActivity extends BaseActivity {
 		
 		List listItems  = getListItems(allMessages);
 		ListView listView = (ListView) findViewById(R.id.msg_items);
-		ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, listItems);
+//		ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, listItems);
+		TimelineAdapter arrayAdapter = new TimelineAdapter(this, listItems);
 		listView.setAdapter(arrayAdapter);
 		
 		Button newmsgBt = (Button)findViewById(R.id.timeline_create_msgbt);

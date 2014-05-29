@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@color/white" >
+
+    <TableRow
+        android:layout_weight="2"
+        android:background="@color/white" >
+
+        <TextView
+            android:id="@+id/timeline_msgitem_associate"
+            android:layout_weight="1"
+            android:textStyle="bold"
+            android:text="hzliuxiaolong@163.com" />
+
+        <TextView
+            android:id="@+id/timeline_msgitem_datetime"
+            android:layout_weight="1"
+            android:textColor="@color/grey"
+            android:textSize="12sp"
+            android:gravity="right"
+            android:text="2014-05-28 19:55:00"/>
+    </TableRow>
+    
+    <TableRow
+        android:id="@+id/timeline_msgitem_row"
+        android:layout_weight="2"
+        android:background="@color/white"
+        android:layout_marginTop="5dp" >
+        
+        <TextView android:id="@+id/timeline_msgitem_msgglimpse"
+            android:textColor="@color/grey"
+            android:textSize="12sp"
+            android:text="电子工业出版社，哥伦比亚大学"/>
+        
+    </TableRow>
+
+</TableLayout>
