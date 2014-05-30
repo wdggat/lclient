@@ -35,5 +35,9 @@
     <string name="password_new_confirm">确认新密码</string>
     <string name="timeline_newmsg">新建消息</string>
     <string name="timeline_replymsg">回复消息</string>
+    
+    <string name="demo_msg_content_long">"电子工业出版社，哥伦比亚大学yoyofeeertewtrtttttttttttttttttttttttttttttttttttttttttter"</string>
+    <string name="demo_msg_content_short">"电子工业出版社，哥伦比亚大学"</string>
+    <string name="demo_msg_datetime">2014-05-29 19:18:32</string>
 
 </resources>
