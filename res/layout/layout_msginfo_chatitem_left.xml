@@ -3,14 +3,15 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:layout_gravity="left"
-    style="@style/msginfo_left"
-    android:layout_marginRight="100dp" >
+    android:gravity="left"
+    style="@style/msginfo_left">
     
     <TableRow>
 
         <TextView
             android:id="@+id/msginfo_chatitem_content"
             android:layout_width="match_parent"
+            android:ems="12"
             android:text="电子工业出版社，哥伦比亚大学yoyo" />
 
     </TableRow>

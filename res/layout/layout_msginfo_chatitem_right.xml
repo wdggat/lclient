@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
+    android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:layout_gravity="right" >
+    android:layout_gravity="right"
+    android:gravity="right"
+    style="@style/msginfo_right" >
 
     <!-- android:layout_marginLeft="100dp" -->
     <!-- style="@style/msginfo_right" -->
@@ -16,6 +18,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:singleLine="false"
+            android:maxEms="12"
             android:text="@string/demo_msg_content_long" />
     </TableRow>
 

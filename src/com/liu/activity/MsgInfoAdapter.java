@@ -3,10 +3,15 @@ package com.liu.activity;
 import java.util.List;
 
 import android.content.Context;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewGroup.LayoutParams;
+import android.widget.AbsListView;
 import android.widget.BaseAdapter;
+import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.TableLayout;
 import android.widget.TextView;
 
@@ -41,11 +46,17 @@ public class MsgInfoAdapter extends BaseAdapter{
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
 		Message msg = (Message)getItem(position);
+		TableLayout.LayoutParams lp = new TableLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.MATCH_PARENT);
 		TableLayout layout = null;
-		if(msg.isSentByMe())
+		if(msg.isSentByMe()) {
 		    layout = (TableLayout)inflater.inflate(R.layout.layout_msginfo_chatitem_right, null);
-		else
+		    layout.setGravity(Gravity.RIGHT);
+		    lp.gravity = Gravity.RIGHT;
+		} else {
 			layout = (TableLayout)inflater.inflate(R.layout.layout_msginfo_chatitem_left, null);
+			layout.setGravity(Gravity.LEFT);
+		}
+		layout.setLayoutParams(lp);
 		TextView contentTV = (TextView)layout.findViewById(R.id.msginfo_chatitem_content);
 		contentTV.setText(msg.getContent());
 		TextView datetimeTV = (TextView)layout.findViewById(R.id.msginfo_chatitem_datetime);
