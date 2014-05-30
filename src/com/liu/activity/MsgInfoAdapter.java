@@ -8,10 +8,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewGroup.LayoutParams;
-import android.widget.AbsListView;
 import android.widget.BaseAdapter;
-import android.widget.ListView;
-import android.widget.RelativeLayout;
+import android.widget.LinearLayout;
 import android.widget.TableLayout;
 import android.widget.TextView;
 
@@ -46,14 +44,14 @@ public class MsgInfoAdapter extends BaseAdapter{
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
 		Message msg = (Message)getItem(position);
-		TableLayout.LayoutParams lp = new TableLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.MATCH_PARENT);
-		TableLayout layout = null;
+		LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.MATCH_PARENT);
+		LinearLayout layout = null;
 		if(msg.isSentByMe()) {
-		    layout = (TableLayout)inflater.inflate(R.layout.layout_msginfo_chatitem_right, null);
+		    layout = (LinearLayout)inflater.inflate(R.layout.layout_msginfo_chatitem_right, null);
 		    layout.setGravity(Gravity.RIGHT);
 		    lp.gravity = Gravity.RIGHT;
 		} else {
-			layout = (TableLayout)inflater.inflate(R.layout.layout_msginfo_chatitem_left, null);
+			layout = (LinearLayout)inflater.inflate(R.layout.layout_msginfo_chatitem_left, null);
 			layout.setGravity(Gravity.LEFT);
 		}
 		layout.setLayoutParams(lp);
