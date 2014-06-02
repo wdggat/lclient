@@ -1,5 +1,7 @@
 package com.liu.bean;
 
+import com.alibaba.fastjson.JSON;
+
 public class Response {
 	private static final int SUCCESS_CODE = 200;
 	
@@ -25,7 +27,14 @@ public class Response {
 		this.content = content;
 	}
 	
+	public static Response fromRequestReturn(String ret) {
+		if(ret == null)
+			return new Response(-1, "");
+		return JSON.parseObject(ret, Response.class);
+	}
+	
 	public boolean succeed() {
 		return code == SUCCESS_CODE;
 	}
+	
 }

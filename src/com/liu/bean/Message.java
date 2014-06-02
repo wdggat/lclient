@@ -7,6 +7,7 @@ import java.util.Locale;
 import com.alibaba.fastjson.JSON;
 
 public class Message implements Comparable<Message>{
+	private static final String EMPTY_SUBJECT = "";
 	private String associate;
 	private String subject;
 	private long time;
@@ -34,6 +35,9 @@ public class Message implements Comparable<Message>{
 		return time;
 	}
 
+	/**
+	 * @param time unix epoch time, length_10
+	 */
 	public void setTime(long time) {
 		this.time = time;
 	}
@@ -64,6 +68,10 @@ public class Message implements Comparable<Message>{
 	
 	public Message(){}
 
+	/**
+	 * @param associate The uid or email that this message sent to
+	 * @param time Unix epoch time, length_10
+	 */
 	public Message(String associate, String subject, long time, String content,
 			DataType dataType, boolean sentByMe) {
 		super();
@@ -94,4 +102,9 @@ public class Message implements Comparable<Message>{
 		long anotherTime = another.getTime();
 		return time > anotherTime ? 1 : (time == anotherTime ? 0 : -1);
 	}
+	
+	public static Message quickMessage(String associate, String content) {
+		return new Message(associate, EMPTY_SUBJECT, System.currentTimeMillis()/ 1000, content, DataType.QUICK_MSG, true);
+	}
+
 }

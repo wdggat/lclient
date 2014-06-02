@@ -70,6 +70,13 @@ public class Database {
     	final String sql = "INSERT INTO messages(subject, time, content, associate, type, sendbyme) VALUES (?, ?, ?, ?, ?, ?);";
     	db.execSQL(sql, new Object[]{message.getSubject(), message.getTime(), message.getContent(), message.getAssociate(), message.getDataType().getValue(), message.isSentByMe() ? 1 : 0});
     }
+    
+    public void insertSingleMessage(Message message) {
+    	beginTransaction();
+    	insertMessage(message);
+    	commitTransaction();
+    	endTransaction();
+    }
 	
 	private final static class DatabaseHelper extends SQLiteOpenHelper {
 		private static final int SCHEMA_VERSION = 1;

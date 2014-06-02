@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewGroup.LayoutParams;
+import android.widget.AbsListView;
 import android.widget.BaseAdapter;
 import android.widget.LinearLayout;
 import android.widget.TableLayout;
@@ -44,12 +45,12 @@ public class MsgInfoAdapter extends BaseAdapter{
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
 		Message msg = (Message)getItem(position);
-		LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.MATCH_PARENT);
+		AbsListView.LayoutParams lp = new AbsListView.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.MATCH_PARENT);
 		LinearLayout layout = null;
 		if(msg.isSentByMe()) {
 		    layout = (LinearLayout)inflater.inflate(R.layout.layout_msginfo_chatitem_right, null);
 		    layout.setGravity(Gravity.RIGHT);
-		    lp.gravity = Gravity.RIGHT;
+//		    lp.gravity = Gravity.RIGHT;
 		} else {
 			layout = (LinearLayout)inflater.inflate(R.layout.layout_msginfo_chatitem_left, null);
 			layout.setGravity(Gravity.LEFT);

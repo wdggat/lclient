@@ -135,6 +135,8 @@ public class TimelineActivity extends BaseActivity {
 	public void onClickME(View v) {
 		Intent intent = new Intent();
 		intent.setClass(TimelineActivity.this, MeActivity.class);
+		Bundle bundle = new Bundle();
+		//TODO put homeinfo
 		startActivity(intent);
 	}
 	

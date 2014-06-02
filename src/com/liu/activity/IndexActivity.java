@@ -80,10 +80,7 @@ public class IndexActivity extends BaseActivity{
 	private boolean login(String username, String password) {
 		String jsonStr = String.format("{\"username\":\"%s\", \"password\":\"%s\"}", username, password);
 		Log.d(TAG, "user login: " + jsonStr);
-		String response = RequestHelper.sendData(DataType.LOGIN, jsonStr);
-		if(StringUtils.isEmpty(response))
-			return false;
-		Response res = JSON.parseObject(response, Response.class);
+		Response res = RequestHelper.sendData(DataType.LOGIN, jsonStr);
 		return res.succeed();
 	}
 	

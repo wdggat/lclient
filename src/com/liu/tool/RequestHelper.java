@@ -16,6 +16,8 @@ import org.apache.http.impl.client.DefaultHttpClient;
 
 import com.alibaba.fastjson.JSON;
 import com.liu.bean.DataType;
+import com.liu.bean.Message;
+import com.liu.bean.Response;
 
 import android.util.Log;
 
@@ -23,8 +25,13 @@ public class RequestHelper {
 	private static final String TAG = RequestHelper.class.getSimpleName();
 	private static final HttpClientVM clientVM = HttpClientVM.getClientVM();
 	
-	public static String sendData(DataType dataType, String jsonStr) {
-		return sendData(new Request(dataType, jsonStr).toJson(), Config.server);
+	public static Response sendData(DataType dataType, String jsonStr) {
+		String requestRet = sendData(new Request(dataType, jsonStr).toJson(), Config.server);
+		return Response.fromRequestReturn(requestRet);
+	}
+	
+	public static Response sendMessage(Message msg) {
+		return sendData(msg.getDataType(), msg.toJson());
 	}
 	
 	private static class Request {
