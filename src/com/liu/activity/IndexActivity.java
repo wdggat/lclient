@@ -17,8 +17,10 @@ import android.widget.Toast;
 import com.alibaba.fastjson.JSON;
 import com.liu.bean.DataType;
 import com.liu.bean.Response;
+import com.liu.bean.User;
 import com.liu.tool.Config;
 import com.liu.tool.RequestHelper;
+import com.liu.tool.Utils;
 
 public class IndexActivity extends BaseActivity{
 	private static final String TAG = "INDEX";
@@ -62,13 +64,17 @@ public class IndexActivity extends BaseActivity{
 					Intent intent = new Intent();
 					intent.setClass(IndexActivity.this, TimelineActivity.class);
 					startActivity(intent);
-				    cacheUserInfo(username, password);
+				    cacheLoginInfo(username, password);
 				}
 				else
 					Toast.makeText(IndexActivity.this, "Username and password isn't a couple.", Toast.LENGTH_SHORT).show();
 			}
 			
 		});
+	}
+	
+	public void passwordForget(View v) {
+		//TODO
 	}
 	
 	private boolean checkParams(String username, String password) {
@@ -81,10 +87,15 @@ public class IndexActivity extends BaseActivity{
 		String jsonStr = String.format("{\"username\":\"%s\", \"password\":\"%s\"}", username, password);
 		Log.d(TAG, "user login: " + jsonStr);
 		Response res = RequestHelper.sendData(DataType.LOGIN, jsonStr);
-		return res.succeed();
+		if(res.succeed()) {
+			User me = User.fromJsonStr(res.getContent());
+			Utils.cacheUserInfo(IndexActivity.this, me);
+			return true;
+		}
+		return false;
 	}
 	
-	private boolean cacheUserInfo(String username, String password) {
+	private boolean cacheLoginInfo(String username, String password) {
 		Editor sp = IndexActivity.this.getSharedPreferences(Config.SHAREDPREFERENCES_NAME, Context.MODE_PRIVATE).edit();
 		sp.putString("username", username);
 		sp.putString("password", password);

@@ -5,6 +5,7 @@ import java.util.Date;
 import java.util.Locale;
 
 import com.alibaba.fastjson.JSON;
+import com.liu.tool.Utils;
 
 public class Message implements Comparable<Message>{
 	private static final String EMPTY_SUBJECT = "";
@@ -88,8 +89,7 @@ public class Message implements Comparable<Message>{
 	}
 	
 	public String getFormatedTime() {
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.US);
-		return sdf.format(new Date((long)time * 1000));
+		return Utils.showTime(time);
 	}
 	
 /*	public String toShowInMsgInfo() {

@@ -135,13 +135,6 @@ public class RegistActivity extends BaseActivity {
 		}
 	}
 	
-	private boolean cacheUserInfo(User user) {
-		Editor sp = RegistActivity.this.getSharedPreferences(Config.SHAREDPREFERENCES_NAME, Context.MODE_PRIVATE).edit();
-		sp.putString("uinfo", user.toJson());
-		sp.putBoolean(Config.LOGINED_KEY, true);
-		return sp.commit();
-	}
-	
 	final Handler handler = new Handler() {
 		@Override
 		public void handleMessage(Message message) {
@@ -181,7 +174,7 @@ public class RegistActivity extends BaseActivity {
 				boolean registResult = registServer();
 				if(registResult) {
 					Log.i(TAG, "Regist successfully.");
-					cacheUserInfo(user);
+					Utils.cacheUserInfo(RegistActivity.this, user);
 					Log.i(TAG, "user info cached.");
 					Message msg = handler.obtainMessage();
 					msg.what = 7;

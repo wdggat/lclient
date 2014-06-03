@@ -75,7 +75,6 @@ public class TimelineActivity extends BaseActivity {
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view,
 					int position, long id) {
-				// TODO Auto-generated method stub
 				Log.d(TAG, "position clicked: " + position);
 				Bundle bundle = new Bundle();
 				ArrayList<String> msgList = new ArrayList<String>();
