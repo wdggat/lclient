@@ -2,20 +2,23 @@ package com.liu.activity;
 
 import org.apache.commons.lang.StringUtils;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.alibaba.fastjson.JSON;
 import com.liu.bean.DataType;
+import com.liu.bean.Event;
 import com.liu.bean.Response;
 import com.liu.bean.User;
 import com.liu.tool.Config;
@@ -74,7 +77,38 @@ public class IndexActivity extends BaseActivity{
 	}
 	
 	public void passwordForget(View v) {
-		//TODO
+		LayoutInflater inflater = LayoutInflater.from(this);
+		final View textEntryView = inflater
+				.inflate(R.layout.layout_password_forget, null);
+		final EditText edtInput = (EditText) textEntryView
+				.findViewById(R.id.passwd_forget_email);
+		final AlertDialog.Builder builder = new AlertDialog.Builder(IndexActivity.this);
+//		builder.setCancelable(false);
+		builder.setTitle("请输入邮箱:");
+		builder.setView(textEntryView);
+		final AlertDialog ad = builder.create();
+		builder.setPositiveButton("确认", new DialogInterface.OnClickListener() {
+			public void onClick(DialogInterface dialog, int whichButton) {
+				Event pf = new Event(Event.ECODE_FORGET_PASSWORD);
+				pf.putEntry(Event.EMAIL, edtInput.getText().toString());
+				Response res = RequestHelper.sendEvent(DataType.PASSWORD_FORGET, pf);
+				if(res.succeed()) {
+					ad.cancel();
+					Toast.makeText(IndexActivity.this, "Password sent to " + edtInput.getText().toString(), Toast.LENGTH_SHORT).show();
+					return;
+				} else {
+					Toast.makeText(IndexActivity.this, "Password sent failed.", Toast.LENGTH_SHORT).show();
+					return;
+				}
+			}
+		});
+		builder.setNegativeButton("取消", new DialogInterface.OnClickListener() {
+			public void onClick(DialogInterface dialog, int whichButton) {
+				ad.cancel();
+				return;
+			}
+		});
+		ad.show();
 	}
 	
 	private boolean checkParams(String username, String password) {

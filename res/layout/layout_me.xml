@@ -82,6 +82,23 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="8" />
         </TableRow>
+        
+        <TableRow android:layout_marginTop="10dp" >
+
+            <TextView
+                android:layout_marginLeft="10dp"
+                android:layout_weight="1"
+                android:text="@string/password_colon" />
+
+            <TextView
+                android:id="@+id/me_password_change"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/password_change"
+                android:textColor="@color/blue"
+                android:onClick="passwordChange"
+                android:layout_weight="8" />
+        </TableRow>
 
 <!--         <TableRow
             android:layout_marginTop="30dp"

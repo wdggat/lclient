@@ -3,8 +3,10 @@ package com.liu.bean;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.alibaba.fastjson.JSON;
+
 public class Event {
-	public static final String email = "EMAIL";
+	public static final String EMAIL = "EMAIL";
 	public static final int ECODE_FORGET_PASSWORD = 1;
 
 	public Event() {}
@@ -39,5 +41,14 @@ public class Event {
 	
 	public String getEntry(String key) {
 		return entrys.get(key);
+	}
+	
+	public String toJson() {
+		return JSON.toJSONString(this);
+	}
+	
+	@Override
+	public String toString() {
+		return toJson();
 	}
 }

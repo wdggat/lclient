@@ -1,9 +1,11 @@
 package com.liu.activity;
 
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.liu.bean.User;
@@ -48,6 +50,12 @@ public class MeActivity extends BaseActivity {
 			}
 			
 		});*/
+	}
+	
+	public void passwordChange(View v) {
+		LayoutInflater inflater = LayoutInflater.from(this);
+//		LinearLayout layout = (LinearLayout)inflater.inflate(R.layout.layout_password_change, null);
+		inflater.inflate(R.layout.layout_password_change, null);
 	}
 	
 }

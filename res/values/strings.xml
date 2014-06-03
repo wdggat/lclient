@@ -27,6 +27,7 @@
     <string name="password_colon">密码: </string>
     <string name="password_confirm_colon">确认密码: </string>
     <string name="change">修改</string>
+    <string name="password_change"><u>修改</u></string>
     <string name="male">汉子</string>
     <string name="female">妹子</string>
     <string name="gender_unset">路人而已</string>
