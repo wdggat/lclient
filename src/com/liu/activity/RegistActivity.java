@@ -16,9 +16,10 @@ import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-import com.alibaba.fastjson.JSON;
+import com.liu.bean.DataType;
 import com.liu.bean.Response;
 import com.liu.bean.User;
+import com.liu.tool.RequestHelper;
 import com.liu.tool.Utils;
 
 public class RegistActivity extends BaseActivity {
@@ -100,16 +101,14 @@ public class RegistActivity extends BaseActivity {
 	private boolean registServer() {
 		Message msg = handler.obtainMessage();
 		//{"code":200, "content":"successful."}
-//		String response = RequestHelper.sendData(DataType.REGIST, user.toJson());
-		String response = "{\"code\":200,\"content\":\"\"}";
+		Response res = RequestHelper.sendData(DataType.REGIST, user.toJson());
 		Log.i(TAG, "user_regist, " + user.toJson());
-		if(response == null) {
+		if(res.networkUnreachable()) {
 			Log.e("REGIST", "Posting regist info failed.");
 			msg.what = 5;
 			handler.sendMessage(msg);
 			return false;
 		}
-		Response res = JSON.parseObject(response, Response.class);
 		if(!res.succeed()) {
 			Log.e("REGIST", "Regist failed: " + res.getContent());
 			Bundle bundler = new Bundle();

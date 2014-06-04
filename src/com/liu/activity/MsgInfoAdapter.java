@@ -11,7 +11,6 @@ import android.view.ViewGroup.LayoutParams;
 import android.widget.AbsListView;
 import android.widget.BaseAdapter;
 import android.widget.LinearLayout;
-import android.widget.TableLayout;
 import android.widget.TextView;
 
 import com.liu.bean.Message;
@@ -19,11 +18,9 @@ import com.liu.bean.Message;
 public class MsgInfoAdapter extends BaseAdapter{
 	
 	private List<Message> items;
-	private Context context;
 	private LayoutInflater inflater;
 	public MsgInfoAdapter(Context context, List<Message> items) {
 		this.items = items;
-		this.context = context;
 		inflater = LayoutInflater.from(context);
 	}
 	

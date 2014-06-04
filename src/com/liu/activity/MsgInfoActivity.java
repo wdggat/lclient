@@ -51,9 +51,7 @@ public class MsgInfoActivity extends BaseActivity {
 			return;
 		}
 		Message msg = Message.quickMessage(associate, content);
-		//TODO
-//		Response res = RequestHelper.sendMessage(msg);
-		Response res = new Response(200, "");
+		Response res = RequestHelper.sendMessage(msg);
 		if(!res.succeed()) {
 			Toast.makeText(this, "Message sent failed.", Toast.LENGTH_SHORT).show();
 			return;

@@ -27,8 +27,9 @@ public class RequestHelper {
 //	private static final HttpClientVM clientVM = HttpClientVM.getClientVM();
 	
 	public static Response sendData(DataType dataType, String jsonStr) {
-		String requestRet = sendData(new Request(dataType, jsonStr).toJson(), Config.server);
-		return Response.fromRequestReturn(requestRet);
+//		String requestRet = sendData(new Request(dataType, jsonStr).toJson(), Config.server);
+//		return Response.fromRequestReturn(requestRet);
+		return Response.DEMO_SUCCESS;
 	}
 	
 	public static Response sendMessage(Message msg) {

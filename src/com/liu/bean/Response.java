@@ -4,6 +4,8 @@ import com.alibaba.fastjson.JSON;
 
 public class Response {
 	private static final int SUCCESS_CODE = 200;
+	private static final int NETWORD_UNREACHABLE = -1;
+	public static final Response DEMO_SUCCESS = new Response(SUCCESS_CODE, "");
 	
 	private int code;
 	private String content;
@@ -35,6 +37,10 @@ public class Response {
 	
 	public boolean succeed() {
 		return code == SUCCESS_CODE;
+	}
+	
+	public boolean networkUnreachable() {
+		return code == NETWORD_UNREACHABLE;
 	}
 	
 }

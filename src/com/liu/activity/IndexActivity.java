@@ -95,17 +95,14 @@ public class IndexActivity extends BaseActivity{
 				if(res.succeed()) {
 					ad.cancel();
 					Toast.makeText(IndexActivity.this, "Password sent to " + edtInput.getText().toString(), Toast.LENGTH_SHORT).show();
-					return;
 				} else {
 					Toast.makeText(IndexActivity.this, "Password sent failed.", Toast.LENGTH_SHORT).show();
-					return;
 				}
 			}
 		});
 		builder.setNegativeButton("取消", new DialogInterface.OnClickListener() {
 			public void onClick(DialogInterface dialog, int whichButton) {
 				ad.cancel();
-				return;
 			}
 		});
 		ad.show();
