@@ -7,24 +7,22 @@ import com.alibaba.fastjson.JSON;
 
 public class Event {
 	public static final String EMAIL = "EMAIL";
-	public static final int ECODE_FORGET_PASSWORD = 1;
-
 	public Event() {}
 
-	public Event(int code) {
-		this.ecode = code;
+	public Event(DataType dataType) {
+		this.dataType = dataType;
 		entrys = new HashMap<String, String>();
 	}
 
-	private int ecode;
+	private DataType dataType;
 	private Map<String, String> entrys;
 
-	public int getEcode() {
-		return ecode;
+	public DataType getDataType() {
+		return dataType;
 	}
 
-	public void setEcode(int ecode) {
-		this.ecode = ecode;
+	public void setDataType(DataType dataType) {
+		this.dataType = dataType;
 	}
 
 	public Map<String, String> getEntrys() {

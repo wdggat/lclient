@@ -35,8 +35,8 @@ public class RequestHelper {
 		return sendData(msg.getDataType(), msg.toJson());
 	}
 	
-	public static Response sendEvent(DataType dataType, Event event) {
-		return sendData(dataType, event.toJson());
+	public static Response sendEvent(Event event) {
+		return sendData(event.getDataType(), event.toJson());
 	}
 	
 	private static class Request {

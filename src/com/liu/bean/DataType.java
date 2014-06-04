@@ -1,7 +1,7 @@
 package com.liu.bean;
 
 public enum DataType {
-	NONE(-1), REGIST(1), LOGIN(2), NEW_MSG(3), REPLY(4), QUICK_MSG(5), PASSWORD_FORGET(6);
+	NONE(-1), REGIST(1), LOGIN(2), NEW_MSG(3), REPLY(4), QUICK_MSG(5), PASSWORD_FORGET(6), PASSWORD_CHANGE(7);
 	private int code;
 
 	private DataType(int code) {
@@ -26,6 +26,8 @@ public enum DataType {
 			return QUICK_MSG;
 		case 6:
 			return PASSWORD_FORGET;
+		case 7:
+			return PASSWORD_CHANGE;
 		default:
 			return NONE;
 		}

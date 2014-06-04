@@ -1,9 +1,7 @@
 package com.liu.activity;
 
 import android.annotation.SuppressLint;
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences.Editor;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
@@ -19,11 +17,8 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.alibaba.fastjson.JSON;
-import com.liu.bean.DataType;
 import com.liu.bean.Response;
 import com.liu.bean.User;
-import com.liu.tool.Config;
-import com.liu.tool.RequestHelper;
 import com.liu.tool.Utils;
 
 public class RegistActivity extends BaseActivity {
@@ -88,7 +83,7 @@ public class RegistActivity extends BaseActivity {
 			handler.sendMessage(msg);
 			return false;
 		}
-		if(password.isEmpty() || password.length() < 6 || password.length() > 18) {
+		if(password.isEmpty() || password.length() < 6 || password.length() > 20) {
 			msg.what = 3;
 			handler.sendMessage(msg);
 			return false;

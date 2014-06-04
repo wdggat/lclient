@@ -30,6 +30,8 @@ import com.liu.tool.Database;
 public class TimelineActivity extends BaseActivity {
 	private static final String TAG = "TIMELINE";
 	private Database db;
+	private static List<TimelineListItem> listItems;
+	private static TimelineAdapter timelineAdapter;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -53,11 +55,11 @@ public class TimelineActivity extends BaseActivity {
 			    Log.d(TAG, "READ MSG: " + msg.toJson());
 		Log.d(TAG, "Read " + allMessages.size() + " users' messages");
 		
-		List listItems  = getListItems(allMessages);
+		listItems  = getListItems(allMessages);
 		ListView listView = (ListView) findViewById(R.id.msg_items);
 //		ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, listItems);
-		TimelineAdapter arrayAdapter = new TimelineAdapter(this, listItems);
-		listView.setAdapter(arrayAdapter);
+		timelineAdapter = new TimelineAdapter(this, listItems);
+		listView.setAdapter(timelineAdapter);
 		
 		Button newmsgBt = (Button)findViewById(R.id.timeline_create_msgbt);
 		newmsgBt.setOnClickListener(new OnClickListener() {
@@ -149,6 +151,22 @@ public class TimelineActivity extends BaseActivity {
 			allMessages.put(message.getAssociate(), uMsgs);
 		}
 		return allMessages;
+	}
+	
+	public static void dataChange(Message newmsg) {
+		int index;
+		for(index = 0; index < listItems.size(); index ++){
+			TimelineListItem item = listItems.get(index);
+			if(item.getAssociate().equals(newmsg.getAssociate())) {
+				item.setTime(newmsg.getTime());
+				item.setContent(newmsg.getContent());
+			}
+		}
+		if (index == listItems.size()) {
+			TimelineListItem newItem = TimelineListItem.fromMsg(newmsg);
+			listItems.add(newItem);
+		}
+		timelineAdapter.notifyDataSetChanged();
 	}
 	
 }

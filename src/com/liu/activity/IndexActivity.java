@@ -89,9 +89,9 @@ public class IndexActivity extends BaseActivity{
 		final AlertDialog ad = builder.create();
 		builder.setPositiveButton("确认", new DialogInterface.OnClickListener() {
 			public void onClick(DialogInterface dialog, int whichButton) {
-				Event pf = new Event(Event.ECODE_FORGET_PASSWORD);
+				Event pf = new Event(DataType.PASSWORD_FORGET);
 				pf.putEntry(Event.EMAIL, edtInput.getText().toString());
-				Response res = RequestHelper.sendEvent(DataType.PASSWORD_FORGET, pf);
+				Response res = RequestHelper.sendEvent(pf);
 				if(res.succeed()) {
 					ad.cancel();
 					Toast.makeText(IndexActivity.this, "Password sent to " + edtInput.getText().toString(), Toast.LENGTH_SHORT).show();

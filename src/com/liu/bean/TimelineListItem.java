@@ -28,6 +28,14 @@ public class TimelineListItem {
 		return content;
 	}
 	
+	public void setTime(long time) {
+		this.time = time;
+	}
+
+	public void setContent(String content) {
+		this.content = content;
+	}
+
 	public String getFormatedTime() {
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.US);
 		return sdf.format(new Date((long)time * 1000));
