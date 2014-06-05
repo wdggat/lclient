@@ -31,6 +31,10 @@ public class PasswordChangeActivity extends BaseActivity{
 			Toast.makeText(this, "密码确认错误!", Toast.LENGTH_SHORT).show();
 			return;
 		}
+		if(!Utils.checkPassword(newPassword.getText().toString())) {
+			Toast.makeText(this, "密码长度需在6到20之间!", Toast.LENGTH_SHORT).show();
+			return;
+		}
 		Event pc = new Event(DataType.PASSWORD_CHANGE);
 		Response res = RequestHelper.sendEvent(pc);
 		if(!res.succeed()){
@@ -39,9 +43,6 @@ public class PasswordChangeActivity extends BaseActivity{
 		}
 		Toast.makeText(this, "修改成功!", Toast.LENGTH_SHORT).show();
 		
-		Intent intent = new Intent();
-		intent.setClass(PasswordChangeActivity.this, TimelineActivity.class);
 		finish();
-		startActivity(intent);
 	}
 }

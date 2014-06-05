@@ -96,6 +96,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/password_change"
                 android:textColor="@color/blue"
+                android:clickable="true"
                 android:onClick="passwordChange"
                 android:layout_weight="8" />
         </TableRow>

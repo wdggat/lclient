@@ -17,7 +17,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="left"
             android:background="@drawable/left"
-            android:onClick="backtoTimeline" />
+            android:onClick="currentActivityFinish" />
 
         <TextView
             android:id="@+id/msginfo_uid"

@@ -30,6 +30,7 @@ public class NewMsgActivity extends BaseActivity{
 		builder.setTitle("确认撤消消息?");
 		builder.setPositiveButton("确认", new DialogInterface.OnClickListener() {
 			public void onClick(DialogInterface dialog, int whichButton) {
+				
 				NewMsgActivity.this.finish();
 			}
 		});
@@ -64,8 +65,8 @@ public class NewMsgActivity extends BaseActivity{
 			//TOTO, notify timeline
 			Intent intent = new Intent();
 			intent.setClass(NewMsgActivity.this, TimelineActivity.class);
-			finish();
 			startActivity(intent);
+			finish();
 		}
 	}
 }

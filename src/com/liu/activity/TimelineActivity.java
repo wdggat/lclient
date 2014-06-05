@@ -125,8 +125,8 @@ public class TimelineActivity extends BaseActivity {
 	public void onNewmsgClick(View v) {
 		Intent intent = new Intent();
 		intent.setClass(TimelineActivity.this, NewMsgActivity.class);
-		finish();
 		startActivity(intent);
+		finish();
 	}
 	
 	public void onReplymsgClick(View v) {

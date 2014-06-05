@@ -36,6 +36,7 @@
         <activity android:name="com.liu.activity.NewMsgActivity"></activity>
         <activity android:name="com.liu.activity.ReplyMsgActivity"></activity>
         <activity android:name="com.liu.activity.MeActivity"></activity>
+        <activity android:name="com.liu.activity.PasswordChangeActivity"></activity>
         
         <uses-library android:name="android.test.runner" />
     </application>

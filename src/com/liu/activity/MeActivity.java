@@ -1,11 +1,11 @@
 package com.liu.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
-import android.view.LayoutInflater;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.liu.bean.User;
@@ -35,7 +35,7 @@ public class MeActivity extends BaseActivity {
 
 			@Override
 			public void onClick(View v) {
-				backtoTimeline(v);
+				MeActivity.this.finish();
 			}
 			
 		});
@@ -53,9 +53,10 @@ public class MeActivity extends BaseActivity {
 	}
 	
 	public void passwordChange(View v) {
-		LayoutInflater inflater = LayoutInflater.from(this);
-//		LinearLayout layout = (LinearLayout)inflater.inflate(R.layout.layout_password_change, null);
-		inflater.inflate(R.layout.layout_password_change, null);
+		Log.d(TAG, "Begin to change password.");
+		Intent intent = new Intent();
+		intent.setClass(MeActivity.this, PasswordChangeActivity.class);
+		startActivity(intent);
 	}
 	
 }

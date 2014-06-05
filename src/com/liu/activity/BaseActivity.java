@@ -8,7 +8,11 @@ public class BaseActivity extends Activity {
 	public void backtoTimeline(View v){
 		Intent intent = new Intent();
 		intent.setClass(this, TimelineActivity.class);
-		this.finish();
 		startActivity(intent);
+		this.finish();
+	}
+	
+	public void currentActivityFinish(View v) {
+		this.finish();
 	}
 }

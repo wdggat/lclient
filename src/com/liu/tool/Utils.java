@@ -43,7 +43,7 @@ public class Utils {
     public static User getME(Context context) {
     	SharedPreferences sp = context.getSharedPreferences(Config.SHAREDPREFERENCES_NAME, Context.MODE_PRIVATE);
     	String uinfo = sp.getString(CACHED_ME_KEY, null);
-    	return JSON.parseObject(uinfo, User.class);
+    	return User.fromJsonStr(uinfo);
     }
     
     public static String showTime(long unixtime) {
