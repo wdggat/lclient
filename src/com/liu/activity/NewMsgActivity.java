@@ -28,7 +28,6 @@ public class NewMsgActivity extends BaseActivity{
 		final AlertDialog.Builder builder = new AlertDialog.Builder(NewMsgActivity.this);
 //		builder.setCancelable(false);
 		builder.setTitle("确认撤消消息?");
-		final AlertDialog ad = builder.create();
 		builder.setPositiveButton("确认", new DialogInterface.OnClickListener() {
 			public void onClick(DialogInterface dialog, int whichButton) {
 				NewMsgActivity.this.finish();
@@ -36,9 +35,11 @@ public class NewMsgActivity extends BaseActivity{
 		});
 		builder.setNegativeButton("取消", new DialogInterface.OnClickListener() {
 			public void onClick(DialogInterface dialog, int whichButton) {
-				ad.cancel();
+				Log.d(TAG, "cancel the calloff.");
+//				ad.cancel();
 			}
 		});
+		final AlertDialog ad = builder.create();
 		ad.show();
 	}
 	
