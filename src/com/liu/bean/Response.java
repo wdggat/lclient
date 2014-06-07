@@ -29,6 +29,11 @@ public class Response {
 		this.content = content;
 	}
 	
+	@Override
+	public String toString() {
+		return JSON.toJSONString(this);
+	}
+	
 	public static Response fromRequestReturn(String ret) {
 		if(ret == null)
 			return new Response(-1, "");

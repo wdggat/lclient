@@ -13,3 +13,9 @@
 1. 全通过RequestHelper包装成Request对象后发送,Message:用户所发消息类, Event:用户动作类，登陆，注册，忘记密码, 修改密码等.
 2. Event类消息由receiver需直接返回结果,流量会偏少; Message类消息进入队列，由sender处理
 
+
+## TODO ##
+1. Message 改字段, sendByMe 改为 from,to
+2. lreceiver处理Event型消息
+3. 怎样从Request中取出Event,或Message消息来.
+4. nginx负载均衡
