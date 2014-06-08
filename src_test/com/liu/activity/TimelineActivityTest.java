@@ -12,11 +12,14 @@ import com.liu.bean.DataType;
 import com.liu.bean.Message;
 
 public class TimelineActivityTest extends AndroidTestCase {
+	String from = "hzliuxiaolong@163.com";
+	String to = "shliuxiaolong@163.com";
+	String to2 = "lxl_awesome@163.com";
 	public void testGroupMessages() {
-		Message m1 = new Message("wdggat@163.com", "test_subject", 1400520549, "test_content", DataType.NEW_MSG, true);
-		Message m2 = new Message("wdggat@163.com", "test_subject", 1400520549, "test_content", DataType.NEW_MSG, true);
-		Message m3 = new Message("hzliuxiaolong@163.com", "test_subject", 1400520549, "test_content", DataType.NEW_MSG, true);
-		Message m4 = new Message("wdggat@163.com", "test_subject", 1400520549, "test_content", DataType.NEW_MSG, true);
+		Message m1 = new Message(from, to, "test_subject", 1400520549, "test_content", DataType.NEW_MSG);
+		Message m2 = new Message(from, to, "test_subject", 1400520549, "test_content", DataType.NEW_MSG);
+		Message m3 = new Message(from, to2, "test_subject", 1400520549, "test_content", DataType.NEW_MSG);
+		Message m4 = new Message(from, to, "test_subject", 1400520549, "test_content", DataType.NEW_MSG);
 		TreeSet<Message> msgs = new TreeSet<Message>();
 		msgs.add(m1);
 		msgs.add(m2);

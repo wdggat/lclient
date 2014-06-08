@@ -5,6 +5,8 @@ import java.util.List;
 import java.util.TreeMap;
 import java.util.TreeSet;
 
+import org.apache.commons.lang.ArrayUtils;
+
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
@@ -25,6 +27,7 @@ import android.widget.TableLayout;
 import com.liu.bean.Message;
 import com.liu.bean.TimelineListItem;
 import com.liu.tool.Database;
+import com.liu.tool.Utils;
 
 public class TimelineActivity extends BaseActivity {
 	private static final String TAG = "TIMELINE";
@@ -36,6 +39,10 @@ public class TimelineActivity extends BaseActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.layout_timeline);
+		
+		if(ME == null)
+		    ME = Utils.getME(TimelineActivity.this).getEmailAddr();
+		Log.d(TAG, "ME_set: " + ME);
 		
 //		Log.d(TAG, "come in timeline activity.");
 		db = Database.getDatabase(this);
@@ -136,8 +143,6 @@ public class TimelineActivity extends BaseActivity {
 	public void onClickME(View v) {
 		Intent intent = new Intent();
 		intent.setClass(TimelineActivity.this, MeActivity.class);
-		Bundle bundle = new Bundle();
-		//TODO put homeinfo
 		startActivity(intent);
 	}
 	
@@ -145,10 +150,11 @@ public class TimelineActivity extends BaseActivity {
 		TreeMap<String, TreeSet<Message>> allMessages = new TreeMap<String, TreeSet<Message>>();
 		for(Message message : messages) {
 			TreeSet<Message> uMsgs = new TreeSet<Message>();
-			if(allMessages.containsKey(message.getAssociate()))
-				uMsgs = allMessages.get(message.getAssociate());
+			String theOtherGuy = Utils.getTheOtherGuy(message, ME);
+			if(allMessages.containsKey(theOtherGuy))
+				uMsgs = allMessages.get(theOtherGuy);
 			uMsgs.add(message);
-			allMessages.put(message.getAssociate(), uMsgs);
+			allMessages.put(theOtherGuy, uMsgs);
 		}
 		return allMessages;
 	}
@@ -157,7 +163,7 @@ public class TimelineActivity extends BaseActivity {
 		int index;
 		for(index = 0; index < listItems.size(); index ++){
 			TimelineListItem item = listItems.get(index);
-			if(item.getAssociate().equals(newmsg.getAssociate())) {
+			if(item.getAssociate().equals(Utils.getTheOtherGuy(newmsg, ME))) {
 				item.setTime(newmsg.getTime());
 				item.setContent(newmsg.getContent());
 			}

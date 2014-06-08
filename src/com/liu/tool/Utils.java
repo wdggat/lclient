@@ -7,7 +7,6 @@ import java.util.Locale;
 import org.apache.commons.lang.StringUtils;
 
 import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.net.ConnectivityManager;
@@ -15,8 +14,7 @@ import android.net.NetworkInfo;
 import android.os.Environment;
 import android.widget.TextView;
 
-import com.alibaba.fastjson.JSON;
-import com.liu.activity.TimelineActivity;
+import com.liu.bean.Message;
 import com.liu.bean.User;
 
 public class Utils {
@@ -67,6 +65,10 @@ public class Utils {
     	if(StringUtils.isEmpty(password))
     		return false;
     	return password.length() >= 6 && password.length() <= 20;
+    }
+    
+    public static String getTheOtherGuy(Message message, String ME) {
+    	return ME.equals(message.getFrom()) ? message.getTo() : message.getFrom();
     }
         
 /*    public static String getEditTextString(View activity, int rid) {

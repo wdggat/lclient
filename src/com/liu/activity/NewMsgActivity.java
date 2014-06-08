@@ -52,7 +52,7 @@ public class NewMsgActivity extends BaseActivity{
 			Toast.makeText(this, "Something empty.", Toast.LENGTH_SHORT).show();
 			return;
 		}
-		Message message = new Message(receiverET.getText().toString(), subjectET.getText().toString(), System.currentTimeMillis()/1000, contentET.getText().toString(), DataType.NEW_MSG, true);
+		Message message = new Message(ME, receiverET.getText().toString(), subjectET.getText().toString(), System.currentTimeMillis()/1000, contentET.getText().toString(), DataType.NEW_MSG);
 		Response res = RequestHelper.sendMessage(message);
 		if(!res.succeed()) {
 			Toast.makeText(this, "Mail sent failed.", Toast.LENGTH_SHORT).show();
@@ -62,7 +62,7 @@ public class NewMsgActivity extends BaseActivity{
 			Database db = Database.getDatabase(NewMsgActivity.this);
 			db.insertSingleMessage(message);
 			Log.d(TAG, "New message to " + receiverET.getText().toString() + " wrote into db");
-			//TOTO, notify timeline
+			
 			Intent intent = new Intent();
 			intent.setClass(NewMsgActivity.this, TimelineActivity.class);
 			startActivity(intent);

@@ -47,6 +47,7 @@ public class IndexActivity extends BaseActivity{
 			public void onClick(View v) {
 				Intent intent = new Intent();
 				intent.setClass(IndexActivity.this, RegistActivity.class);
+				finish();
 				startActivity(intent);
 			}
 			
@@ -68,6 +69,8 @@ public class IndexActivity extends BaseActivity{
 					intent.setClass(IndexActivity.this, TimelineActivity.class);
 					startActivity(intent);
 				    cacheLoginInfo(username, password);
+				    BaseActivity.ME = username;
+				    finish();
 				}
 				else
 					Toast.makeText(IndexActivity.this, "Username and password isn't a couple.", Toast.LENGTH_SHORT).show();

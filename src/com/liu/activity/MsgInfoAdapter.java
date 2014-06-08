@@ -44,7 +44,7 @@ public class MsgInfoAdapter extends BaseAdapter{
 		Message msg = (Message)getItem(position);
 		AbsListView.LayoutParams lp = new AbsListView.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.MATCH_PARENT);
 		LinearLayout layout = null;
-		if(msg.isSentByMe()) {
+		if(msg.getFrom().equals(BaseActivity.ME)) {
 		    layout = (LinearLayout)inflater.inflate(R.layout.layout_msginfo_chatitem_right, null);
 		    layout.setGravity(Gravity.RIGHT);
 //		    lp.gravity = Gravity.RIGHT;

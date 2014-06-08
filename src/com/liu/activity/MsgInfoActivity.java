@@ -50,7 +50,7 @@ public class MsgInfoActivity extends BaseActivity {
 			Toast.makeText(this, "Message is empty.", Toast.LENGTH_SHORT).show();
 			return;
 		}
-		Message msg = Message.quickMessage(associate, content);
+		Message msg = Message.quickMessage(ME, associate, content);
 		Response res = RequestHelper.sendMessage(msg);
 		if(!res.succeed()) {
 			Toast.makeText(this, "Message sent failed.", Toast.LENGTH_SHORT).show();

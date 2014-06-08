@@ -37,6 +37,7 @@ public class RegistActivity extends BaseActivity {
 			public void onClick(View v) {
 				Intent intent = new Intent();
 				intent.setClass(RegistActivity.this, IndexActivity.class);
+				finish();
 				startActivity(intent);
 			}
 			
@@ -155,6 +156,7 @@ public class RegistActivity extends BaseActivity {
 				Toast.makeText(RegistActivity.this, "Succeed.", Toast.LENGTH_SHORT).show();
 				Intent intent = new Intent();
 				intent.setClass(RegistActivity.this, TimelineActivity.class);
+				RegistActivity.this.finish();
 				startActivity(intent);
 			}
 		}

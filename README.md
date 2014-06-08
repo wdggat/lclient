@@ -19,3 +19,4 @@
 2. lreceiver处理Event型消息
 3. 怎样从Request中取出Event,或Message消息来.
 4. nginx负载均衡
+5. 增加一个NO ONE的功能，类似/dev/null，不发给任何人

@@ -4,8 +4,10 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
+import com.liu.activity.BaseActivity;
+import com.liu.tool.Utils;
+
 public class TimelineListItem {
-	private static final int MSG_PREVIEW = 15;
 	private String associate;
 	private long time;
 	private String content;
@@ -42,18 +44,7 @@ public class TimelineListItem {
 	}
 	
 	public static TimelineListItem fromMsg(Message msg) {
-		return new TimelineListItem(msg.getAssociate(), msg.getTime(), msg.getContent());
+		return new TimelineListItem(Utils.getTheOtherGuy(msg, BaseActivity.ME), msg.getTime(), msg.getContent());
 	}
 	
-	public String toString() {
-		return toShow();
-	}
-	
-//	public static final TimelineListItem EMPTY = new TimelineListItem("no messages yet", 0, "..."); 
-	
-	private String toShow() {
-		String msgGlimpse = content.length() <= MSG_PREVIEW ? content : content.substring(0, MSG_PREVIEW) + "..."; 
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.US);
-		return associate + "    " + sdf.format(new Date((long)time * 1000)) + "\n" +  msgGlimpse;
-	}
 }

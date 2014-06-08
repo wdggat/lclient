@@ -3,8 +3,6 @@ package com.liu.tool;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.commons.lang.BooleanUtils;
-
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -51,24 +49,24 @@ public class Database {
     
     public List<Message> readAllMessages() {
     	List<Message> messages = new ArrayList<Message>();
-    	final String sql = "select associate,subject,time,content,type,sendbyme from messages;";
+    	final String sql = "select sender,receiver,subject,time,content,type from messages;";
     	Cursor cursor = db.rawQuery(sql, null);
     	while(cursor.moveToNext()) {
-    		String associate = cursor.getString(0);
-    		String subject = cursor.getString(1);
-    		long time = cursor.getLong(2);
-    		String content = cursor.getString(3);
-    		int type = cursor.getInt(4);
-    		int sendbyme = cursor.getInt(5);
-    		Message message = new Message(associate, subject, time, content, DataType.getByValue(type), BooleanUtils.toBoolean(sendbyme));
+    		String from = cursor.getString(0);
+    		String to = cursor.getString(1);
+    		String subject = cursor.getString(2);
+    		long time = cursor.getLong(3);
+    		String content = cursor.getString(4);
+    		int type = cursor.getInt(5);
+    		Message message = new Message(from, to, subject, time, content, DataType.getByValue(type));
     		messages.add(message);
     	}
     	return messages;
     }
     
     public void insertMessage(Message message) {
-    	final String sql = "INSERT INTO messages(subject, time, content, associate, type, sendbyme) VALUES (?, ?, ?, ?, ?, ?);";
-    	db.execSQL(sql, new Object[]{message.getSubject(), message.getTime(), message.getContent(), message.getAssociate(), message.getDataType().getValue(), message.isSentByMe() ? 1 : 0});
+    	final String sql = "INSERT INTO messages(subject, time, content, sender, receiver, type) VALUES (?, ?, ?, ?, ?, ?);";
+    	db.execSQL(sql, new Object[]{message.getSubject(), message.getTime(), message.getContent(), message.getFrom(), message.getTo(), message.getDataType().getValue()});
     }
     
     public void insertSingleMessage(Message message) {
@@ -81,7 +79,7 @@ public class Database {
 	private final static class DatabaseHelper extends SQLiteOpenHelper {
 		private static final int SCHEMA_VERSION = 1;
 		private static final String createMessages = "CREATE TABLE IF NOT EXISTS messages("
-				+ "id INTEGER PRIMARY KEY AUTOINCREMENT, subject VARCHAR(200), time TIMESTAMP, content TEXT, associate VARCHAR(100) NOT NULL, type INT, sendbyme INT)";
+				+ "id INTEGER PRIMARY KEY AUTOINCREMENT, subject VARCHAR(200), time TIMESTAMP, content TEXT, sender VARCHAR(100) NOT NULL, receiver VARCHAR(100) NOT NULL, type INT)";
 	
         public DatabaseHelper(Context context) {
 			super(context, Config.DATABASE_NAME, null, SCHEMA_VERSION);
