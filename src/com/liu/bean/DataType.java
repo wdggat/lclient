@@ -1,5 +1,7 @@
 package com.liu.bean;
 
+import com.liu.bean.DataType;
+
 public enum DataType {
 	NONE(-1), NEW_MSG(1), REPLY(2), QUICK_MSG(3), REGIST(100), LOGIN(101), PASSWORD_FORGET(102), PASSWORD_CHANGE(103);
 	private int code;
@@ -14,22 +16,30 @@ public enum DataType {
 
 	public static DataType getByValue(int code) {
 		switch (code) {
-		case 1:
+		case 100:
 			return REGIST;
-		case 2:
+		case 101:
 			return LOGIN;
-		case 3:
+		case 1:
 			return NEW_MSG;
-		case 4:
+		case 2:
 			return REPLY;
-		case 5:
+		case 3:
 			return QUICK_MSG;
-		case 6:
+		case 102:
 			return PASSWORD_FORGET;
-		case 7:
+		case 103:
 			return PASSWORD_CHANGE;
 		default:
 			return NONE;
 		}
+	}
+	
+	public boolean isTypeEvent() {
+		return code >= REGIST.code;
+	}
+	
+	public boolean isTypeMessage() {
+		return code < REGIST.code;
 	}
 }

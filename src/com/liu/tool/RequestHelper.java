@@ -26,7 +26,7 @@ public class RequestHelper {
 	private static final String TAG = RequestHelper.class.getSimpleName();
 //	private static final HttpClientVM clientVM = HttpClientVM.getClientVM();
 	
-	public static Response sendData(DataType dataType, String jsonStr) {
+	private static Response sendData(DataType dataType, String jsonStr) {
 //		String requestRet = sendData(new Request(dataType, jsonStr).toJson(), Config.server);
 //		return Response.fromRequestReturn(requestRet);
 		return Response.DEMO_SUCCESS;

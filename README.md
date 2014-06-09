@@ -15,8 +15,9 @@
 
 
 ## TODO ##
-1. Message 改字段, sendByMe 改为 from,to
+1. Message 改字段, sendByMe 改为 from,to  --done,2014-06-09
 2. lreceiver处理Event型消息
 3. 怎样从Request中取出Event,或Message消息来.
-4. nginx负载均衡
-5. 增加一个NO ONE的功能，类似/dev/null，不发给任何人
+4. NettyResponse统一发送Response对象进行回复  --done,2014-06-09
+5. nginx负载均衡
+6. 增加一个NO ONE的功能，类似/dev/null，不发给任何人

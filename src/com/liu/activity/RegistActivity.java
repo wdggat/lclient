@@ -17,6 +17,7 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.liu.bean.DataType;
+import com.liu.bean.Event;
 import com.liu.bean.Response;
 import com.liu.bean.User;
 import com.liu.tool.RequestHelper;
@@ -101,8 +102,9 @@ public class RegistActivity extends BaseActivity {
 	
 	private boolean registServer() {
 		Message msg = handler.obtainMessage();
-		//{"code":200, "content":"successful."}
-		Response res = RequestHelper.sendData(DataType.REGIST, user.toJson());
+		Event registEvent = new Event(DataType.REGIST);
+		registEvent.putEntry(Event.USER, user.toJson());
+		Response res = RequestHelper.sendEvent(registEvent);
 		Log.i(TAG, "user_regist, " + user.toJson());
 		if(res.networkUnreachable()) {
 			Log.e("REGIST", "Posting regist info failed.");

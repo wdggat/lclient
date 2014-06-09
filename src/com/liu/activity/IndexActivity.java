@@ -118,9 +118,11 @@ public class IndexActivity extends BaseActivity{
 	}
 	
 	private boolean login(String username, String password) {
-		String jsonStr = String.format("{\"username\":\"%s\", \"password\":\"%s\"}", username, password);
-		Log.d(TAG, "user login: " + jsonStr);
-		Response res = RequestHelper.sendData(DataType.LOGIN, jsonStr);
+		Event event = new Event(DataType.LOGIN);
+		event.putEntry(Event.USERNAME, username);
+		event.putEntry(Event.PASSWORD, password);
+		Log.d(TAG, "user login: " + event.toJson());
+		Response res = RequestHelper.sendEvent(event);
 		if(res.succeed()) {
 			User me = User.fromJsonStr(res.getContent());
 			Utils.cacheUserInfo(IndexActivity.this, me);
