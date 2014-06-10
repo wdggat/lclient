@@ -20,7 +20,7 @@ public class MeActivity extends BaseActivity {
 		
 		User me = Utils.getME(MeActivity.this);
 		TextView mailTV = (TextView)findViewById(R.id.me_mail);
-		mailTV.setText(me.getEmailAddr());
+		mailTV.setText(me.getEmail());
 		TextView genderTV = (TextView)findViewById(R.id.me_gender);
 		genderTV.setText(me.showGender());
 		TextView phoneTV = (TextView)findViewById(R.id.me_phone);

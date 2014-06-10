@@ -41,7 +41,7 @@ public class TimelineActivity extends BaseActivity {
 		setContentView(R.layout.layout_timeline);
 		
 		if(ME == null)
-		    ME = Utils.getME(TimelineActivity.this).getEmailAddr();
+		    ME = Utils.getME(TimelineActivity.this).getEmail();
 		Log.d(TAG, "ME_set: " + ME);
 		
 //		Log.d(TAG, "come in timeline activity.");

@@ -96,7 +96,7 @@ public class RegistActivity extends BaseActivity {
 			handler.sendMessage(msg);
 			return false;
 		}
-		user = new User(emailAddr, getGender(genderRadioId), province, birthday, phone, password);
+		user = new User(emailAddr, getGender(genderRadioId), province, birthday, phone, password, "");
 		return true;
 	}
 	
