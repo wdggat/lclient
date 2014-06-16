@@ -36,6 +36,9 @@ public class PasswordChangeActivity extends BaseActivity{
 			return;
 		}
 		Event pc = new Event(DataType.PASSWORD_CHANGE);
+		pc.putEntry(Event.USERNAME, ME);
+		pc.putEntry(Event.PASSWORD, oldPassword.getText().toString());
+		pc.putEntry(Event.PASSWORD_NEW, newPassword.getText().toString());
 		Response res = RequestHelper.sendEvent(pc);
 		if(!res.succeed()){
 			Toast.makeText(this, "sorry, 修改密码失败!", Toast.LENGTH_SHORT).show();
