@@ -25,7 +25,7 @@ import com.liu.tool.Config;
 import com.liu.tool.RequestHelper;
 import com.liu.tool.Utils;
 
-public class IndexActivity extends BaseActivity{
+public class IndexActivity extends BaseActivity {
 	private static final String TAG = "INDEX";
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {

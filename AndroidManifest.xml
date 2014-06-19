@@ -8,16 +8,24 @@
         android:minSdkVersion="7"
         android:targetSdkVersion="16" />
 
-    <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.WRITE_SETTINGS" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.DISABLE_KEYGUARD" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="android.permission.FLASHLIGHT" />
     <uses-permission android:name="android.permission.READ_CONTACTS" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-    
+
     <application
+        android:name="com.baidu.frontia.FrontiaApplication"
         android:allowBackup="true"
         android:icon="@drawable/kid_square"
         android:label="@string/app_name"
@@ -27,22 +35,87 @@
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.liu.activity.TimelineActivity"></activity>
-        <activity android:name="com.liu.activity.MsgInfoActivity"></activity>
-        <activity android:name="com.liu.activity.RegistActivity"></activity>
-        <activity android:name="com.liu.activity.NewMsgActivity"></activity>
-        <activity android:name="com.liu.activity.ReplyMsgActivity"></activity>
-        <activity android:name="com.liu.activity.MeActivity"></activity>
-        <activity android:name="com.liu.activity.PasswordChangeActivity"></activity>
-        
+        <activity android:name="com.liu.activity.TimelineActivity" >
+        </activity>
+        <activity android:name="com.liu.activity.MsgInfoActivity" >
+        </activity>
+        <activity android:name="com.liu.activity.RegistActivity" >
+        </activity>
+        <activity android:name="com.liu.activity.NewMsgActivity" >
+        </activity>
+        <activity android:name="com.liu.activity.ReplyMsgActivity" >
+        </activity>
+        <activity android:name="com.liu.activity.MeActivity" >
+        </activity>
+        <activity android:name="com.liu.activity.PasswordChangeActivity" >
+        </activity>
+
         <uses-library android:name="android.test.runner" />
+
+        <!-- push service start -->
+        <!-- 用于接收系统消息以保证 PushService 正常运行 -->
+        <receiver
+            android:name="com.baidu.android.pushservice.PushServiceReceiver"
+            android:process=":bdservice_v1" >
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
+                <action android:name="com.baidu.android.pushservice.action.notification.SHOW" />
+                <action android:name="com.baidu.android.pushservice.action.media.CLICK" />
+            </intent-filter>
+        </receiver>
+        <!-- Push 服务接收客户端发送的各种请求 -->
+        <!--
+注意:RegistrationReceiver 在 2.1.1 及之前版本有拼写失误,为 RegistratonReceiver ,用新
+版本 SDK 时请更改为如下代码
+        -->
+        <receiver
+            android:name="com.baidu.android.pushservice.RegistrationReceiver"
+            android:process=":bdservice_v1" >
+            <intent-filter>
+                <action android:name="com.baidu.android.pushservice.action.METHOD" />
+                <action android:name="com.baidu.android.pushservice.action.BIND_SYNC" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.PACKAGE_REMOVED" />
+
+                <data android:scheme="package" />
+            </intent-filter>
+        </receiver>
+        <!-- Push 服务 -->
+        <!-- 注意:在 4.0 (包含)之后的版本需加上如下所示的 intent-filter action -->
+        <service
+            android:name="com.baidu.android.pushservice.PushService"
+            android:exported="true"
+            android:process=":bdservice_v1" >
+            <intent-filter>
+                <action android:name="com.baidu.android.pushservice.action.PUSH_SERVICE" />
+            </intent-filter>
+        </service>
+        <!-- push service end -->
+
+
+        <!-- push service rich media display -->
+        <activity
+            android:name="com.baidu.android.pushservice.richmedia.MediaViewActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:label="MediaViewActivity" >
+        </activity>
+        <activity
+            android:name="com.baidu.android.pushservice.richmedia.MediaListActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:label="MediaListActivity"
+            android:launchMode="singleTask" >
+        </activity>
     </application>
-    
-    <instrumentation android:name="android.test.InstrumentationTestRunner" 
-  android:targetPackage="com.liu.activity" android:label="Tests for My WhoAmi" />
-    
+
+    <instrumentation
+        android:name="android.test.InstrumentationTestRunner"
+        android:label="Tests for My WhoAmi"
+        android:targetPackage="com.liu.activity" />
 
 </manifest>
