@@ -64,4 +64,11 @@ public class MsgInfoActivity extends BaseActivity {
 		contentET.clearFocus();
 		adapter.notifyDataSetChanged();
 	}
+	
+	public static void dataChange(Message message) {
+		if(msgList == null || !msgList.get(0).getFrom().equals(message.getFrom()))
+			return;
+		msgList.add(message);
+		adapter.notifyDataSetChanged();
+	}
 }

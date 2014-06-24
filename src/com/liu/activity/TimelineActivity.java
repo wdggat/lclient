@@ -42,7 +42,7 @@ public class TimelineActivity extends BaseActivity {
 		
 		if(ME == null)
 		    ME = Utils.getME(TimelineActivity.this).getEmail();
-		Log.d(TAG, "ME_set: " + ME);
+		Log.d(TAG, "ME_info: " + Utils.getME(TimelineActivity.this).toJson());
 		
 //		Log.d(TAG, "come in timeline activity.");
 		db = Database.getDatabase(this);

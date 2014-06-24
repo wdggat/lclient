@@ -6,12 +6,21 @@ import java.util.Locale;
 
 import org.apache.commons.lang.StringUtils;
 
+import android.app.Activity;
+import android.app.ActivityManager;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
+import android.content.pm.ApplicationInfo;
+import android.content.pm.PackageManager;
+import android.content.pm.PackageManager.NameNotFoundException;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.os.Bundle;
 import android.os.Environment;
+import android.preference.PreferenceManager;
+import android.util.Log;
 import android.widget.TextView;
 
 import com.liu.bean.Message;
@@ -70,6 +79,57 @@ public class Utils {
     public static String getTheOtherGuy(Message message, String ME) {
     	return ME.equals(message.getFrom()) ? message.getTo() : message.getFrom();
     }
+    
+    // 获取ApiKey
+    public static String getMetaValue(Context context, String metaKey) {
+        Bundle metaData = null;
+        String apiKey = null;
+        if (context == null || metaKey == null) {
+            return null;
+        }
+        try {
+            ApplicationInfo ai = context.getPackageManager()
+                    .getApplicationInfo(context.getPackageName(),
+                            PackageManager.GET_META_DATA);
+            if (null != ai) {
+                metaData = ai.metaData;
+            }
+            if (null != metaData) {
+                apiKey = metaData.getString(metaKey);
+            }
+        } catch (NameNotFoundException e) {
+
+        }
+        return apiKey;
+    }
+
+    // 用share preference来实现是否绑定的开关。在ionBind且成功时设置true，unBind且成功时设置false
+    public static boolean hasBind(Context context) {
+        SharedPreferences sp = PreferenceManager
+                .getDefaultSharedPreferences(context);
+        String flag = sp.getString("bind_flag", "");
+        if ("ok".equalsIgnoreCase(flag)) {
+            return true;
+        }
+        return false;
+    }
+
+    public static void setBind(Context context, boolean flag) {
+        String flagStr = "not";
+        if (flag) {
+            flagStr = "ok";
+        }
+        SharedPreferences sp = PreferenceManager
+                .getDefaultSharedPreferences(context);
+        Editor editor = sp.edit();
+        editor.putString("bind_flag", flagStr);
+        editor.commit();
+    }
+    
+/*    public static ComponentName getRunningActivity() {
+    	ActivityManager activityManager = (ActivityManager)new Activity().getSystemService(Context.ACTIVITY_SERVICE);
+    	return activityManager.getRunningTasks(1).get(0).topActivity;
+    }*/
         
 /*    public static String getEditTextString(View activity, int rid) {
     	return ((EditText)activity.findViewById(R.id.rid)).getText().toString();

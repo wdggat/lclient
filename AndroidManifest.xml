@@ -23,6 +23,7 @@
     <uses-permission android:name="android.permission.FLASHLIGHT" />
     <uses-permission android:name="android.permission.READ_CONTACTS" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.GET_TASKS" />
 
     <application
         android:name="com.baidu.frontia.FrontiaApplication"
@@ -111,11 +112,25 @@
             android:label="MediaListActivity"
             android:launchMode="singleTask" >
         </activity>
+        
+          <receiver android:name="com.liu.depends.BaiduPushReceiver">
+            <intent-filter>
+                <!-- 接收push消息 -->
+                <action android:name="com.baidu.android.pushservice.action.MESSAGE" />
+                <!-- 接收bind,unbind,fetch,delete等反馈消息 -->
+                <action android:name="com.baidu.android.pushservice.action.RECEIVE" />
+                <action android:name="com.baidu.android.pushservice.action.notification.CLICK" />
+            </intent-filter>
+        </receiver>
+        
+          		<!-- 在百度开发者中心查询应用的API Key -->
+        <meta-data android:name="api_key" android:value="jwKG2Zrd1XXTKrZkzgnKoVk2" />
+          
     </application>
 
     <instrumentation
         android:name="android.test.InstrumentationTestRunner"
         android:label="Tests for My WhoAmi"
         android:targetPackage="com.liu.activity" />
-
+    
 </manifest>
