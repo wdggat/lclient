@@ -23,6 +23,7 @@ import android.preference.PreferenceManager;
 import android.util.Log;
 import android.widget.TextView;
 
+import com.baidu.android.pushservice.PushManager;
 import com.liu.bean.Message;
 import com.liu.bean.User;
 

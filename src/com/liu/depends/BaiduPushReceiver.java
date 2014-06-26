@@ -22,7 +22,7 @@ public class BaiduPushReceiver extends FrontiaPushMessageReceiver {
 			String userId, String channelId, String requestId) {
 		if(errorCode == SUCCESS_CODE) {
 			Utils.setBind(context, true);
-			//TODO
+			Log.i(TAG, "Succeed to bind baidu-push-server, appid - " + appid + ", userId - " + userId + ", channelId - " + channelId);
 		} else {
 			Log.e(TAG, "bind baidu server failed, errorCode " + errorCode);
 		}
@@ -43,18 +43,22 @@ public class BaiduPushReceiver extends FrontiaPushMessageReceiver {
 	}
 
 	@Override
-	public void onMessage(Context context, String message, String customContentString) {
+	public void onMessage(Context context, String message,String customContentString) {
 		Log.i(TAG, "$msg_receive: " + message);
-		Message msg = JSON.parseObject(message, Message.class);
-		TimelineActivity.dataChange(msg);
-		MsgInfoActivity.dataChange(msg);
+		try {
+			Message msg = JSON.parseObject(message, Message.class);
+			TimelineActivity.dataChange(msg);
+			MsgInfoActivity.dataChange(msg);
+		} catch (Throwable t) {
+			Log.e(TAG, "$msg_dealing_error in baidu.onMessage, " + message, t);
+			return;
+		}
 	}
 
 	@Override
 	public void onNotificationClicked(Context context, String title,
 			String description, String customContentString) {
-		// TODO Auto-generated method stub
-		
+		Log.i(TAG, "$notification_receive: " + title + ", description: " + description);
 	}
 
 	@Override
