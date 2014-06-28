@@ -8,4 +8,6 @@ public class Config {
 	public static final String DATABASE_NAME = APP_NAME + ".sqlite";
 	public static final String SHAREDPREFERENCES_NAME = APP_NAME; 
 	public static final String LOGINED_KEY = "LOGINED";
+	
+	public static final String BAIDU_PUSH_UINFO_UPLOADED = "baidu_push_uinfo_uploaded";
 }

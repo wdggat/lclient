@@ -6,9 +6,6 @@ import java.util.Locale;
 
 import org.apache.commons.lang.StringUtils;
 
-import android.app.Activity;
-import android.app.ActivityManager;
-import android.content.ComponentName;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
@@ -20,10 +17,8 @@ import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.os.Environment;
 import android.preference.PreferenceManager;
-import android.util.Log;
 import android.widget.TextView;
 
-import com.baidu.android.pushservice.PushManager;
 import com.liu.bean.Message;
 import com.liu.bean.User;
 
@@ -52,6 +47,28 @@ public class Utils {
     	SharedPreferences sp = context.getSharedPreferences(Config.SHAREDPREFERENCES_NAME, Context.MODE_PRIVATE);
     	String uinfo = sp.getString(CACHED_ME_KEY, null);
     	return User.fromJsonStr(uinfo);
+    }
+    
+    public static String getSharedPreferences(Context context, String key, String defaultValue) {
+    	SharedPreferences sp = context.getSharedPreferences(Config.SHAREDPREFERENCES_NAME, Context.MODE_PRIVATE);
+    	return sp.getString(key, defaultValue);
+    }
+    
+    public static boolean putSharedPreferences(Context context, String key, String value) {
+    	Editor editor = context.getSharedPreferences(Config.SHAREDPREFERENCES_NAME, Context.MODE_PRIVATE).edit();
+    	editor.putString(key, value);
+    	return editor.commit();
+    }
+    
+    public static boolean getSharedPreferences(Context context, String key, boolean defaultValue) {
+    	SharedPreferences sp = context.getSharedPreferences(Config.SHAREDPREFERENCES_NAME, Context.MODE_PRIVATE);
+    	return sp.getBoolean(key, defaultValue);
+    }
+    
+    public static boolean putSharedPreferences(Context context, String key, boolean value) {
+    	Editor editor = context.getSharedPreferences(Config.SHAREDPREFERENCES_NAME, Context.MODE_PRIVATE).edit();
+    	editor.putBoolean(key, value);
+    	return editor.commit();
     }
     
     public static String showTime(long unixtime) {

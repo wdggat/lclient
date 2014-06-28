@@ -4,6 +4,11 @@ import android.content.Context;
 
 import com.baidu.android.pushservice.PushConstants;
 import com.baidu.android.pushservice.PushManager;
+import com.liu.bean.DataType;
+import com.liu.bean.Event;
+import com.liu.bean.Response;
+import com.liu.tool.Config;
+import com.liu.tool.RequestHelper;
 import com.liu.tool.Utils;
 
 public class Depends {
@@ -25,6 +30,15 @@ public class Depends {
             // Push: 如果想基于地理位置推送，可以打开支持地理位置的推送的开关
             // PushManager.enableLbs(getApplicationContext());
         }
+		
+		if(!Utils.getSharedPreferences(context, Config.BAIDU_PUSH_UINFO_UPLOADED, false)) {
+			Event baiduBind = new Event(DataType.BAIDU_PUSH_BIND);
+			baiduBind.putEntry(Event.BAIDU_USERID, Utils.getSharedPreferences(context, Event.BAIDU_USERID, ""));
+			baiduBind.putEntry(Event.BAIDU_CHANNELID, Utils.getSharedPreferences(context, Event.BAIDU_CHANNELID, ""));
+			Response res = RequestHelper.sendEvent(baiduBind);
+			if(res.succeed())
+				Utils.putSharedPreferences(context, Config.BAIDU_PUSH_UINFO_UPLOADED, true);
+		}
 	}
 	
 }

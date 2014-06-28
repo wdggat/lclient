@@ -9,7 +9,12 @@ import com.alibaba.fastjson.JSON;
 import com.baidu.frontia.api.FrontiaPushMessageReceiver;
 import com.liu.activity.MsgInfoActivity;
 import com.liu.activity.TimelineActivity;
+import com.liu.bean.DataType;
+import com.liu.bean.Event;
 import com.liu.bean.Message;
+import com.liu.bean.Response;
+import com.liu.tool.Config;
+import com.liu.tool.RequestHelper;
 import com.liu.tool.Utils;
 
 public class BaiduPushReceiver extends FrontiaPushMessageReceiver {
@@ -23,6 +28,17 @@ public class BaiduPushReceiver extends FrontiaPushMessageReceiver {
 		if(errorCode == SUCCESS_CODE) {
 			Utils.setBind(context, true);
 			Log.i(TAG, "Succeed to bind baidu-push-server, appid - " + appid + ", userId - " + userId + ", channelId - " + channelId);
+			Event baiduBind = new Event(DataType.BAIDU_PUSH_BIND);
+			baiduBind.putEntry(Event.BAIDU_USERID, userId);
+			baiduBind.putEntry(Event.BAIDU_CHANNELID, channelId);
+			
+			Utils.putSharedPreferences(context, Event.BAIDU_USERID, userId);
+			Utils.putSharedPreferences(context, Event.BAIDU_CHANNELID, channelId);
+			Response res = RequestHelper.sendEvent(baiduBind);
+			if(res.succeed())
+				Utils.putSharedPreferences(context, Config.BAIDU_PUSH_UINFO_UPLOADED, true);
+			else
+				Utils.putSharedPreferences(context, Config.BAIDU_PUSH_UINFO_UPLOADED, false);
 		} else {
 			Log.e(TAG, "bind baidu server failed, errorCode " + errorCode);
 		}
