@@ -26,6 +26,7 @@ import android.widget.TableLayout;
 
 import com.liu.bean.Message;
 import com.liu.bean.TimelineListItem;
+import com.liu.depends.Depends;
 import com.liu.tool.Database;
 import com.liu.tool.Utils;
 
@@ -43,6 +44,8 @@ public class TimelineActivity extends BaseActivity {
 		if(ME == null)
 		    ME = Utils.getME(TimelineActivity.this).getEmail();
 		Log.d(TAG, "ME_info: " + Utils.getME(TimelineActivity.this).toJson());
+		
+		Depends.initAll(TimelineActivity.this);
 		
 //		Log.d(TAG, "come in timeline activity.");
 		db = Database.getDatabase(this);

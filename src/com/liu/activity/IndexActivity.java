@@ -21,7 +21,6 @@ import com.liu.bean.DataType;
 import com.liu.bean.Event;
 import com.liu.bean.Response;
 import com.liu.bean.User;
-import com.liu.depends.Depends;
 import com.liu.tool.Config;
 import com.liu.tool.RequestHelper;
 import com.liu.tool.Utils;
@@ -32,8 +31,6 @@ public class IndexActivity extends BaseActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.layout_index);
-		
-		Depends.initAll(IndexActivity.this);
 		
 		SharedPreferences sp = IndexActivity.this.getSharedPreferences(Config.SHAREDPREFERENCES_NAME, Context.MODE_PRIVATE);
 		if(sp.getBoolean(Config.LOGINED_KEY, false)) {
