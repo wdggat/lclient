@@ -92,15 +92,20 @@ public class IndexActivity extends BaseActivity {
 		final AlertDialog ad = builder.create();
 		builder.setPositiveButton("确认", new DialogInterface.OnClickListener() {
 			public void onClick(DialogInterface dialog, int whichButton) {
-				Event pf = new Event(DataType.PASSWORD_FORGET);
-				pf.putEntry(Event.EMAIL, edtInput.getText().toString());
-				Response res = RequestHelper.sendEvent(pf);
-				if(res.succeed()) {
-					ad.cancel();
-					Toast.makeText(IndexActivity.this, "Password sent to " + edtInput.getText().toString(), Toast.LENGTH_SHORT).show();
-				} else {
-					Toast.makeText(IndexActivity.this, "Password sent failed.", Toast.LENGTH_SHORT).show();
-				}
+				new Runnable() {
+					public void run() {
+						Event pf = new Event(DataType.PASSWORD_FORGET);
+						pf.putEntry(Event.EMAIL, edtInput.getText().toString());
+						Response res = RequestHelper.sendEvent(pf);
+						if (res.succeed()) {
+							ad.cancel();
+							Toast.makeText(IndexActivity.this,"Password sent to "+ edtInput.getText().toString(),
+									Toast.LENGTH_SHORT).show();
+						} else {
+							Toast.makeText(IndexActivity.this,"Password sent failed.", Toast.LENGTH_SHORT).show();
+						}
+					}
+				}.run();
 			}
 		});
 		builder.setNegativeButton("取消", new DialogInterface.OnClickListener() {

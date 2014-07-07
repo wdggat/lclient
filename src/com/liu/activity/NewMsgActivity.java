@@ -1,8 +1,11 @@
 package com.liu.activity;
 
+import java.util.concurrent.ExecutionException;
+
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -53,8 +56,17 @@ public class NewMsgActivity extends BaseActivity{
 			return;
 		}
 		Message message = new Message(ME, receiverET.getText().toString(), subjectET.getText().toString(), System.currentTimeMillis()/1000, contentET.getText().toString(), DataType.NEW_MSG);
-		Response res = RequestHelper.sendMessage(message);
-		if(!res.succeed()) {
+		Log.d(TAG, "$sending msg: " + message.toJson());
+		Response res = null;
+		try {
+			res = new SendMsgAction().execute(message).get();
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		} catch (ExecutionException e) {
+			e.printStackTrace();
+		}
+		Log.i(TAG, res == null ? "response: null" : ("$res: " + res.toString()));
+		if(res == null || !res.succeed()) {
 			Toast.makeText(this, "Mail sent failed.", Toast.LENGTH_SHORT).show();
 			return;
 		} else {
@@ -68,5 +80,14 @@ public class NewMsgActivity extends BaseActivity{
 			startActivity(intent);
 			finish();
 		}
+	}
+	
+	private class SendMsgAction extends AsyncTask<Message, Void, Response> {
+
+		@Override
+		protected Response doInBackground(Message... msgs) {
+			return RequestHelper.sendMessage(msgs[0]);
+		}
+		
 	}
 }

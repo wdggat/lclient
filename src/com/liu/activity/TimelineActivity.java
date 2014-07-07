@@ -35,6 +35,7 @@ public class TimelineActivity extends BaseActivity {
 	private Database db;
 	private static List<TimelineListItem> listItems;
 	private static TimelineAdapter timelineAdapter;
+	private static PopupWindow popupWindow;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -118,7 +119,7 @@ public class TimelineActivity extends BaseActivity {
 		LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		TableLayout layout = (TableLayout) inflater.inflate(R.layout.layout_timeline_newmsg, null);
 
-		PopupWindow popupWindow = new PopupWindow(layout, 200, 200, true);
+		popupWindow = new PopupWindow(layout, 200, 200, true);
 		
 		popupWindow.setOutsideTouchable(true);
 		popupWindow.setBackgroundDrawable(new BitmapDrawable());
@@ -134,6 +135,7 @@ public class TimelineActivity extends BaseActivity {
 	public void onNewmsgClick(View v) {
 		Intent intent = new Intent();
 		intent.setClass(TimelineActivity.this, NewMsgActivity.class);
+		popupWindow.dismiss();
 		startActivity(intent);
 		finish();
 	}

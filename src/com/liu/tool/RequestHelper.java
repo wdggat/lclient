@@ -1,7 +1,10 @@
 package com.liu.tool;
 
+import java.io.BufferedReader;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
 import java.util.zip.GZIPOutputStream;
 
@@ -14,22 +17,28 @@ import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.ByteArrayEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
 
+import android.util.Log;
+
 import com.alibaba.fastjson.JSON;
 import com.liu.bean.DataType;
 import com.liu.bean.Event;
 import com.liu.bean.Message;
 import com.liu.bean.Response;
 
-import android.util.Log;
-
 public class RequestHelper {
 	private static final String TAG = RequestHelper.class.getSimpleName();
 //	private static final HttpClientVM clientVM = HttpClientVM.getClientVM();
 	
 	private static Response sendData(DataType dataType, String jsonStr) {
-//		String requestRet = sendData(new Request(dataType, jsonStr).toJson(), Config.server);
-//		return Response.fromRequestReturn(requestRet);
-		return Response.DEMO_SUCCESS;
+		String requestRet = sendData(new Request(dataType, jsonStr).toJson(), Config.server);
+		Log.d(TAG, "$ret: " + requestRet);
+		try{
+		return Response.fromRequestReturn(requestRet);
+		} catch (Exception e) {
+			Log.e(TAG, "make response failed.", e);
+			return null;
+		}
+//		return Response.DEMO_SUCCESS;
 	}
 	
 	public static Response sendMessage(Message msg) {
@@ -84,7 +93,7 @@ public class RequestHelper {
             return null;
         }
 
-        byte[] deflatedData = gzipDeflatedData(jsonStr);
+/*        byte[] deflatedData = gzipDeflatedData(jsonStr);
         if (deflatedData == null) {
             Log.d(TAG, "Failed to compress data, abort");
             return null;
@@ -93,7 +102,7 @@ public class RequestHelper {
         if (dataEncrypted == null) {
             Log.d(TAG, "Failed to encrypt data, abort");
             return null;
-        }
+        }*/
 
         final HttpClient httpClient = new DefaultHttpClient();
         final HttpPost httpPost = new HttpPost(url);
@@ -101,13 +110,15 @@ public class RequestHelper {
         httpPost.addHeader("Content-Type", "application/x-gzip");
         httpPost.addHeader("Content-Encoding", "gzip");
         httpPost.addHeader("SDK-Ver", Config.SDK_VERSION);
-        httpPost.setEntity(new ByteArrayEntity(dataEncrypted));
+//        httpPost.setEntity(new ByteArrayEntity(dataEncrypted));
+        httpPost.setEntity(new ByteArrayEntity(jsonStr.getBytes()));
         try {
             final HttpResponse response = httpClient.execute(httpPost);
             final int statusCode = response.getStatusLine().getStatusCode();
             if (statusCode == 200) {
                 Log.d(TAG, "Finish uploading");
-                return response.getEntity().getContent().toString();
+                InputStream is = response.getEntity().getContent();
+                return inputStream2String(is);
             } else {
                 Log.d(TAG, "Failed to upload, resonse code: " +
                         Integer.toString(statusCode));
@@ -115,7 +126,7 @@ public class RequestHelper {
             }
         } catch (Exception e) {
             Log.d(TAG, "Error occured during data sending, abort reason: " +
-                    e.getMessage());
+                    e);
             return null;
         }
     }
@@ -156,4 +167,15 @@ public class RequestHelper {
             return null;
         }
     }
+    
+    private static String inputStream2String(InputStream is) throws Exception {
+		BufferedReader in = new BufferedReader(new InputStreamReader(is));
+		StringBuffer buffer = new StringBuffer();
+		String line = "";
+		while ((line = in.readLine()) != null) {
+			buffer.append(line);
+			buffer.append("\n");
+		}
+		return buffer.toString();
+	}
 }

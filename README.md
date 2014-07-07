@@ -26,4 +26,4 @@
     REPLY: [from: email,to: uid], 接收端: 只显示email
     QUICK_MSG: [from: email, to:email], 客户端要只显示 uid, 在lsender把from换成对应的 uid
                [from: email, to:uid], 客户端要只显示　email
-
+8.每次进TimelineActivity时都会Depends.initAll一次，需改正.
