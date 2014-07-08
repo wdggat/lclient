@@ -128,6 +128,11 @@
           		<!-- 在百度开发者中心查询应用的API Key -->
         <meta-data android:name="api_key" android:value="jwKG2Zrd1XXTKrZkzgnKoVk2" />
          <meta-data android:name="BaiduPush_CHANNEL" android:value="channel_qq" />
+         <!--　baidu mobile union -->
+         <meta-data android:name="BaiduMobAd_APP_ID" android:value="debug" /> 
+		<meta-data android:name="BaiduMobAd_APP_SEC" android:value="debug" />
+		<activity android:name="com.baidu.mobads.AppActivity" 
+		    android:configChanges="keyboard|keyboardHidden|orientation" />
     </application>
 
     <instrumentation
