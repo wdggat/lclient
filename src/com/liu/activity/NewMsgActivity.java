@@ -12,6 +12,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.liu.helper.Config;
 import com.liu.helper.Database;
 import com.liu.helper.RequestHelper;
 import com.liu.helper.Utils;
@@ -55,7 +56,7 @@ public class NewMsgActivity extends BaseActivity{
 			Toast.makeText(this, "Something empty.", Toast.LENGTH_SHORT).show();
 			return;
 		}
-		Message message = new Message(ME, receiverET.getText().toString(), subjectET.getText().toString(), System.currentTimeMillis()/1000, contentET.getText().toString(), DataType.NEW_MSG);
+		Message message = new Message(Config.getMe().getEmail(), Config.getMe().getUid(), receiverET.getText().toString(), subjectET.getText().toString(), System.currentTimeMillis()/1000, contentET.getText().toString(), DataType.NEW_MSG);
 		Log.d(TAG, "$sending msg: " + message.toJson());
 		Response res = null;
 		try {

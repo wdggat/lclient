@@ -1,5 +1,7 @@
 package com.liu.helper;
 
+import com.liu.message.User;
+
 public class Config {
 	public static final String APP_NAME = "whoami";
 	public static final String server = "http://10.0.2.2:9527";
@@ -10,4 +12,15 @@ public class Config {
 	public static final String LOGINED_KEY = "LOGINED";
 	
 	public static final String BAIDU_PUSH_UINFO_UPLOADED = "baidu_push_uinfo_uploaded";
+	
+	private static User me;
+
+	public static User getMe() {
+		return me;
+	}
+
+	public static void setMe(User me) {
+		Config.me = me;
+	}
+	
 }

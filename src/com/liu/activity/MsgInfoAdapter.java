@@ -13,6 +13,7 @@ import android.widget.BaseAdapter;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.liu.helper.Config;
 import com.liu.message.Message;
 
 public class MsgInfoAdapter extends BaseAdapter{
@@ -44,7 +45,7 @@ public class MsgInfoAdapter extends BaseAdapter{
 		Message msg = (Message)getItem(position);
 		AbsListView.LayoutParams lp = new AbsListView.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.MATCH_PARENT);
 		LinearLayout layout = null;
-		if(msg.getFrom().equals(BaseActivity.ME)) {
+		if(msg.getFrom().equals(Config.getMe().getEmail())) {
 		    layout = (LinearLayout)inflater.inflate(R.layout.layout_msginfo_chatitem_right, null);
 		    layout.setGravity(Gravity.RIGHT);
 //		    lp.gravity = Gravity.RIGHT;

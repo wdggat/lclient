@@ -37,6 +37,7 @@ public class Utils {
 	}
     
     public static boolean cacheUserInfo(Context context, User user) {
+    	Config.setMe(user);
 		Editor sp = context.getSharedPreferences(Config.SHAREDPREFERENCES_NAME, Context.MODE_PRIVATE).edit();
 		sp.putString(CACHED_ME_KEY, user.toJson());
 		sp.putBoolean(Config.LOGINED_KEY, true);

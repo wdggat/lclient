@@ -14,6 +14,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.alibaba.fastjson.JSON;
+import com.liu.helper.Config;
 import com.liu.helper.Database;
 import com.liu.helper.RequestHelper;
 import com.liu.message.Message;
@@ -50,7 +51,7 @@ public class MsgInfoActivity extends BaseActivity {
 			Toast.makeText(this, "Message is empty.", Toast.LENGTH_SHORT).show();
 			return;
 		}
-		Message msg = Message.quickMessage(ME, associate, content);
+		Message msg = Message.quickMessage(Config.getMe().getEmail(), Config.getMe().getUid(), associate, content);
 		Response res = RequestHelper.sendMessage(msg);
 		if(!res.succeed()) {
 			Toast.makeText(this, "Message sent failed.", Toast.LENGTH_SHORT).show();

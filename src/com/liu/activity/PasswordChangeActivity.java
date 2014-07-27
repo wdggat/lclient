@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.liu.helper.Config;
 import com.liu.helper.RequestHelper;
 import com.liu.helper.Utils;
 import com.liu.message.DataType;
@@ -36,7 +37,7 @@ public class PasswordChangeActivity extends BaseActivity{
 			return;
 		}
 		Event pc = new Event(DataType.PASSWORD_CHANGE);
-		pc.putEntry(Event.USERNAME, ME);
+		pc.putEntry(Event.USERNAME, Config.getMe().getEmail());
 		pc.putEntry(Event.PASSWORD, oldPassword.getText().toString());
 		pc.putEntry(Event.PASSWORD_NEW, newPassword.getText().toString());
 		Response res = RequestHelper.sendEvent(pc);

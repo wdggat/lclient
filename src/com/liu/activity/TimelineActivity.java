@@ -25,6 +25,7 @@ import android.widget.PopupWindow;
 import android.widget.TableLayout;
 
 import com.liu.depends.Depends;
+import com.liu.helper.Config;
 import com.liu.helper.Database;
 import com.liu.helper.Utils;
 import com.liu.message.Message;
@@ -42,8 +43,8 @@ public class TimelineActivity extends BaseActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.layout_timeline);
 		
-		if(ME == null)
-		    ME = Utils.getME(TimelineActivity.this).getEmail();
+		if(Config.getMe() == null)
+		    Config.setMe(Utils.getME(TimelineActivity.this));
 		Log.d(TAG, "ME_info: " + Utils.getME(TimelineActivity.this).toJson());
 		
 		Depends.initAll(TimelineActivity.this);
@@ -154,7 +155,7 @@ public class TimelineActivity extends BaseActivity {
 		TreeMap<String, TreeSet<Message>> allMessages = new TreeMap<String, TreeSet<Message>>();
 		for(Message message : messages) {
 			TreeSet<Message> uMsgs = new TreeSet<Message>();
-			String theOtherGuy = Utils.getTheOtherGuy(message, ME);
+			String theOtherGuy = Utils.getTheOtherGuy(message, Config.getMe().getEmail());
 			if(allMessages.containsKey(theOtherGuy))
 				uMsgs = allMessages.get(theOtherGuy);
 			uMsgs.add(message);
@@ -167,7 +168,7 @@ public class TimelineActivity extends BaseActivity {
 		int index;
 		for(index = 0; index < listItems.size(); index ++){
 			TimelineListItem item = listItems.get(index);
-			if(item.getAssociate().equals(Utils.getTheOtherGuy(newmsg, ME))) {
+			if(item.getAssociate().equals(Utils.getTheOtherGuy(newmsg, Config.getMe().getEmail()))) {
 				item.setTime(newmsg.getTime());
 				item.setContent(newmsg.getContent());
 			}

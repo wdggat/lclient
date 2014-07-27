@@ -69,7 +69,6 @@ public class IndexActivity extends BaseActivity {
 					intent.setClass(IndexActivity.this, TimelineActivity.class);
 					startActivity(intent);
 				    cacheLoginInfo(username, password);
-				    BaseActivity.ME = username;
 				    finish();
 				}
 				else

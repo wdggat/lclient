@@ -5,6 +5,7 @@ import java.util.Date;
 import java.util.Locale;
 
 import com.liu.activity.BaseActivity;
+import com.liu.helper.Config;
 import com.liu.helper.Utils;
 
 public class TimelineListItem {
@@ -44,7 +45,7 @@ public class TimelineListItem {
 	}
 	
 	public static TimelineListItem fromMsg(Message msg) {
-		return new TimelineListItem(Utils.getTheOtherGuy(msg, BaseActivity.ME), msg.getTime(), msg.getContent());
+		return new TimelineListItem(Utils.getTheOtherGuy(msg, Config.getMe().getEmail()), msg.getTime(), msg.getContent());
 	}
 	
 }
