@@ -6,11 +6,11 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.liu.bean.DataType;
-import com.liu.bean.Event;
-import com.liu.bean.Response;
-import com.liu.tool.RequestHelper;
-import com.liu.tool.Utils;
+import com.liu.helper.RequestHelper;
+import com.liu.helper.Utils;
+import com.liu.message.DataType;
+import com.liu.message.Event;
+import com.liu.message.Response;
 
 public class PasswordChangeActivity extends BaseActivity{
 	@Override

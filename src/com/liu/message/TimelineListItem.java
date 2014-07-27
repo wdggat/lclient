@@ -1,11 +1,11 @@
-package com.liu.bean;
+package com.liu.message;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
 import com.liu.activity.BaseActivity;
-import com.liu.tool.Utils;
+import com.liu.helper.Utils;
 
 public class TimelineListItem {
 	private String associate;

@@ -13,7 +13,7 @@ import android.widget.BaseAdapter;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.liu.bean.Message;
+import com.liu.message.Message;
 
 public class MsgInfoAdapter extends BaseAdapter{
 	

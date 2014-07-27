@@ -1,6 +1,4 @@
-package com.liu.bean;
-
-import com.liu.bean.DataType;
+package com.liu.message;
 
 public enum DataType {
 	NONE(-1), NEW_MSG(1), REPLY(2), QUICK_MSG(3), REGIST(100), LOGIN(101), PASSWORD_FORGET(102), PASSWORD_CHANGE(103), BAIDU_PUSH_BIND(104);

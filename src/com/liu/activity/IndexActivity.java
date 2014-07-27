@@ -17,13 +17,13 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.liu.bean.DataType;
-import com.liu.bean.Event;
-import com.liu.bean.Response;
-import com.liu.bean.User;
-import com.liu.tool.Config;
-import com.liu.tool.RequestHelper;
-import com.liu.tool.Utils;
+import com.liu.helper.Config;
+import com.liu.helper.RequestHelper;
+import com.liu.helper.Utils;
+import com.liu.message.DataType;
+import com.liu.message.Event;
+import com.liu.message.Response;
+import com.liu.message.User;
 
 public class IndexActivity extends BaseActivity {
 	private static final String TAG = "INDEX";

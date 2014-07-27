@@ -4,9 +4,9 @@ import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
 
-import com.liu.bean.DataType;
-import com.liu.bean.Message;
-import com.liu.tool.Database;
+import com.liu.helper.Database;
+import com.liu.message.DataType;
+import com.liu.message.Message;
 
 public class FillDBTestData extends Activity{
 	
@@ -19,6 +19,7 @@ public class FillDBTestData extends Activity{
 	
 	public static void fillTimelineMsgs() {
 		String from = "hzliuxiaolong@163.com";
+		String fromUid = "TEST_UID_WHOAMI";
 		String to = "shliuxiaolong@163.com";
 		Message message_1 = new Message(from, to, "这是一个严肃的主题，额", 1400947200, "关于Bayesian Methods，信息论大神David MacKay于1992年发表在Neural Computation上两篇的文章：1) Bayesian Interpolation 2) A Practical Bayesian Framework for Backpropagation Networks 关于regularization,Occam's razor,evidence,model complexity有太多太多的insight，当年Mackay才25岁，哭了", DataType.NEW_MSG);
 	    Message message_2 = new Message(to, from, "", 1400947210, "who the hell are you?", DataType.QUICK_MSG);

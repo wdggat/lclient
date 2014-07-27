@@ -24,11 +24,11 @@ import android.widget.ListView;
 import android.widget.PopupWindow;
 import android.widget.TableLayout;
 
-import com.liu.bean.Message;
-import com.liu.bean.TimelineListItem;
 import com.liu.depends.Depends;
-import com.liu.tool.Database;
-import com.liu.tool.Utils;
+import com.liu.helper.Database;
+import com.liu.helper.Utils;
+import com.liu.message.Message;
+import com.liu.message.TimelineListItem;
 
 public class TimelineActivity extends BaseActivity {
 	private static final String TAG = "TIMELINE";

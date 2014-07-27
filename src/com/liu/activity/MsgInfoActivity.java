@@ -14,10 +14,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.alibaba.fastjson.JSON;
-import com.liu.bean.Message;
-import com.liu.bean.Response;
-import com.liu.tool.Database;
-import com.liu.tool.RequestHelper;
+import com.liu.helper.Database;
+import com.liu.helper.RequestHelper;
+import com.liu.message.Message;
+import com.liu.message.Response;
 
 public class MsgInfoActivity extends BaseActivity {
 	private static final String TAG = "MsgInfo";

@@ -1,4 +1,4 @@
-package com.liu.tool;
+package com.liu.helper;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -19,8 +19,8 @@ import android.os.Environment;
 import android.preference.PreferenceManager;
 import android.widget.TextView;
 
-import com.liu.bean.Message;
-import com.liu.bean.User;
+import com.liu.message.Message;
+import com.liu.message.User;
 
 public class Utils {
 	private static final String CACHED_ME_KEY = "ME";

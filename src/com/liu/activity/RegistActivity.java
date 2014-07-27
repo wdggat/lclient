@@ -16,12 +16,12 @@ import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-import com.liu.bean.DataType;
-import com.liu.bean.Event;
-import com.liu.bean.Response;
-import com.liu.bean.User;
-import com.liu.tool.RequestHelper;
-import com.liu.tool.Utils;
+import com.liu.helper.RequestHelper;
+import com.liu.helper.Utils;
+import com.liu.message.DataType;
+import com.liu.message.Event;
+import com.liu.message.Response;
+import com.liu.message.User;
 
 public class RegistActivity extends BaseActivity {
 	private static final String TAG = "REGIST";
@@ -121,6 +121,7 @@ public class RegistActivity extends BaseActivity {
 			handler.sendMessage(msg);
 			return false;
 		}
+		user = User.fromJsonStr(res.getContent());
 		return true;
 	}
 	

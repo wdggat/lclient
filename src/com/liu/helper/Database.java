@@ -1,4 +1,4 @@
-package com.liu.tool;
+package com.liu.helper;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,8 +9,8 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
-import com.liu.bean.DataType;
-import com.liu.bean.Message;
+import com.liu.message.DataType;
+import com.liu.message.Message;
 
 public class Database {
 	private static Database database;

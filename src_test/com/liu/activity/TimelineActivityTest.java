@@ -8,8 +8,8 @@ import java.util.TreeSet;
 
 import android.test.AndroidTestCase;
 
-import com.liu.bean.DataType;
-import com.liu.bean.Message;
+import com.liu.message.DataType;
+import com.liu.message.Message;
 
 public class TimelineActivityTest extends AndroidTestCase {
 	String from = "hzliuxiaolong@163.com";

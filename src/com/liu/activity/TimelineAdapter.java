@@ -10,7 +10,7 @@ import android.widget.BaseAdapter;
 import android.widget.TableLayout;
 import android.widget.TextView;
 
-import com.liu.bean.TimelineListItem;
+import com.liu.message.TimelineListItem;
 
 public class TimelineAdapter extends BaseAdapter {
 //	private Context context;

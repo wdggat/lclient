@@ -4,12 +4,12 @@ import android.content.Context;
 
 import com.baidu.android.pushservice.PushConstants;
 import com.baidu.android.pushservice.PushManager;
-import com.liu.bean.DataType;
-import com.liu.bean.Event;
-import com.liu.bean.Response;
-import com.liu.tool.Config;
-import com.liu.tool.RequestHelper;
-import com.liu.tool.Utils;
+import com.liu.helper.Config;
+import com.liu.helper.RequestHelper;
+import com.liu.helper.Utils;
+import com.liu.message.DataType;
+import com.liu.message.Event;
+import com.liu.message.Response;
 
 public class Depends {
 	public static void initAll(Context context) {

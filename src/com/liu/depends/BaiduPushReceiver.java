@@ -10,13 +10,13 @@ import com.baidu.frontia.api.FrontiaPushMessageReceiver;
 import com.liu.activity.BaseActivity;
 import com.liu.activity.MsgInfoActivity;
 import com.liu.activity.TimelineActivity;
-import com.liu.bean.DataType;
-import com.liu.bean.Event;
-import com.liu.bean.Message;
-import com.liu.bean.Response;
-import com.liu.tool.Config;
-import com.liu.tool.RequestHelper;
-import com.liu.tool.Utils;
+import com.liu.helper.Config;
+import com.liu.helper.RequestHelper;
+import com.liu.helper.Utils;
+import com.liu.message.DataType;
+import com.liu.message.Event;
+import com.liu.message.Message;
+import com.liu.message.Response;
 
 public class BaiduPushReceiver extends FrontiaPushMessageReceiver {
 	private static final String TAG = BaiduPushReceiver.class.getName();

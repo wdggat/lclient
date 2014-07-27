@@ -8,8 +8,8 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.liu.bean.User;
-import com.liu.tool.Utils;
+import com.liu.helper.Utils;
+import com.liu.message.User;
 
 public class MeActivity extends BaseActivity {
 	private static final String TAG = "ME";

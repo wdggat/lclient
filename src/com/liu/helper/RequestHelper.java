@@ -1,4 +1,4 @@
-package com.liu.tool;
+package com.liu.helper;
 
 import java.io.BufferedReader;
 import java.io.ByteArrayOutputStream;
@@ -20,10 +20,11 @@ import org.apache.http.impl.client.DefaultHttpClient;
 import android.util.Log;
 
 import com.alibaba.fastjson.JSON;
-import com.liu.bean.DataType;
-import com.liu.bean.Event;
-import com.liu.bean.Message;
-import com.liu.bean.Response;
+import com.liu.message.DataType;
+import com.liu.message.Event;
+import com.liu.message.Message;
+import com.liu.message.Request;
+import com.liu.message.Response;
 
 public class RequestHelper {
 	private static final String TAG = RequestHelper.class.getSimpleName();
@@ -47,35 +48,6 @@ public class RequestHelper {
 	
 	public static Response sendEvent(Event event) {
 		return sendData(event.getDataType(), event.toJson());
-	}
-	
-	private static class Request {
-		private DataType dataType;
-		private String jsonStr;
-		public Request(DataType dataType, String jsonStr) {
-			this.dataType = dataType;
-			this.jsonStr = jsonStr;
-		}
-		
-		public DataType getDataType() {
-			return dataType;
-		}
-
-		public void setDataType(DataType dataType) {
-			this.dataType = dataType;
-		}
-
-		public String getJsonStr() {
-			return jsonStr;
-		}
-
-		public void setJsonStr(String jsonStr) {
-			this.jsonStr = jsonStr;
-		}
-
-		public String toJson() {
-			return JSON.toJSONString(this);
-		}
 	}
 	
 	/*
@@ -111,7 +83,9 @@ public class RequestHelper {
         httpPost.addHeader("Content-Encoding", "gzip");
         httpPost.addHeader("SDK-Ver", Config.SDK_VERSION);
 //        httpPost.setEntity(new ByteArrayEntity(dataEncrypted));
-        httpPost.setEntity(new ByteArrayEntity(jsonStr.getBytes()));
+        
+        byte[] data = CryptHelper.encrypt(jsonStr, Config.AES128_ECB_KEY);
+        httpPost.setEntity(new ByteArrayEntity(data));
         try {
             final HttpResponse response = httpClient.execute(httpPost);
             final int statusCode = response.getStatusLine().getStatusCode();
@@ -131,7 +105,7 @@ public class RequestHelper {
         }
     }
 
-    static byte[] gzipDeflatedData(String jsonStr) {
+    private static byte[] gzipDeflatedData(String jsonStr) {
         GZIPOutputStream gzipOutputStream = null;
         try {
             byte[] data = jsonStr.getBytes("UTF-8");
@@ -153,18 +127,6 @@ public class RequestHelper {
                 } catch (final Exception e) {
                 }
             }
-        }
-    }
-
-    static byte[] encryptData(byte[] data, String key) {
-        try {
-            SecretKeySpec secretKey =
-                    new SecretKeySpec(key.getBytes(), "AES");
-            Cipher cipher = Cipher.getInstance("AES/ECB/PKCS7Padding");
-            cipher.init(Cipher.ENCRYPT_MODE, secretKey);
-            return cipher.doFinal(data);
-        } catch (Exception e) {
-            return null;
         }
     }
     

@@ -1,9 +1,9 @@
-package com.liu.bean;
+package com.liu.message;
 
 import org.apache.commons.lang.StringUtils;
 
 import com.alibaba.fastjson.JSON;
-import com.liu.tool.Utils;
+import com.liu.helper.Utils;
 
 public class User {
 	public static final int MALE = 0;
