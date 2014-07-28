@@ -99,7 +99,7 @@ public class RequestHelper {
                 return null;
             }
         } catch (Exception e) {
-            Log.d(TAG, "Error occured during data sending, abort reason: " +
+            Log.e(TAG, "Error occured during data sending, abort reason: " +
                     e);
             return null;
         }

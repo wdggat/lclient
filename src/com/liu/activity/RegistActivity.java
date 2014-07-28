@@ -38,8 +38,8 @@ public class RegistActivity extends BaseActivity {
 			public void onClick(View v) {
 				Intent intent = new Intent();
 				intent.setClass(RegistActivity.this, IndexActivity.class);
-				finish();
 				startActivity(intent);
+				finish();
 			}
 			
 		});

@@ -1,5 +1,7 @@
 package com.liu.activity;
 
+import java.util.concurrent.ExecutionException;
+
 import org.apache.commons.lang.StringUtils;
 
 import android.app.AlertDialog;
@@ -8,6 +10,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -22,6 +25,7 @@ import com.liu.helper.RequestHelper;
 import com.liu.helper.Utils;
 import com.liu.message.DataType;
 import com.liu.message.Event;
+import com.liu.message.Message;
 import com.liu.message.Response;
 import com.liu.message.User;
 
@@ -47,8 +51,8 @@ public class IndexActivity extends BaseActivity {
 			public void onClick(View v) {
 				Intent intent = new Intent();
 				intent.setClass(IndexActivity.this, RegistActivity.class);
-				finish();
 				startActivity(intent);
+				finish();
 			}
 			
 		});
@@ -64,15 +68,27 @@ public class IndexActivity extends BaseActivity {
 					Toast.makeText(IndexActivity.this, "Username or password not property.", Toast.LENGTH_SHORT).show();
 					return;
 				}
-				if(login(username, password)) {
+				Response response = null;
+				try {
+					response = new LoginAction().execute(username, password).get();
+				} catch (Exception e) {
+					Log.e(TAG, "error occurs during login.", e);
+					return;
+				} 
+				if(response.succeed()) {
+					User me = User.fromJsonStr(response.getContent());
+					Utils.cacheUserInfo(IndexActivity.this, me);
+					
 					Intent intent = new Intent();
 					intent.setClass(IndexActivity.this, TimelineActivity.class);
 					startActivity(intent);
 				    cacheLoginInfo(username, password);
 				    finish();
-				}
-				else
+				} else if(response.networkUnreachable()) {
+					Toast.makeText(IndexActivity.this, "网络不可达!", Toast.LENGTH_SHORT).show();
+				} else {
 					Toast.makeText(IndexActivity.this, "Username and password isn't a couple.", Toast.LENGTH_SHORT).show();
+				}
 			}
 			
 		});
@@ -116,23 +132,9 @@ public class IndexActivity extends BaseActivity {
 	}
 	
 	private boolean checkParams(String username, String password) {
-		if(StringUtils.isEmpty(username) || StringUtils.isEmpty(password))
+		if(StringUtils.isEmpty(username) || StringUtils.isEmpty(password) || !username.contains("@"))
 			return false;
 		return true;
-	}
-	
-	private boolean login(String username, String password) {
-		Event event = new Event(DataType.LOGIN);
-		event.putEntry(Event.USERNAME, username);
-		event.putEntry(Event.PASSWORD, password);
-		Log.d(TAG, "user login: " + event.toJson());
-		Response res = RequestHelper.sendEvent(event);
-		if(res.succeed()) {
-			User me = User.fromJsonStr(res.getContent());
-			Utils.cacheUserInfo(IndexActivity.this, me);
-			return true;
-		}
-		return false;
 	}
 	
 	private boolean cacheLoginInfo(String username, String password) {
@@ -141,5 +143,22 @@ public class IndexActivity extends BaseActivity {
 		sp.putString("password", password);
 		sp.putBoolean(Config.LOGINED_KEY, true);
 		return sp.commit();
+	}
+	
+	private class LoginAction extends AsyncTask<String, Void, Response> {
+
+		@Override
+		protected Response doInBackground(String ... loginInfo) {
+			return login(loginInfo[0], loginInfo[1]);
+		}
+		
+		private Response login(String username, String password) {
+			Event event = new Event(DataType.LOGIN);
+			event.putEntry(Event.USERNAME, username);
+			event.putEntry(Event.PASSWORD, password);
+			Log.d(TAG, "user login: " + event.toJson());
+			return RequestHelper.sendEvent(event);
+		}
+		
 	}
 }
