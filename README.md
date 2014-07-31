@@ -27,3 +27,5 @@
     QUICK_MSG: [from: email, to:email], 客户端要只显示 uid, 在lsender把from换成对应的 uid
                [from: email, to:uid], 客户端要只显示　email
 8.每次进TimelineActivity时都会Depends.initAll一次，需改正.
+9.TimelineActivity里的item按时间倒序排序.
+10.邮件需加加粗黑体"消息主人uid:....\n我们只是信息的搬运工，注册whoami,贴上上面的Uid,可进行回复哦."

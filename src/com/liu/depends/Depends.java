@@ -1,6 +1,7 @@
 package com.liu.depends;
 
 import android.content.Context;
+import android.util.Log;
 
 import com.baidu.android.pushservice.PushConstants;
 import com.baidu.android.pushservice.PushManager;
@@ -12,11 +13,13 @@ import com.liu.message.Event;
 import com.liu.message.Response;
 
 public class Depends {
+	private static final String TAG = Depends.class.getCanonicalName();
+	
 	public static void initAll(Context context) {
 		initBaiduPushReceiver(context);
 	}
 	
-	private static void initBaiduPushReceiver(Context context) {
+	private static boolean initBaiduPushReceiver(Context context) {
 		// Push: 以apikey的方式登录，一般放在主Activity的onCreate中。
         // 这里把apikey存放于manifest文件中，只是一种存放方式，
         // 您可以用自定义常量等其它方式实现，来替换参数中的Utils.getMetaValue(PushDemoActivity.this,
@@ -33,12 +36,16 @@ public class Depends {
 		
 		if(!Utils.getSharedPreferences(context, Config.BAIDU_PUSH_UINFO_UPLOADED, false)) {
 			Event baiduBind = new Event(DataType.BAIDU_PUSH_BIND);
+			baiduBind.putEntry(Event.USERNAME, Config.getMe().getEmail());
 			baiduBind.putEntry(Event.BAIDU_USERID, Utils.getSharedPreferences(context, Event.BAIDU_USERID, ""));
 			baiduBind.putEntry(Event.BAIDU_CHANNELID, Utils.getSharedPreferences(context, Event.BAIDU_CHANNELID, ""));
-			Response res = RequestHelper.sendEvent(baiduBind);
-			if(res.succeed())
-				Utils.putSharedPreferences(context, Config.BAIDU_PUSH_UINFO_UPLOADED, true);
+			Response res = RequestHelper.sendEventAsync(baiduBind);
+			if(res != null && res.succeed())
+				return Utils.putSharedPreferences(context, Config.BAIDU_PUSH_UINFO_UPLOADED, true);
+			Log.e(TAG, "bind baidu server failed, BAIDU_USERID: " + Event.BAIDU_USERID + ", BAIDU_CHANNELID: " + Event.BAIDU_CHANNELID);
+			return false;
 		}
+		return true;
 	}
 	
 }

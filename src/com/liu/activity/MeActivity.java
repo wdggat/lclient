@@ -8,6 +8,7 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.liu.helper.Config;
 import com.liu.helper.Utils;
 import com.liu.message.User;
 
@@ -18,7 +19,7 @@ public class MeActivity extends BaseActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.layout_me);
 		
-		User me = Utils.getME(MeActivity.this);
+		User me = Config.getMe();
 		TextView mailTV = (TextView)findViewById(R.id.me_mail);
 		mailTV.setText(me.getEmail());
 		TextView genderTV = (TextView)findViewById(R.id.me_gender);

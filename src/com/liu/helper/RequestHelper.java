@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
+import java.util.concurrent.ExecutionException;
 import java.util.zip.GZIPOutputStream;
 
 import javax.crypto.Cipher;
@@ -17,6 +18,7 @@ import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.ByteArrayEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
 
+import android.os.AsyncTask;
 import android.util.Log;
 
 import com.alibaba.fastjson.JSON;
@@ -48,6 +50,38 @@ public class RequestHelper {
 	
 	public static Response sendEvent(Event event) {
 		return sendData(event.getDataType(), event.toJson());
+	}
+	
+	public static Response sendMessageAsync(Message msg) {
+		return sendData(msg.getDataType(), msg.toJson());
+	}
+	
+	public static Response sendEventAsync(Event event) {
+		return sendData(event.getDataType(), event.toJson());
+	}
+	
+	private static Response sendDataAsync(DataType dataType, String jsonStr) {
+		try {
+			Response response = new SendDataAction().execute(dataType.toJson(), jsonStr).get();
+			return response;
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+			return null;
+		} catch (ExecutionException e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+	
+	private static class SendDataAction extends AsyncTask<String, Void, Response> {
+
+		@Override
+//		protected Response doInBackground(String dataTypeStr, String jsonStr) {
+		protected Response doInBackground(String ...params) {
+			DataType dataType = JSON.parseObject(params[0], DataType.class);
+			return sendData(dataType, params[1]);
+		}
+
 	}
 	
 	/*
