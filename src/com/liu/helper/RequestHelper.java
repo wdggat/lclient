@@ -53,11 +53,11 @@ public class RequestHelper {
 	}
 	
 	public static Response sendMessageAsync(Message msg) {
-		return sendData(msg.getDataType(), msg.toJson());
+		return sendDataAsync(msg.getDataType(), msg.toJson());
 	}
 	
 	public static Response sendEventAsync(Event event) {
-		return sendData(event.getDataType(), event.toJson());
+		return sendDataAsync(event.getDataType(), event.toJson());
 	}
 	
 	private static Response sendDataAsync(DataType dataType, String jsonStr) {

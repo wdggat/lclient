@@ -40,9 +40,13 @@ public class PasswordChangeActivity extends BaseActivity{
 		pc.putEntry(Event.USERNAME, Config.getMe().getEmail());
 		pc.putEntry(Event.PASSWORD, oldPassword.getText().toString());
 		pc.putEntry(Event.PASSWORD_NEW, newPassword.getText().toString());
-		Response res = RequestHelper.sendEvent(pc);
+		Response res = RequestHelper.sendEventAsync(pc);
+		if(res == null) {
+			Toast.makeText(this, "sorry, 网络不通!", Toast.LENGTH_SHORT).show();
+			return;
+		}
 		if(!res.succeed()){
-			Toast.makeText(this, "sorry, 修改密码失败!", Toast.LENGTH_SHORT).show();
+			Toast.makeText(this, "sorry, " + res.getContent(), Toast.LENGTH_SHORT).show();
 			return;
 		}
 		Toast.makeText(this, "修改成功!", Toast.LENGTH_SHORT).show();

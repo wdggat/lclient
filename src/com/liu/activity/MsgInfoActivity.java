@@ -52,7 +52,11 @@ public class MsgInfoActivity extends BaseActivity {
 			return;
 		}
 		Message msg = Message.quickMessage(Config.getMe().getEmail(), Config.getMe().getUid(), associate, content);
-		Response res = RequestHelper.sendMessage(msg);
+		Response res = RequestHelper.sendMessageAsync(msg);
+		if(res == null) {
+			Toast.makeText(this, Config.NETWORK_UNREACHABLE, Toast.LENGTH_SHORT).show();
+			return;
+		}
 		if(!res.succeed()) {
 			Toast.makeText(this, "Message sent failed.", Toast.LENGTH_SHORT).show();
 			return;

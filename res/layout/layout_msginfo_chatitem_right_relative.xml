@@ -1,35 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    style="@style/msginfo_right"
+    android:background="@android:color/white"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:layout_marginRight="2dp"
-    android:layout_gravity="right"
-    android:gravity="right" >
+    android:layout_gravity="right">
 
     <!-- android:layout_marginLeft="100dp" -->
     <!-- style="@style/msginfo_right" -->
 
-    <TableLayout
+    <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="right" >
+        style="@style/msginfo_right"
+        android:layout_gravity="left"
+        android:layout_marginLeft="100dp" >
 
         <TableRow
-            android:layout_width="match_parent"
+            android:id="@+id/msginfo_content_row"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
             android:layout_marginRight="5dp"
             android:shrinkColumns="*" >
 
             <TextView
                 android:id="@+id/msginfo_chatitem_content"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:maxEms="12"
                 android:singleLine="false"
                 android:text="@string/demo_msg_content_long" />
         </TableRow>
 
         <TableRow
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_below="@id/msginfo_content_row"
             android:layout_marginTop="5dp"
             android:gravity="right" >
 
@@ -41,6 +47,6 @@
                 android:textColor="@color/grey"
                 android:textSize="12sp" />
         </TableRow>
-    </TableLayout>
+    </RelativeLayout>
 
 </LinearLayout>

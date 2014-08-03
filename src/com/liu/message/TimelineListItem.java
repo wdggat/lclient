@@ -8,7 +8,7 @@ import com.liu.activity.BaseActivity;
 import com.liu.helper.Config;
 import com.liu.helper.Utils;
 
-public class TimelineListItem {
+public class TimelineListItem implements Comparable<TimelineListItem>{
 	private String associate;
 	private long time;
 	private String content;
@@ -46,6 +46,15 @@ public class TimelineListItem {
 	
 	public static TimelineListItem fromMsg(Message msg) {
 		return new TimelineListItem(Utils.getTheOtherGuy(msg, Config.getMe().getEmail()), msg.getTime(), msg.getContent());
+	}
+
+	@Override
+	public int compareTo(TimelineListItem another) {
+		if (time < another.getTime())
+			return 1;
+		if(time > another.getTime())
+			return -1;
+		return 0;
 	}
 	
 }

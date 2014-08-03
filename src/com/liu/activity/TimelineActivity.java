@@ -5,8 +5,6 @@ import java.util.List;
 import java.util.TreeMap;
 import java.util.TreeSet;
 
-import org.apache.commons.lang.ArrayUtils;
-
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
@@ -34,7 +32,7 @@ import com.liu.message.TimelineListItem;
 public class TimelineActivity extends BaseActivity {
 	private static final String TAG = "TIMELINE";
 	private Database db;
-	private static List<TimelineListItem> listItems;
+	private static TreeSet<TimelineListItem> listItems;
 	private static TimelineAdapter timelineAdapter;
 	private static PopupWindow popupWindow;
 
@@ -105,9 +103,9 @@ public class TimelineActivity extends BaseActivity {
 		});
 	}
 	
-	private List<TimelineListItem> getListItems(
+	private TreeSet<TimelineListItem> getListItems(
 			TreeMap<String, TreeSet<Message>> allMessages) {
-		List<TimelineListItem> listItems = new ArrayList<TimelineListItem>();
+		TreeSet<TimelineListItem> listItems = new TreeSet<TimelineListItem>();
 		for(TreeSet<Message> messages : allMessages.values()) {
 			TimelineListItem item = TimelineListItem.fromMsg(messages.last());
 			listItems.add(item);
@@ -138,7 +136,7 @@ public class TimelineActivity extends BaseActivity {
 		intent.setClass(TimelineActivity.this, NewMsgActivity.class);
 		popupWindow.dismiss();
 		startActivity(intent);
-		finish();
+//		finish();
 	}
 	
 	public void onReplymsgClick(View v) {
@@ -165,15 +163,15 @@ public class TimelineActivity extends BaseActivity {
 	}
 	
 	public static void dataChange(Message newmsg) {
-		int index;
-		for(index = 0; index < listItems.size(); index ++){
-			TimelineListItem item = listItems.get(index);
+		boolean matched = false;
+		for(TimelineListItem item : listItems){
 			if(item.getAssociate().equals(Utils.getTheOtherGuy(newmsg, Config.getMe().getEmail()))) {
 				item.setTime(newmsg.getTime());
 				item.setContent(newmsg.getContent());
+				matched = true;
 			}
 		}
-		if (index == listItems.size()) {
+		if (false == matched) {
 			TimelineListItem newItem = TimelineListItem.fromMsg(newmsg);
 			listItems.add(newItem);
 		}

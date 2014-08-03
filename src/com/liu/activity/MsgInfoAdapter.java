@@ -46,7 +46,7 @@ public class MsgInfoAdapter extends BaseAdapter{
 		AbsListView.LayoutParams lp = new AbsListView.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.MATCH_PARENT);
 		LinearLayout layout = null;
 		if(msg.getFrom().equals(Config.getMe().getEmail())) {
-		    layout = (LinearLayout)inflater.inflate(R.layout.layout_msginfo_chatitem_right, null);
+		    layout = (LinearLayout)inflater.inflate(R.layout.layout_msginfo_chatitem_right_relative, null);
 		    layout.setGravity(Gravity.RIGHT);
 //		    lp.gravity = Gravity.RIGHT;
 		} else {

@@ -58,16 +58,11 @@ public class NewMsgActivity extends BaseActivity{
 		}
 		Message message = new Message(Config.getMe().getEmail(), Config.getMe().getUid(), receiverET.getText().toString(), subjectET.getText().toString(), System.currentTimeMillis()/1000, contentET.getText().toString(), DataType.NEW_MSG);
 		Log.d(TAG, "$sending msg: " + message.toJson());
-		Response res = null;
-		try {
-			res = new SendMsgAction().execute(message).get();
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		} catch (ExecutionException e) {
-			e.printStackTrace();
-		}
-		Log.i(TAG, res == null ? "response: null" : ("$res: " + res.toString()));
-		if(res == null || !res.succeed()) {
+		Response res = RequestHelper.sendMessageAsync(message);
+		if(res == null) {
+			Toast.makeText(this, Config.NETWORK_UNREACHABLE, Toast.LENGTH_SHORT).show();
+			return;
+		} else if (!res.succeed()) {
 			Toast.makeText(this, "Mail sent failed.", Toast.LENGTH_SHORT).show();
 			return;
 		} else {
