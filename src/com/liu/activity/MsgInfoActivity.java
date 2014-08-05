@@ -37,7 +37,7 @@ public class MsgInfoActivity extends BaseActivity {
 			msgList.add(JSON.parseObject(msgStr, Message.class));
 		associate = intent.getExtras().getString("uid");
 		((TextView)findViewById(R.id.msginfo_uid)).setText(associate);
-		Log.d(TAG, "msgs read from bundle, " + msgList);
+//		Log.d(TAG, "msgs read from bundle, " + msgList);
 		
 		adapter = new MsgInfoAdapter(this, msgList);
 		ListView v = (ListView)findViewById(R.id.msgs);
