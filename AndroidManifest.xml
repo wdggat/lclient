@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.liu.activity"
     android:versionCode="1"
-    android:versionName="1.0" >
+    android:versionName="0.1" >
 
     <uses-sdk
         android:minSdkVersion="7"
@@ -127,12 +127,17 @@
         
           		<!-- 在百度开发者中心查询应用的API Key -->
         <meta-data android:name="api_key" android:value="jwKG2Zrd1XXTKrZkzgnKoVk2" />
-         <meta-data android:name="BaiduPush_CHANNEL" android:value="channel_qq" />
+         <meta-data android:name="BaiduPush_CHANNEL" android:value="qq" />
          <!--　baidu mobile union -->
          <meta-data android:name="BaiduMobAd_APP_ID" android:value="debug" /> 
 		<meta-data android:name="BaiduMobAd_APP_SEC" android:value="debug" />
 		<activity android:name="com.baidu.mobads.AppActivity" 
 		    android:configChanges="keyboard|keyboardHidden|orientation" />
+		
+		<!-- umeng -->
+		<meta-data android:value="53e33bf0fd98c5d33a027baa" android:name="UMENG_APPKEY"></meta-data>
+        <meta-data android:value="qq" android:name="UMENG_CHANNEL"/>
+		<!-- umeng end -->
     </application>
 
     <instrumentation

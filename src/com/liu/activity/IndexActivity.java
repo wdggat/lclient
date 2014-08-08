@@ -111,7 +111,7 @@ public class IndexActivity extends BaseActivity {
 					public void run() {
 						Event pf = new Event(DataType.PASSWORD_FORGET);
 						pf.putEntry(Event.EMAIL, edtInput.getText().toString());
-						Response res = RequestHelper.sendEvent(pf);
+						Response res = RequestHelper.sendEvent(IndexActivity.this, pf);
 						if (res.succeed()) {
 							ad.cancel();
 							Toast.makeText(IndexActivity.this,"Password sent to "+ edtInput.getText().toString(),
@@ -157,7 +157,7 @@ public class IndexActivity extends BaseActivity {
 			event.putEntry(Event.USERNAME, username);
 			event.putEntry(Event.PASSWORD, password);
 			Log.d(TAG, "user login: " + event.toJson());
-			return RequestHelper.sendEvent(event);
+			return RequestHelper.sendEvent(IndexActivity.this, event);
 		}
 		
 	}

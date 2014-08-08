@@ -7,7 +7,6 @@ import android.util.Log;
 
 import com.alibaba.fastjson.JSON;
 import com.baidu.frontia.api.FrontiaPushMessageReceiver;
-import com.liu.activity.BaseActivity;
 import com.liu.activity.MsgInfoActivity;
 import com.liu.activity.TimelineActivity;
 import com.liu.helper.Config;
@@ -36,7 +35,7 @@ public class BaiduPushReceiver extends FrontiaPushMessageReceiver {
 			
 			Utils.putSharedPreferences(context, Event.BAIDU_USERID, userId);
 			Utils.putSharedPreferences(context, Event.BAIDU_CHANNELID, channelId);
-			Response res = RequestHelper.sendEvent(baiduBind);
+			Response res = RequestHelper.sendEvent(context, baiduBind);
 			if(res.succeed())
 				Utils.putSharedPreferences(context, Config.BAIDU_PUSH_UINFO_UPLOADED, true);
 			else

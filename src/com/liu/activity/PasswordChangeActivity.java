@@ -40,7 +40,7 @@ public class PasswordChangeActivity extends BaseActivity{
 		pc.putEntry(Event.USERNAME, Config.getMe().getEmail());
 		pc.putEntry(Event.PASSWORD, oldPassword.getText().toString());
 		pc.putEntry(Event.PASSWORD_NEW, newPassword.getText().toString());
-		Response res = RequestHelper.sendEventAsync(pc);
+		Response res = RequestHelper.sendEventAsync(PasswordChangeActivity.this, pc);
 		if(res == null) {
 			Toast.makeText(this, "sorry, 网络不通!", Toast.LENGTH_SHORT).show();
 			return;

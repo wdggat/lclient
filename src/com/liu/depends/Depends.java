@@ -39,7 +39,7 @@ public class Depends {
 			baiduBind.putEntry(Event.USERNAME, Config.getMe().getEmail());
 			baiduBind.putEntry(Event.BAIDU_USERID, Utils.getSharedPreferences(context, Event.BAIDU_USERID, ""));
 			baiduBind.putEntry(Event.BAIDU_CHANNELID, Utils.getSharedPreferences(context, Event.BAIDU_CHANNELID, ""));
-			Response res = RequestHelper.sendEventAsync(baiduBind);
+			Response res = RequestHelper.sendEventAsync(context, baiduBind);
 			if(res != null && res.succeed())
 				return Utils.putSharedPreferences(context, Config.BAIDU_PUSH_UINFO_UPLOADED, true);
 			Log.e(TAG, "bind baidu server failed, BAIDU_USERID: " + Event.BAIDU_USERID + ", BAIDU_CHANNELID: " + Event.BAIDU_CHANNELID);

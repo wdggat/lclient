@@ -9,15 +9,13 @@ import java.io.UnsupportedEncodingException;
 import java.util.concurrent.ExecutionException;
 import java.util.zip.GZIPOutputStream;
 
-import javax.crypto.Cipher;
-import javax.crypto.spec.SecretKeySpec;
-
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.ByteArrayEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
 
+import android.content.Context;
 import android.os.AsyncTask;
 import android.util.Log;
 
@@ -27,6 +25,7 @@ import com.liu.message.Event;
 import com.liu.message.Message;
 import com.liu.message.Request;
 import com.liu.message.Response;
+import com.umeng.analytics.MobclickAgent;
 
 public class RequestHelper {
 	private static final String TAG = RequestHelper.class.getSimpleName();
@@ -44,20 +43,28 @@ public class RequestHelper {
 //		return Response.DEMO_SUCCESS;
 	}
 	
-	public static Response sendMessage(Message msg) {
+	public static Response sendMessage(Context context, Message msg) {
+		statistic(context, msg.getDataType());
 		return sendData(msg.getDataType(), msg.toJson());
 	}
 	
-	public static Response sendEvent(Event event) {
+	public static Response sendEvent(Context context, Event event) {
+		statistic(context, event.getDataType());
 		return sendData(event.getDataType(), event.toJson());
 	}
 	
-	public static Response sendMessageAsync(Message msg) {
+	public static Response sendMessageAsync(Context context, Message msg) {
+		statistic(context, msg.getDataType());
 		return sendDataAsync(msg.getDataType(), msg.toJson());
 	}
 	
-	public static Response sendEventAsync(Event event) {
+	public static Response sendEventAsync(Context context, Event event) {
+		statistic(context, event.getDataType());
 		return sendDataAsync(event.getDataType(), event.toJson());
+	}
+	
+	private static void statistic(Context context, DataType dataType) {
+		MobclickAgent.onEvent(context, dataType.name());
 	}
 	
 	private static Response sendDataAsync(DataType dataType, String jsonStr) {

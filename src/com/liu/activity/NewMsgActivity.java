@@ -58,7 +58,7 @@ public class NewMsgActivity extends BaseActivity{
 		}
 		Message message = new Message(Config.getMe().getEmail(), Config.getMe().getUid(), receiverET.getText().toString(), subjectET.getText().toString(), System.currentTimeMillis()/1000, contentET.getText().toString(), DataType.NEW_MSG);
 		Log.d(TAG, "$sending msg: " + message.toJson());
-		Response res = RequestHelper.sendMessageAsync(message);
+		Response res = RequestHelper.sendMessageAsync(NewMsgActivity.this, message);
 		if(res == null) {
 			Toast.makeText(this, Config.NETWORK_UNREACHABLE, Toast.LENGTH_SHORT).show();
 			return;
@@ -82,7 +82,7 @@ public class NewMsgActivity extends BaseActivity{
 
 		@Override
 		protected Response doInBackground(Message... msgs) {
-			return RequestHelper.sendMessage(msgs[0]);
+			return RequestHelper.sendMessage(NewMsgActivity.this, msgs[0]);
 		}
 		
 	}

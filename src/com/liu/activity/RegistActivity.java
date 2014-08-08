@@ -104,7 +104,7 @@ public class RegistActivity extends BaseActivity {
 		Message msg = handler.obtainMessage();
 		Event registEvent = new Event(DataType.REGIST);
 		registEvent.putEntry(Event.USER, user.toJson());
-		Response res = RequestHelper.sendEvent(registEvent);
+		Response res = RequestHelper.sendEvent(RegistActivity.this, registEvent);
 		Log.i(TAG, "user_regist, " + user.toJson());
 		if(res.networkUnreachable()) {
 			Log.e("REGIST", "Posting regist info failed.");
