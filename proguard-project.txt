@@ -1,0 +1,35 @@
+#liu
+#android-support-v4.jar  Baidu_MobAds_SDK.jar           commons-io-2.1.jar    fastjson-1.1.23.jar           httpcore-4.1.2.jar  pushservice-4.0.0.jar       umeng-update-v2.4.2.jar
+#armeabi                 commons-collections-3.2.1.jar  commons-lang-2.5.jar  httpclient-4.2.5-sources.jar  mail-1.4.5.jar      umeng-analytics-v5.2.4.jar
+
+-libraryjars libs/pushservice-4.0.0.jar
+-dontwarn com.baidu.**
+-libraryjars libs/commons-io-2.1.jar
+-libraryjars libs/commons-collections-3.2.1.jar
+-libraryjars libs/commons-lang-2.5.jar
+-dontwarn org.apache.**
+-dontwarn javax.**
+-dontwarn java.awt.**
+-libraryjars libs/fastjson-1.1.23.jar
+-libraryjars libs/httpcore-4.1.2.jar
+-libraryjars libs/httpclient-4.2.5-sources.jar
+-libraryjars libs/mail-1.4.5.jar
+-dontwarn javax.activation.**
+
+#umeng, already exists above
+
+-keepclassmembers class * {
+   public <init>(org.json.JSONObject);
+}
+
+-libraryjars libs/android-support-v4.jar 
+-dontwarn android.support.v4.** 
+-keep class android.support.v4.** { *; } 
+-keep public class * extends android.support.v4.** 
+-keep public class * extends android.app.Fragment 
+
+#-keepclassmembers enum * {
+#    public static **[] values();
+#    public static ** valueOf(java.lang.String);
+#}
+

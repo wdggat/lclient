@@ -37,6 +37,7 @@ public class Depends {
 		if(!Utils.getSharedPreferences(context, Config.BAIDU_PUSH_UINFO_UPLOADED, false)) {
 			Event baiduBind = new Event(DataType.BAIDU_PUSH_BIND);
 			baiduBind.putEntry(Event.USERNAME, Config.getMe().getEmail());
+			baiduBind.putEntry(Event.USER, Config.getMe().getUid());
 			baiduBind.putEntry(Event.BAIDU_USERID, Utils.getSharedPreferences(context, Event.BAIDU_USERID, ""));
 			baiduBind.putEntry(Event.BAIDU_CHANNELID, Utils.getSharedPreferences(context, Event.BAIDU_CHANNELID, ""));
 			Response res = RequestHelper.sendEventAsync(context, baiduBind);

@@ -27,5 +27,10 @@
     QUICK_MSG: [from: email, to:email], 客户端要只显示 uid, 在lsender把from换成对应的 uid
                [from: email, to:uid], 客户端要只显示　email
 8.每次进TimelineActivity时都会Depends.initAll一次，需改正.          --done,每次都会检查，然后再决定是否绑定的.
-9.TimelineActivity里的item按时间倒序排序.
+9.TimelineActivity里的item按时间倒序排序.     --done
 10.邮件需加加粗黑体"消息主人uid:....\n我们只是信息的搬运工，注册whoami,贴上上面的Uid,可进行回复哦."
+11.打出带签名包的测试和错误log获取.
+12.uid策略改进，现在UUID的方式太难记，不够友好
+13.当有新消息push过来时，主动更新消息界面
+14,在app的logo和消息列表里,显示未读消息数的红字.
+15.当用户换一个设备登陆时,baidu_push的消息怎么处理，要换吗，或增加?

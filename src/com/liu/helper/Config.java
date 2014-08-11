@@ -4,7 +4,7 @@ import com.liu.message.User;
 
 public class Config {
 	public static final String APP_NAME = "whoami";
-	public static final String server = "http://10.0.2.2:9527";
+	public static final String server = "http://www.w.3bucks.net:9527";
 	public static final String AES128_ECB_KEY = ".>zSpP#j[1>:Mx;[";
 	public static final String SDK_VERSION = "0.1";
 	public static final String DATABASE_NAME = APP_NAME + ".sqlite";
