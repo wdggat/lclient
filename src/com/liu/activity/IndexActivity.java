@@ -65,7 +65,7 @@ public class IndexActivity extends BaseActivity {
 				String username = ((EditText)findViewById(R.id.username)).getText().toString();
 				String password = ((EditText)findViewById(R.id.password)).getText().toString();
 				if(!checkParams(username, password)) {
-					Toast.makeText(IndexActivity.this, "Username or password not property.", Toast.LENGTH_SHORT).show();
+					Toast.makeText(IndexActivity.this, "用户名或密码不正确.", Toast.LENGTH_SHORT).show();
 					return;
 				}
 				Response response = null;
@@ -87,7 +87,7 @@ public class IndexActivity extends BaseActivity {
 				} else if(response.networkUnreachable()) {
 					Toast.makeText(IndexActivity.this, "网络不可达!", Toast.LENGTH_SHORT).show();
 				} else {
-					Toast.makeText(IndexActivity.this, "Username and password isn't a couple.", Toast.LENGTH_SHORT).show();
+					Toast.makeText(IndexActivity.this, "用户名密码不匹配.", Toast.LENGTH_SHORT).show();
 				}
 			}
 			

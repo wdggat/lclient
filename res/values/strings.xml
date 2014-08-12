@@ -19,6 +19,7 @@
     <string name="calloff">取消</string>
     <string name="sure">确定</string>
     <string name="uid">UID</string>
+    <string name="uid_colon">uid: </string>
     <string name="mail_colon">邮箱: </string>
     <string name="gender_colon">性别: </string>
     <string name="province_colon">省市: </string>

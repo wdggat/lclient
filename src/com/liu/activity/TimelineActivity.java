@@ -59,9 +59,9 @@ public class TimelineActivity extends BaseActivity {
 		}
 		
 		//TODO, delete
-		for(TreeSet<Message> msgs : allMessages.values())
-			for(Message msg : msgs)
-			    Log.d(TAG, "READ MSG: " + msg.toJson());
+//		for(TreeSet<Message> msgs : allMessages.values())
+//			for(Message msg : msgs)
+//			    Log.d(TAG, "READ MSG: " + msg.toJson());
 		Log.d(TAG, "Read " + allMessages.size() + " users' messages");
 		
 		listItems  = getListItems(allMessages);

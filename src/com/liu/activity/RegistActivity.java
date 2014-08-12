@@ -1,5 +1,8 @@
 package com.liu.activity;
 
+import java.util.Calendar;
+import java.util.Date;
+
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.AsyncTask;
@@ -72,7 +75,10 @@ public class RegistActivity extends BaseActivity {
 		String emailAddr = ((EditText)findViewById(R.id.mail)).getText().toString();
 		int genderRadioId = ((RadioGroup)findViewById(R.id.gender_group)).getCheckedRadioButtonId();
 		String province = ((Spinner)findViewById(R.id.provinces_spinner)).getSelectedItem().toString();
-		long birthday = ((DatePicker)findViewById(R.id.birthday)).getCalendarView().getDate() / 1000;
+//		long birthday = ((DatePicker)findViewById(R.id.birthday)).getCalendarView().getDate() / 1000;
+		DatePicker datePicker = (DatePicker)findViewById(R.id.birthday);
+		Calendar c = Calendar.getInstance();
+		c.set(datePicker.getYear(), datePicker.getMonth(), datePicker.getDayOfMonth(), 0, 0, 0);
 		String phone = ((EditText)findViewById(R.id.phone)).getText().toString();
 		String password = ((EditText)findViewById(R.id.password)).getText().toString();
 		String passwordConfirm = ((EditText)findViewById(R.id.password_confirm)).getText().toString();
@@ -96,7 +102,7 @@ public class RegistActivity extends BaseActivity {
 			handler.sendMessage(msg);
 			return false;
 		}
-		user = new User(emailAddr, getGender(genderRadioId), province, birthday, phone, password, "");
+		user = new User(emailAddr, getGender(genderRadioId), province, c.getTimeInMillis() / 1000, phone, password, "");
 		return true;
 	}
 	
@@ -156,7 +162,7 @@ public class RegistActivity extends BaseActivity {
 				Toast.makeText(RegistActivity.this, "Failed, " + message.getData().getString("content"), Toast.LENGTH_SHORT).show();
 				return;
 			case 7:
-				Toast.makeText(RegistActivity.this, "Succeed.", Toast.LENGTH_SHORT).show();
+				Toast.makeText(RegistActivity.this, "Succeed, 为您分配的uid: " + user.getUid(), Toast.LENGTH_SHORT).show();
 				Intent intent = new Intent();
 				intent.setClass(RegistActivity.this, TimelineActivity.class);
 				RegistActivity.this.finish();
