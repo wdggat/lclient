@@ -51,17 +51,17 @@ public class TimelineActivity extends BaseActivity {
 		db = Database.getDatabase(this);
 		final TreeMap<String, TreeSet<Message>> allMessages = groupMessage(db.readAllMessages());
 		
-		if(allMessages.isEmpty()) {
-			Log.d(TAG, "read 0 messages, so fill some test data.");
-			FillDBTestData.fillTimelineMsgs();
-			allMessages.putAll(groupMessage(db.readAllMessages()));
+//		if(allMessages.isEmpty()) {
+//			Log.d(TAG, "read 0 messages, so fill some test data.");
+//			FillDBTestData.fillTimelineMsgs();
+//			allMessages.putAll(groupMessage(db.readAllMessages()));
 //			Log.d(TAG, "read " + allMessages.size() + " users' messages now.");
-		}
+//		}
 		
 		//TODO, delete
-//		for(TreeSet<Message> msgs : allMessages.values())
-//			for(Message msg : msgs)
-//			    Log.d(TAG, "READ MSG: " + msg.toJson());
+		for(TreeSet<Message> msgs : allMessages.values())
+			for(Message msg : msgs)
+			    Log.d(TAG, "READ MSG: " + msg.toJson());
 		Log.d(TAG, "Read " + allMessages.size() + " users' messages");
 		
 		listItems  = getListItems(allMessages);

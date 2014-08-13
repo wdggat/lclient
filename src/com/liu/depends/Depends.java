@@ -1,5 +1,7 @@
 package com.liu.depends;
 
+import org.apache.commons.lang.StringUtils;
+
 import android.content.Context;
 import android.util.Log;
 
@@ -35,16 +37,14 @@ public class Depends {
         }
 		
 		if(!Utils.getSharedPreferences(context, Config.BAIDU_PUSH_UINFO_UPLOADED, false)) {
-			Event baiduBind = new Event(DataType.BAIDU_PUSH_BIND);
-			baiduBind.putEntry(Event.USERNAME, Config.getMe().getEmail());
-			baiduBind.putEntry(Event.USER, Config.getMe().getUid());
-			baiduBind.putEntry(Event.BAIDU_USERID, Utils.getSharedPreferences(context, Event.BAIDU_USERID, ""));
-			baiduBind.putEntry(Event.BAIDU_CHANNELID, Utils.getSharedPreferences(context, Event.BAIDU_CHANNELID, ""));
-			Response res = RequestHelper.sendEventAsync(context, baiduBind);
-			if(res != null && res.succeed())
-				return Utils.putSharedPreferences(context, Config.BAIDU_PUSH_UINFO_UPLOADED, true);
-			Log.e(TAG, "bind baidu server failed, BAIDU_USERID: " + Event.BAIDU_USERID + ", BAIDU_CHANNELID: " + Event.BAIDU_CHANNELID);
-			return false;
+			String baiduUserId = Utils.getSharedPreferences(context, Event.BAIDU_USERID, "");
+			String baiduChannelId = Utils.getSharedPreferences(context, Event.BAIDU_CHANNELID, "");
+			if(!StringUtils.isBlank(baiduUserId)) {
+			    return BaiduPushReceiver.bindBaiduPushInfo(context,	baiduUserId, baiduChannelId);
+			} else {
+				Utils.setBaiduPushBind(context, false);
+				return false;
+			}
 		}
 		return true;
 	}

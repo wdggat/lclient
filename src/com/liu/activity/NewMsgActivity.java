@@ -56,7 +56,7 @@ public class NewMsgActivity extends BaseActivity{
 			Toast.makeText(this, "Something empty.", Toast.LENGTH_SHORT).show();
 			return;
 		}
-		Message message = new Message(Config.getMe().getEmail(), Config.getMe().getUid(), receiverET.getText().toString(), subjectET.getText().toString(), System.currentTimeMillis()/1000, contentET.getText().toString(), DataType.NEW_MSG);
+		Message message = new Message(Config.getMe().getEmail(), Config.getMe().getUid(), receiverET.getText().toString().trim(), subjectET.getText().toString().trim(), System.currentTimeMillis()/1000, contentET.getText().toString().trim(), DataType.NEW_MSG);
 		Log.d(TAG, "$sending msg: " + message.toJson());
 		Response res = RequestHelper.sendMessageAsync(NewMsgActivity.this, message);
 		if(res == null) {

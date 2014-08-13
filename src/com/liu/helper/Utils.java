@@ -133,7 +133,7 @@ public class Utils {
         return false;
     }
 
-    public static void setBind(Context context, boolean flag) {
+    public static void setBaiduPushBind(Context context, boolean flag) {
         String flagStr = "not";
         if (flag) {
             flagStr = "ok";

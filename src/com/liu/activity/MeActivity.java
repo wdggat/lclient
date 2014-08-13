@@ -20,6 +20,8 @@ public class MeActivity extends BaseActivity {
 		setContentView(R.layout.layout_me);
 		
 		User me = Config.getMe();
+		TextView uidTV = (TextView)findViewById(R.id.me_uid);
+		uidTV.setText(me.getUid());
 		TextView mailTV = (TextView)findViewById(R.id.me_mail);
 		mailTV.setText(me.getEmail());
 		TextView genderTV = (TextView)findViewById(R.id.me_gender);

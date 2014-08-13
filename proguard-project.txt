@@ -16,6 +16,15 @@
 -libraryjars libs/mail-1.4.5.jar
 -dontwarn javax.activation.**
 
+-keep class org.apache.** {*;}
+-keep class com.baidu.** { *;}
+-keep class java.awt.** {*;}
+-keep class javax.** { *;}
+-keep class org.apache.http.client.methods.** { *;}
+-keep public class * {
+    public protected *;
+}
+
 #umeng, already exists above
 
 -keepclassmembers class * {

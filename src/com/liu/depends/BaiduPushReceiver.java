@@ -26,20 +26,9 @@ public class BaiduPushReceiver extends FrontiaPushMessageReceiver {
 	public void onBind(Context context, int errorCode, String appid,
 			String userId, String channelId, String requestId) {
 		if(errorCode == SUCCESS_CODE) {
-			Utils.setBind(context, true);
+			Utils.setBaiduPushBind(context, true);
 			Log.i(TAG, "Succeed to bind baidu-push-server, appid - " + appid + ", userId - " + userId + ", channelId - " + channelId);
-			Event baiduBind = new Event(DataType.BAIDU_PUSH_BIND);
-			baiduBind.putEntry(Event.BAIDU_USERID, userId);
-			baiduBind.putEntry(Event.BAIDU_CHANNELID, channelId);
-			baiduBind.putEntry(Event.USERNAME, Config.getMe().getEmail());
-			
-			Utils.putSharedPreferences(context, Event.BAIDU_USERID, userId);
-			Utils.putSharedPreferences(context, Event.BAIDU_CHANNELID, channelId);
-			Response res = RequestHelper.sendEvent(context, baiduBind);
-			if(res.succeed())
-				Utils.putSharedPreferences(context, Config.BAIDU_PUSH_UINFO_UPLOADED, true);
-			else
-				Utils.putSharedPreferences(context, Config.BAIDU_PUSH_UINFO_UPLOADED, false);
+			bindBaiduPushInfo(context, userId, channelId);
 		} else {
 			Log.e(TAG, "bind baidu server failed, errorCode " + errorCode);
 		}
@@ -89,8 +78,29 @@ public class BaiduPushReceiver extends FrontiaPushMessageReceiver {
 	public void onUnbind(Context context, int errorCode, String requestId) {
 		Log.i(TAG, "Receiver unbind, errorCode: " + errorCode);
 		if(errorCode == SUCCESS_CODE) {
-			Utils.setBind(context, false);
+			Utils.setBaiduPushBind(context, false);
 			//TODO
+		}
+	}
+	
+	public static boolean bindBaiduPushInfo(Context context, String userId, String channelId) {
+		Event baiduBind = new Event(DataType.BAIDU_PUSH_BIND);
+		baiduBind.putEntry(Event.USER, Config.getMe().getUid());
+		baiduBind.putEntry(Event.BAIDU_USERID, userId);
+		baiduBind.putEntry(Event.BAIDU_CHANNELID, channelId);
+		baiduBind.putEntry(Event.USERNAME, Config.getMe().getEmail());
+		
+		Utils.putSharedPreferences(context, Event.BAIDU_USERID, userId);
+		Utils.putSharedPreferences(context, Event.BAIDU_CHANNELID, channelId);
+		Log.i(TAG, "start to push baidu-push, " + baiduBind.toJson());
+		Response res = RequestHelper.sendEventAsync(context, baiduBind);
+		Log.i(TAG, "baidu-push-return, " + res.toString());
+		if(res.succeed()) {
+			Utils.putSharedPreferences(context, Config.BAIDU_PUSH_UINFO_UPLOADED, true);
+			return true;
+		} else {
+			Utils.putSharedPreferences(context, Config.BAIDU_PUSH_UINFO_UPLOADED, false);
+			return false;
 		}
 	}
 	
