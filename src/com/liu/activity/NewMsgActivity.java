@@ -1,11 +1,8 @@
 package com.liu.activity;
 
-import java.util.concurrent.ExecutionException;
-
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -77,13 +74,5 @@ public class NewMsgActivity extends BaseActivity{
 			finish();
 		}
 	}
-	
-	private class SendMsgAction extends AsyncTask<Message, Void, Response> {
 
-		@Override
-		protected Response doInBackground(Message... msgs) {
-			return RequestHelper.sendMessage(NewMsgActivity.this, msgs[0]);
-		}
-		
-	}
 }

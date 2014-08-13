@@ -5,6 +5,8 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.TreeSet;
 
+import org.apache.commons.lang.StringUtils;
+
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,6 +18,7 @@ import android.widget.TextView;
 import com.liu.message.TimelineListItem;
 
 public class TimelineAdapter extends BaseAdapter {
+	private static final int CONTENT_PREFIX_LENGTH = 10;
 //	private Context context;
 	private List<TimelineListItem> items;
 	private LayoutInflater inflater;
@@ -50,8 +53,19 @@ public class TimelineAdapter extends BaseAdapter {
 		TextView datetimeTV = (TextView)layout.findViewById(R.id.timeline_msgitem_datetime);
 		datetimeTV.setText(item.getFormatedTime());
 		TextView contentTV = (TextView)layout.findViewById(R.id.timeline_msgitem_msgglimpse);
-		contentTV.setText(item.getContent());
+		contentTV.setLines(1);
+		contentTV.setText(showContentStr(item.getContent()));
 		return layout;
+	}
+	
+	private String showContentStr(String content) {
+		if(StringUtils.isBlank(content))
+			return "";
+		if(content.length() < CONTENT_PREFIX_LENGTH) {
+			return content;
+		} else {
+			return content.substring(0, CONTENT_PREFIX_LENGTH).trim() + "...";
+		}
 	}
 
 }

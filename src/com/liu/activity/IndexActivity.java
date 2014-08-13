@@ -114,10 +114,10 @@ public class IndexActivity extends BaseActivity {
 						Response res = RequestHelper.sendEvent(IndexActivity.this, pf);
 						if (res.succeed()) {
 							ad.cancel();
-							Toast.makeText(IndexActivity.this,"Password sent to "+ edtInput.getText().toString(),
+							Toast.makeText(IndexActivity.this,"密码发送已发至 "+ edtInput.getText().toString(),
 									Toast.LENGTH_SHORT).show();
 						} else {
-							Toast.makeText(IndexActivity.this,"Password sent failed.", Toast.LENGTH_SHORT).show();
+							Toast.makeText(IndexActivity.this,"密码发送失败.", Toast.LENGTH_SHORT).show();
 						}
 					}
 				}.run();
