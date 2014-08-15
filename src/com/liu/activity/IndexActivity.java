@@ -1,7 +1,5 @@
 package com.liu.activity;
 
-import java.util.concurrent.ExecutionException;
-
 import org.apache.commons.lang.StringUtils;
 
 import android.app.AlertDialog;
@@ -25,7 +23,6 @@ import com.liu.helper.RequestHelper;
 import com.liu.helper.Utils;
 import com.liu.message.DataType;
 import com.liu.message.Event;
-import com.liu.message.Message;
 import com.liu.message.Response;
 import com.liu.message.User;
 

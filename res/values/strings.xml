@@ -15,7 +15,7 @@
     <string name="login">登陆</string>
     <string name="forget_password">忘记密码?</string>
     <string name="timeline_menu">timeline菜单</string>
-    <string name="me_bt">我</string>
+    <string name="me">我</string>
     <string name="timeline_inittext">\.\.\.</string>
     <string name="calloff">取消</string>
     <string name="sure">确定</string>
@@ -39,6 +39,9 @@
     <string name="timeline_newmsg">新建消息</string>
     <string name="timeline_replymsg">回复消息</string>
     <string name="crypt_key">.>zSpP#j[1>:Mx;[</string>
+    
+    <!-- for depends -->
+    <string name="appwall">应用墙</string>
     
     <string name="demo_msg_content_long">"电子工业出版社，哥伦比亚大学yoyofeeertewtrtttttttttttttttttttttttttttttttttttttttttter"</string>
     <string name="demo_msg_content_short">"电子工业出版社，哥伦比亚大学"</string>

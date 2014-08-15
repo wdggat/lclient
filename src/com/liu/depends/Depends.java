@@ -8,17 +8,17 @@ import android.util.Log;
 import com.baidu.android.pushservice.PushConstants;
 import com.baidu.android.pushservice.PushManager;
 import com.liu.helper.Config;
-import com.liu.helper.RequestHelper;
 import com.liu.helper.Utils;
-import com.liu.message.DataType;
 import com.liu.message.Event;
-import com.liu.message.Response;
+import com.wandoujia.ads.sdk.Ads;
+import com.wandoujia.ads.sdk.loader.Fetcher.AdFormat;
 
 public class Depends {
 	private static final String TAG = Depends.class.getCanonicalName();
 	
 	public static void initAll(Context context) {
 		initBaiduPushReceiver(context);
+		initWandoujia(context);
 	}
 	
 	private static boolean initBaiduPushReceiver(Context context) {
@@ -47,6 +47,22 @@ public class Depends {
 			}
 		}
 		return true;
+	}
+	
+	public static boolean initWandoujia(Context context) {
+		// Init AdsSdk.
+		 try {
+			 if(WanDouJia.isInitialized())
+				 return true;
+		   Ads.init(context, Config.WDJ_APPID, Config.WDJ_SECRETKEY);
+		   Log.i(TAG, "wan dou jia inited.");
+		   Ads.preLoad(context, AdFormat.appwall, Config.WDJ_APP, Config.WDJ_ADSID_APPLIST);
+		   return true;
+		 } catch (Exception e) {
+		   e.printStackTrace();
+		   Log.i(TAG, "Failed to init wan dou jia", e);
+		   return false;
+		 }
 	}
 	
 }

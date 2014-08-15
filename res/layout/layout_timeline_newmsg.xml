@@ -28,5 +28,18 @@
             android:background="@android:color/background_dark"
             android:textColor="@android:color/white"/>
     </TableRow>
+    
+    <TableRow
+        android:id="@+id/timeline_popup_me"
+        android:layout_width="match_parent"
+        android:onClick="onClickME">
+
+        <TextView android:text="@string/me"
+            android:padding="10dp"
+            android:alpha="1.0"
+            android:background="@android:color/background_dark"
+            android:gravity="center"
+            android:textColor="@android:color/white"/>
+    </TableRow>
 
 </TableLayout>

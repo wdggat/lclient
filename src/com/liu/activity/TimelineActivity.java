@@ -15,14 +15,17 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.PopupWindow;
 import android.widget.TableLayout;
 
 import com.liu.depends.Depends;
+import com.liu.depends.WanDouJia;
 import com.liu.helper.Config;
 import com.liu.helper.Database;
 import com.liu.helper.Utils;
@@ -46,6 +49,8 @@ public class TimelineActivity extends BaseActivity {
 		Log.d(TAG, "ME_info: " + Utils.getME(TimelineActivity.this).toJson());
 		
 		Depends.initAll(TimelineActivity.this);
+		LinearLayout thisLayout = (LinearLayout) this.findViewById(R.layout.layout_timeline);
+		WanDouJia.showBanner(TimelineActivity.this, thisLayout);
 		
 //		Log.d(TAG, "come in timeline activity.");
 		db = Database.getDatabase(this);
@@ -147,6 +152,10 @@ public class TimelineActivity extends BaseActivity {
 		Intent intent = new Intent();
 		intent.setClass(TimelineActivity.this, MeActivity.class);
 		startActivity(intent);
+	}
+	
+	public void onClickAppWall(View v) {
+		WanDouJia.showAppWall(TimelineActivity.this);
 	}
 	
 	public static TreeMap<String, TreeSet<Message>> groupMessage(List<Message> messages) {

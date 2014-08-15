@@ -32,8 +32,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="right"
-            android:text="@string/me_bt"
-            android:onClick="onClickME" />
+            android:text="@string/appwall"
+            android:onClick="onClickAppWall" />
     </FrameLayout>
 
 <!--     <LinearLayout

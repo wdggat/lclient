@@ -9,7 +9,6 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.liu.helper.Config;
-import com.liu.helper.Utils;
 import com.liu.message.User;
 
 public class MeActivity extends BaseActivity {
