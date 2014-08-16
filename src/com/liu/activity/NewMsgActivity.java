@@ -6,9 +6,11 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.liu.depends.WanDouJia;
 import com.liu.helper.Config;
 import com.liu.helper.Database;
 import com.liu.helper.RequestHelper;
@@ -23,6 +25,9 @@ public class NewMsgActivity extends BaseActivity{
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.layout_newmsg);
+		
+		ViewGroup bannerContainer = (ViewGroup) this.findViewById(R.id.banner_ad_container);
+		WanDouJia.showBanner(NewMsgActivity.this, bannerContainer);
 	}
 	
 	public void onCalloff(View v) {
@@ -49,11 +54,11 @@ public class NewMsgActivity extends BaseActivity{
 		EditText receiverET = (EditText) findViewById(R.id.newmsg_receiver);
 		EditText subjectET = (EditText) findViewById(R.id.newmsg_subject);
 		EditText contentET = (EditText) findViewById(R.id.newmsg_content);
-		if(Utils.anyEmpty(receiverET, subjectET, contentET)) {
-			Toast.makeText(this, "Something empty.", Toast.LENGTH_SHORT).show();
+		Message message = new Message(Config.getMe().getEmail(), Config.getMe().getUid(), receiverET.getText().toString().trim(), subjectET.getText().toString().trim(), System.currentTimeMillis()/1000, contentET.getText().toString().trim(), DataType.NEW_MSG);
+		if(!message.isValidMessage()) {
+			Toast.makeText(this, "字段不能为空", Toast.LENGTH_SHORT).show();
 			return;
 		}
-		Message message = new Message(Config.getMe().getEmail(), Config.getMe().getUid(), receiverET.getText().toString().trim(), subjectET.getText().toString().trim(), System.currentTimeMillis()/1000, contentET.getText().toString().trim(), DataType.NEW_MSG);
 		Log.d(TAG, "$sending msg: " + message.toJson());
 		Response res = RequestHelper.sendMessageAsync(NewMsgActivity.this, message);
 		if(res == null) {

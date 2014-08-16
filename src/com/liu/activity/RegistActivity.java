@@ -10,6 +10,7 @@ import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -18,6 +19,8 @@ import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.liu.depends.Depends;
+import com.liu.depends.WanDouJia;
 import com.liu.helper.RequestHelper;
 import com.liu.helper.Utils;
 import com.liu.message.DataType;
@@ -32,6 +35,10 @@ public class RegistActivity extends BaseActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.layout_regist);
+		
+		Depends.initWandoujia(RegistActivity.this);
+		ViewGroup bannerContainer = (ViewGroup) this.findViewById(R.id.banner_ad_container);
+		WanDouJia.showBanner(RegistActivity.this, bannerContainer);
 		
 		Button backtoIndexBt = (Button)findViewById(R.id.back_bt);
 		backtoIndexBt.setOnClickListener(new OnClickListener() {
@@ -60,6 +67,7 @@ public class RegistActivity extends BaseActivity {
 			}
 
 		});
+		
 	}
 	
 	@Override
@@ -108,7 +116,7 @@ public class RegistActivity extends BaseActivity {
 	private boolean registServer() {
 		Message msg = handler.obtainMessage();
 		Event registEvent = new Event(DataType.REGIST);
-		registEvent.putEntry(Event.USER, user.toJson());
+		registEvent.putEntry(Event.UID, user.toJson());
 		Response res = RequestHelper.sendEvent(RegistActivity.this, registEvent);
 		Log.i(TAG, "user_regist, " + user.toJson());
 		if(res.networkUnreachable()) {

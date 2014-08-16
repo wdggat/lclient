@@ -85,7 +85,7 @@ public class BaiduPushReceiver extends FrontiaPushMessageReceiver {
 	
 	public static boolean bindBaiduPushInfo(Context context, String userId, String channelId) {
 		Event baiduBind = new Event(DataType.BAIDU_PUSH_BIND);
-		baiduBind.putEntry(Event.USER, Config.getMe().getUid());
+		baiduBind.putEntry(Event.UID, Config.getMe().getUid());
 		baiduBind.putEntry(Event.BAIDU_USERID, userId);
 		baiduBind.putEntry(Event.BAIDU_CHANNELID, channelId);
 		baiduBind.putEntry(Event.USERNAME, Config.getMe().getEmail());

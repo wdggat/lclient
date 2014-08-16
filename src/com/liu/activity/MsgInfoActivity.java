@@ -8,12 +8,14 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.alibaba.fastjson.JSON;
+import com.liu.depends.WanDouJia;
 import com.liu.helper.Config;
 import com.liu.helper.Database;
 import com.liu.helper.RequestHelper;
@@ -30,6 +32,9 @@ public class MsgInfoActivity extends BaseActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.layout_msginfo);
 		
+		ViewGroup bannerContainer = (ViewGroup) this.findViewById(R.id.msginfo_wdj_banner);
+		WanDouJia.showBanner(MsgInfoActivity.this, bannerContainer);
+		
 		Intent intent = getIntent();
 		ArrayList<String> msgStrList  = intent.getExtras().getStringArrayList("msgs");
 		msgList = new ArrayList<Message>();
@@ -42,13 +47,14 @@ public class MsgInfoActivity extends BaseActivity {
 		adapter = new MsgInfoAdapter(this, msgList);
 		ListView v = (ListView)findViewById(R.id.msgs);
 		v.setAdapter(adapter);
+		v.requestFocus();
 	}
 	
 	public void onQuickReply(View v) {
 		EditText contentET = (EditText)findViewById(R.id.msginfo_content);
 		String content = contentET.getText().toString();
-		if(StringUtils.isEmpty(content)) {
-			Toast.makeText(this, "Message is empty.", Toast.LENGTH_SHORT).show();
+		if(StringUtils.isBlank(content)) {
+			Toast.makeText(this, "消息不能为空", Toast.LENGTH_SHORT).show();
 			return;
 		}
 		Message msg = Message.quickMessage(Config.getMe().getEmail(), Config.getMe().getUid(), associate, content);

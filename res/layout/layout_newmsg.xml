@@ -5,6 +5,8 @@
     android:background="#FFFFFF"
     android:orientation="vertical" >
 
+    <include layout="@layout/layout_wdj_banner"/>
+    
     <TableLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

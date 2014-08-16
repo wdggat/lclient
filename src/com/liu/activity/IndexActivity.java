@@ -99,26 +99,26 @@ public class IndexActivity extends BaseActivity {
 				.findViewById(R.id.passwd_forget_email);
 		final AlertDialog.Builder builder = new AlertDialog.Builder(IndexActivity.this);
 //		builder.setCancelable(false);
-		builder.setTitle("请输入邮箱:");
+		builder.setTitle("注册邮箱:");
 		builder.setView(textEntryView);
 		final AlertDialog ad = builder.create();
-		builder.setPositiveButton("确认", new DialogInterface.OnClickListener() {
-			public void onClick(DialogInterface dialog, int whichButton) {
-				new Runnable() {
-					public void run() {
-						Event pf = new Event(DataType.PASSWORD_FORGET);
-						pf.putEntry(Event.EMAIL, edtInput.getText().toString());
-						Response res = RequestHelper.sendEvent(IndexActivity.this, pf);
-						if (res.succeed()) {
-							ad.cancel();
-							Toast.makeText(IndexActivity.this,"密码发送已发至 "+ edtInput.getText().toString(),
-									Toast.LENGTH_SHORT).show();
-						} else {
-							Toast.makeText(IndexActivity.this,"密码发送失败.", Toast.LENGTH_SHORT).show();
-						}
-					}
-				}.run();
+		Button surebt = (Button) textEntryView.findViewById(R.id.passwd_forget_surebt);
+		surebt.setOnClickListener( new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				Event pf = new Event(DataType.PASSWORD_FORGET);
+				pf.putEntry(Event.USERNAME, edtInput.getText().toString());
+				Response res = RequestHelper.sendEventAsync(IndexActivity.this, pf);
+				if (res.succeed()) {
+					ad.cancel();
+					Toast.makeText(IndexActivity.this,"密码发送已发至 "+ edtInput.getText().toString(),
+							Toast.LENGTH_SHORT).show();
+				} else {
+					Toast.makeText(IndexActivity.this,"Failed, " + res.getContent(), Toast.LENGTH_SHORT).show();
+				}
 			}
+			
 		});
 		builder.setNegativeButton("取消", new DialogInterface.OnClickListener() {
 			public void onClick(DialogInterface dialog, int whichButton) {

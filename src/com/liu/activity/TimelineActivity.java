@@ -49,8 +49,8 @@ public class TimelineActivity extends BaseActivity {
 		Log.d(TAG, "ME_info: " + Utils.getME(TimelineActivity.this).toJson());
 		
 		Depends.initAll(TimelineActivity.this);
-		LinearLayout thisLayout = (LinearLayout) this.findViewById(R.layout.layout_timeline);
-		WanDouJia.showBanner(TimelineActivity.this, thisLayout);
+		ViewGroup bannerContainer = (ViewGroup) this.findViewById(R.id.banner_ad_container);
+		WanDouJia.showBanner(TimelineActivity.this, bannerContainer);
 		
 //		Log.d(TAG, "come in timeline activity.");
 		db = Database.getDatabase(this);
@@ -123,7 +123,7 @@ public class TimelineActivity extends BaseActivity {
 		LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		TableLayout layout = (TableLayout) inflater.inflate(R.layout.layout_timeline_newmsg, null);
 
-		popupWindow = new PopupWindow(layout, 200, 200, true);
+		popupWindow = new PopupWindow(layout, 200, 300, true);
 		
 		popupWindow.setOutsideTouchable(true);
 		popupWindow.setBackgroundDrawable(new BitmapDrawable());

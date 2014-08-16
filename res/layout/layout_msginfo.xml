@@ -5,10 +5,13 @@
     android:background="@color/white"
     android:orientation="vertical" >
 
+    <include layout="@layout/layout_wdj_banner" android:id="@+id/msginfo_wdj_banner"/>
+    
     <FrameLayout
         android:id="@+id/timeline_topbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@id/msginfo_wdj_banner"
         android:background="@drawable/green_strip" >
 
         <Button

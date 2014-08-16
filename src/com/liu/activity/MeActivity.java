@@ -4,10 +4,12 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.liu.depends.WanDouJia;
 import com.liu.helper.Config;
 import com.liu.message.User;
 
@@ -41,6 +43,9 @@ public class MeActivity extends BaseActivity {
 			}
 			
 		});
+		
+		ViewGroup bannerContainer = (ViewGroup) this.findViewById(R.id.banner_ad_container);
+		WanDouJia.showBanner(MeActivity.this, bannerContainer);
 		
 		/* Change info not allowed for now.
 		Button changeInfoBt = (Button)findViewById(R.id.me_change_infobt);
