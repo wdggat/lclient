@@ -20,7 +20,7 @@ import com.liu.message.Message;
 import com.liu.message.Response;
 
 public class NewMsgActivity extends BaseActivity{
-	private static final String TAG = "NEWMSG";
+	private static final String TAG = NewMsgActivity.class.getName();
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);

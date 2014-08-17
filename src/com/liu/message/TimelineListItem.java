@@ -4,6 +4,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
+import com.alibaba.fastjson.JSON;
 import com.liu.activity.BaseActivity;
 import com.liu.helper.Config;
 import com.liu.helper.Utils;
@@ -55,6 +56,10 @@ public class TimelineListItem implements Comparable<TimelineListItem>{
 		if(time > another.getTime())
 			return -1;
 		return 0;
+	}
+	
+	public String toString() {
+		return JSON.toJSONString(this);
 	}
 	
 }

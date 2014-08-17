@@ -21,7 +21,6 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.Button;
-import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.PopupWindow;
 import android.widget.TableLayout;
@@ -37,7 +36,9 @@ import com.liu.message.TimelineListItem;
 public class TimelineActivity extends BaseActivity {
 	private static final String TAG = "TIMELINE";
 	private static Database db;
-	private static TreeSet<TimelineListItem> listItems;
+	private static TreeSet<TimelineListItem> treesetItems;
+	//This redundance items is just for TimelineAdapter, becaust treesetItems can't satisfy the apies in adapter
+	private static List<TimelineListItem> listItems;
 	private static TimelineAdapter timelineAdapter;
 	private static PopupWindow popupWindow;
 	private static TreeMap<String, TreeSet<Message>> allMessages;
@@ -73,9 +74,11 @@ public class TimelineActivity extends BaseActivity {
 			    Log.d(TAG, "READ MSG: " + msg.toJson());
 		Log.d(TAG, "Read " + allMessages.size() + " users' messages");
 		
-		listItems  = getListItems(allMessages);
+		treesetItems  = getListItems(allMessages);
 		listView = (ListView) findViewById(R.id.msg_items);
 //		ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, listItems);
+		listItems = new ArrayList<TimelineListItem>();
+		listItems.addAll(treesetItems);
 		timelineAdapter = new TimelineAdapter(this, listItems);
 		listView.setAdapter(timelineAdapter);
 		
@@ -149,7 +152,10 @@ public class TimelineActivity extends BaseActivity {
 	}
 	
 	public void onReplymsgClick(View v) {
-		//TODO
+		Intent intent = new Intent();
+		intent.setClass(TimelineActivity.this, ReplyMsgActivity.class);
+		popupWindow.dismiss();
+		startActivity(intent);
 	}
 	
 	public void onClickME(View v) {
@@ -190,7 +196,7 @@ public class TimelineActivity extends BaseActivity {
 	
 	public static void dataChange(Message newmsg) {
 		boolean matched = false;
-		for(TimelineListItem item : listItems){
+		for(TimelineListItem item : treesetItems){
 			if(item.getAssociate().equals(Utils.getTheOtherGuy(newmsg, Config.getMe().getEmail()))) {
 				item.setTime(newmsg.getTime());
 				item.setContent(newmsg.getContent());
@@ -199,11 +205,14 @@ public class TimelineActivity extends BaseActivity {
 		}
 		if (false == matched) {
 			TimelineListItem newItem = TimelineListItem.fromMsg(newmsg);
-			listItems.add(newItem);
+			treesetItems.add(newItem);
 		}
 		db.insertMessage(newmsg);
 		addMessage(newmsg);
-		listItems  = getListItems(allMessages);
+		treesetItems  = getListItems(allMessages);
+		listItems.clear();
+		listItems.addAll(treesetItems);
+		Log.d(TAG, "data changed, " + listItems);
 		timelineAdapter.notifyDataSetChanged();
 	}
 	

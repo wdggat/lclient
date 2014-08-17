@@ -1,9 +1,6 @@
 package com.liu.activity;
 
-import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
-import java.util.TreeSet;
 
 import org.apache.commons.lang.StringUtils;
 
@@ -22,10 +19,9 @@ public class TimelineAdapter extends BaseAdapter {
 //	private Context context;
 	private List<TimelineListItem> items;
 	private LayoutInflater inflater;
-	public TimelineAdapter(Context context, TreeSet<TimelineListItem> sortedItems) {
+	public TimelineAdapter(Context context, List<TimelineListItem> items) {
 //		this.context = context;
-		items = new ArrayList<TimelineListItem>();
-		items.addAll(sortedItems);
+		this.items = items;
 		inflater = LayoutInflater.from(context);
 	}
 
