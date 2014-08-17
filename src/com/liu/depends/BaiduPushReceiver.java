@@ -10,6 +10,7 @@ import com.baidu.frontia.api.FrontiaPushMessageReceiver;
 import com.liu.activity.MsgInfoActivity;
 import com.liu.activity.TimelineActivity;
 import com.liu.helper.Config;
+import com.liu.helper.Database;
 import com.liu.helper.RequestHelper;
 import com.liu.helper.Utils;
 import com.liu.message.DataType;

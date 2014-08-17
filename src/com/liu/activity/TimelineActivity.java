@@ -5,6 +5,8 @@ import java.util.List;
 import java.util.TreeMap;
 import java.util.TreeSet;
 
+import org.apache.commons.lang.StringUtils;
+
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
@@ -34,10 +36,12 @@ import com.liu.message.TimelineListItem;
 
 public class TimelineActivity extends BaseActivity {
 	private static final String TAG = "TIMELINE";
-	private Database db;
+	private static Database db;
 	private static TreeSet<TimelineListItem> listItems;
 	private static TimelineAdapter timelineAdapter;
 	private static PopupWindow popupWindow;
+	private static TreeMap<String, TreeSet<Message>> allMessages;
+	private static ListView listView;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -54,7 +58,7 @@ public class TimelineActivity extends BaseActivity {
 		
 //		Log.d(TAG, "come in timeline activity.");
 		db = Database.getDatabase(this);
-		final TreeMap<String, TreeSet<Message>> allMessages = groupMessage(db.readAllMessages());
+		allMessages = groupMessage(db.readAllMessages());
 		
 //		if(allMessages.isEmpty()) {
 //			Log.d(TAG, "read 0 messages, so fill some test data.");
@@ -70,7 +74,7 @@ public class TimelineActivity extends BaseActivity {
 		Log.d(TAG, "Read " + allMessages.size() + " users' messages");
 		
 		listItems  = getListItems(allMessages);
-		ListView listView = (ListView) findViewById(R.id.msg_items);
+		listView = (ListView) findViewById(R.id.msg_items);
 //		ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, listItems);
 		timelineAdapter = new TimelineAdapter(this, listItems);
 		listView.setAdapter(timelineAdapter);
@@ -108,7 +112,7 @@ public class TimelineActivity extends BaseActivity {
 		});
 	}
 	
-	private TreeSet<TimelineListItem> getListItems(
+	private static TreeSet<TimelineListItem> getListItems(
 			TreeMap<String, TreeSet<Message>> allMessages) {
 		TreeSet<TimelineListItem> listItems = new TreeSet<TimelineListItem>();
 		for(TreeSet<Message> messages : allMessages.values()) {
@@ -163,12 +167,25 @@ public class TimelineActivity extends BaseActivity {
 		for(Message message : messages) {
 			TreeSet<Message> uMsgs = new TreeSet<Message>();
 			String theOtherGuy = Utils.getTheOtherGuy(message, Config.getMe().getEmail());
+			if(StringUtils.isBlank(theOtherGuy)) {
+				db.dropMessage(message);
+				continue;
+			}
 			if(allMessages.containsKey(theOtherGuy))
 				uMsgs = allMessages.get(theOtherGuy);
 			uMsgs.add(message);
 			allMessages.put(theOtherGuy, uMsgs);
 		}
 		return allMessages;
+	}
+	
+	private static void addMessage(Message message) {
+		TreeSet<Message> uMsgs = new TreeSet<Message>();
+		String theOtherGuy = Utils.getTheOtherGuy(message, Config.getMe().getEmail());
+		if(allMessages.containsKey(theOtherGuy))
+			uMsgs = allMessages.get(theOtherGuy);
+		uMsgs.add(message);
+		allMessages.put(theOtherGuy, uMsgs);
 	}
 	
 	public static void dataChange(Message newmsg) {
@@ -184,6 +201,9 @@ public class TimelineActivity extends BaseActivity {
 			TimelineListItem newItem = TimelineListItem.fromMsg(newmsg);
 			listItems.add(newItem);
 		}
+		db.insertMessage(newmsg);
+		addMessage(newmsg);
+		listItems  = getListItems(allMessages);
 		timelineAdapter.notifyDataSetChanged();
 	}
 	

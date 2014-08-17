@@ -73,9 +73,7 @@ public class NewMsgActivity extends BaseActivity{
 			db.insertSingleMessage(message);
 			Log.d(TAG, "New message to " + receiverET.getText().toString() + " wrote into db");
 			
-			Intent intent = new Intent();
-			intent.setClass(NewMsgActivity.this, TimelineActivity.class);
-			startActivity(intent);
+			TimelineActivity.dataChange(message);
 			finish();
 		}
 	}

@@ -27,6 +27,7 @@ public class MsgInfoActivity extends BaseActivity {
 	private static String associate; 
 	private static ArrayList<Message> msgList;
 	private static MsgInfoAdapter adapter;
+	private static ListView msgsView;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -45,9 +46,9 @@ public class MsgInfoActivity extends BaseActivity {
 //		Log.d(TAG, "msgs read from bundle, " + msgList);
 		
 		adapter = new MsgInfoAdapter(this, msgList);
-		ListView v = (ListView)findViewById(R.id.msgs);
-		v.setAdapter(adapter);
-		v.requestFocus();
+		msgsView = (ListView)findViewById(R.id.msgs);
+		msgsView.setAdapter(adapter);
+		msgsView.requestFocus();
 	}
 	
 	public void onQuickReply(View v) {
@@ -74,6 +75,7 @@ public class MsgInfoActivity extends BaseActivity {
 		contentET.setText("");
 		contentET.clearFocus();
 		adapter.notifyDataSetChanged();
+		msgsView.requestFocus();
 	}
 	
 	public static void dataChange(Message message) {

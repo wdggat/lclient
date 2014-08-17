@@ -35,5 +35,6 @@
 14.在app的logo和消息列表里,显示未读消息数的红字.
 15.当用户换一个设备登陆时,baidu_push的消息怎么处理，要换吗，或增加?
 16.ME页面增加uid显示，注册成功后show一个uid的通知　。--done
-17.ME页面字体整体偏淡，标题的字体应加黑
+17.ME页面字体整体偏淡，标题的字体应加黑     --done 2014-08-17
 18.New_msg 后TimelineActivity会有多个.
+19.baidu_uinfo发不出去(FATAL)   --done 2014-08-17

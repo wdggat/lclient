@@ -96,7 +96,13 @@ public class Utils {
     }
     
     public static String getTheOtherGuy(Message message, String ME) {
-    	return ME.equals(message.getFrom()) ? message.getTo() : message.getFrom();
+    	if(ME.equals(message.getFrom())){  // msg_send
+    		return message.getTo();
+    	}
+    	// msg_receive
+    	if(message.isToEmail())
+    		return message.getFromUid();
+    	return message.getFrom();
     }
     
     // 获取ApiKey

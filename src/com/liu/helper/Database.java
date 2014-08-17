@@ -33,7 +33,7 @@ public class Database {
         }
     }
 	
-	private SQLiteDatabase db;
+	private static SQLiteDatabase db;
 	
     public void beginTransaction() {
         db.beginTransaction();
@@ -76,11 +76,16 @@ public class Database {
     	commitTransaction();
     	endTransaction();
     }
+    
+    public void dropMessage(Message message) {
+    	final String sql = "DELETE FROM messages where sender=? and fromUid=? and receiver=?;";
+    	db.execSQL(sql, new Object[]{message.getFrom(), message.getFromUid(), message.getTo()});
+    }
 	
 	private final static class DatabaseHelper extends SQLiteOpenHelper {
 		private static final int SCHEMA_VERSION = 1;
 		private static final String createMessages = "CREATE TABLE IF NOT EXISTS messages("
-				+ "id INTEGER PRIMARY KEY AUTOINCREMENT, subject VARCHAR(200), time TIMESTAMP, content TEXT, sender VARCHAR(100) NOT NULL, fromUid VARCHAR(100) NOT NULL, receiver VARCHAR(100) NOT NULL, type INT)";
+				+ "id INTEGER PRIMARY KEY AUTOINCREMENT, subject VARCHAR(200), time TIMESTAMP, content TEXT, sender VARCHAR(100), fromUid VARCHAR(100), receiver VARCHAR(100) NOT NULL, type INT)";
 	
         public DatabaseHelper(Context context) {
 			super(context, Config.DATABASE_NAME, null, SCHEMA_VERSION);
