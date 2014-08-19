@@ -109,7 +109,9 @@ public class IndexActivity extends BaseActivity {
 			public void onClick(View v) {
 				Event pf = new Event(DataType.PASSWORD_FORGET);
 				pf.putEntry(Event.USERNAME, edtInput.getText().toString());
+				Log.d(TAG, "$event_PASSWORD_FORGET, " + pf.toJson());
 				Response res = RequestHelper.sendEventAsync(IndexActivity.this, pf);
+				Log.d(TAG, "$ret, " + res.toString());
 				if (res.succeed()) {
 					ad.cancel();
 					Toast.makeText(IndexActivity.this,"密码发送已发至 "+ edtInput.getText().toString(),

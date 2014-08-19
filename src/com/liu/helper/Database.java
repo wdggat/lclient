@@ -49,7 +49,7 @@ public class Database {
     
     public List<Message> readAllMessages() {
     	List<Message> messages = new ArrayList<Message>();
-    	final String sql = "select sender,fromUid,receiver,subject,time,content,type from messages;";
+    	final String sql = "select sender,fromUid,receiver,subject,time,content,type,localTime from messages;";
     	Cursor cursor = db.rawQuery(sql, null);
     	while(cursor.moveToNext()) {
     		String from = cursor.getString(0);
@@ -59,14 +59,15 @@ public class Database {
     		long time = cursor.getLong(4);
     		String content = cursor.getString(5);
     		int type = cursor.getInt(6);
-    		Message message = new Message(from, fromUid, to, subject, time, content, DataType.getByValue(type));
+    		long localTime = cursor.getLong(7);
+    		Message message = new Message(from, fromUid, to, subject, time, content, DataType.getByValue(type), localTime);
     		messages.add(message);
     	}
     	return messages;
     }
     
     public void insertMessage(Message message) {
-    	final String sql = "INSERT INTO messages(subject, time, content, sender, fromUid, receiver, type) VALUES (?, ?, ?, ?, ?, ?, ?);";
+    	final String sql = "INSERT INTO messages(subject, time, content, sender, fromUid, receiver, type, localTime) VALUES (?, ?, ?, ?, ?, ?, ?, ?);";
     	db.execSQL(sql, new Object[]{message.getSubject(), message.getTime(), message.getContent(), message.getFrom(), message.getFromUid(), message.getTo(), message.getDataType().getValue()});
     }
     
@@ -85,7 +86,7 @@ public class Database {
 	private final static class DatabaseHelper extends SQLiteOpenHelper {
 		private static final int SCHEMA_VERSION = 1;
 		private static final String createMessages = "CREATE TABLE IF NOT EXISTS messages("
-				+ "id INTEGER PRIMARY KEY AUTOINCREMENT, subject VARCHAR(200), time TIMESTAMP, content TEXT, sender VARCHAR(100), fromUid VARCHAR(100), receiver VARCHAR(100) NOT NULL, type INT)";
+				+ "id INTEGER PRIMARY KEY AUTOINCREMENT, subject VARCHAR(200), time TIMESTAMP, content TEXT, sender VARCHAR(100), fromUid VARCHAR(100), receiver VARCHAR(100) NOT NULL, type INT, localTime TIMESTAMP)";
 	
         public DatabaseHelper(Context context) {
 			super(context, Config.DATABASE_NAME, null, SCHEMA_VERSION);

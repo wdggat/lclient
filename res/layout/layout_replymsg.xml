@@ -74,6 +74,7 @@
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
             android:gravity="center"
+            android:onClick="onCalloff"
             android:text="@string/calloff" />
 
         <Button
@@ -85,6 +86,7 @@
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
             android:gravity="center"
+            android:onClick="onSubmit"
             android:text="@string/send" />
     </TableRow>
 

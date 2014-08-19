@@ -52,10 +52,9 @@
             <EditText
                 android:id="@+id/msginfo_content"
                 android:layout_width="match_parent"
-                android:maxLines="1"
-                android:layout_gravity="left"
+                android:layout_gravity="left|center"
                 android:layout_weight="20"
-                android:inputType="textMultiLine" />
+                android:singleLine="true" />
 
             <Button
                 android:id="@+id/msg_send"

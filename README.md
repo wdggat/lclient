@@ -38,3 +38,7 @@
 17.ME页面字体整体偏淡，标题的字体应加黑     --done 2014-08-17
 18.New_msg 后TimelineActivity会有多个.
 19.baidu_uinfo发不出去(FATAL)   --done 2014-08-17
+20.quick_msg里,输入有汉字时，框里不正常显示已经输入的内容,横竖屏切换后正常了.
+21.quick_msg: 在quick_msg里发送消息 -> Timeline -> quick_msg, quick_msg里的消息数显示不全(主要是自己主动发出的消息); 时间可能不一致，应都按手机本地收到的时间为排序(增加字段: local_time); 消息发到，不显示(退回Timeline再回到quick_msg后显示出来了);新消息到来，不亮灯.
+22.Timeline里的item应该也以localTime来排序.
+

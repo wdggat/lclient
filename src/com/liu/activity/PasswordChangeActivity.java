@@ -2,11 +2,13 @@ package com.liu.activity;
 
 import android.os.Bundle;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.liu.depends.WanDouJia;
 import com.liu.helper.Config;
 import com.liu.helper.RequestHelper;
 import com.liu.helper.Utils;
@@ -20,6 +22,9 @@ public class PasswordChangeActivity extends BaseActivity{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.layout_password_change);
 		
+		ViewGroup bannerContainer = (ViewGroup) this.findViewById(R.id.msginfo_wdj_banner);
+		WanDouJia.showBanner(PasswordChangeActivity.this, bannerContainer);
+		
 		Button backToTimelineBt = (Button)findViewById(R.id.back_bt);
 		backToTimelineBt.setOnClickListener(new OnClickListener() {
 
@@ -29,6 +34,7 @@ public class PasswordChangeActivity extends BaseActivity{
 			}
 			
 		});
+		
 	}
 	
 	public void passwordChange(View v) {

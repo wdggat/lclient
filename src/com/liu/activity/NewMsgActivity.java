@@ -54,7 +54,7 @@ public class NewMsgActivity extends BaseActivity{
 		EditText receiverET = (EditText) findViewById(R.id.newmsg_receiver);
 		EditText subjectET = (EditText) findViewById(R.id.newmsg_subject);
 		EditText contentET = (EditText) findViewById(R.id.newmsg_content);
-		Message message = new Message(Config.getMe().getEmail(), Config.getMe().getUid(), receiverET.getText().toString().trim(), subjectET.getText().toString().trim(), System.currentTimeMillis()/1000, contentET.getText().toString().trim(), DataType.NEW_MSG);
+		Message message = new Message(Config.getMe().getEmail(), Config.getMe().getUid(), receiverET.getText().toString().trim(), subjectET.getText().toString().trim(), System.currentTimeMillis()/1000, contentET.getText().toString().trim(), DataType.NEW_MSG, System.currentTimeMillis()/1000);
 		if(!message.isValidMessage()) {
 			Toast.makeText(this, "字段不能为空", Toast.LENGTH_SHORT).show();
 			return;

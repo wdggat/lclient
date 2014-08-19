@@ -13,11 +13,13 @@ public class TimelineListItem implements Comparable<TimelineListItem>{
 	private String associate;
 	private long time;
 	private String content;
+	private long localTime;
 	
-	public TimelineListItem(String associate, long time, String content) {
+	public TimelineListItem(String associate, long time, String content, long localTime) {
 		this.associate = associate;
 		this.time = time;
 		this.content = content;
+		this.localTime = localTime;
 	}
 	
 	public String getAssociate() {
@@ -40,20 +42,28 @@ public class TimelineListItem implements Comparable<TimelineListItem>{
 		this.content = content;
 	}
 
+	public long getLocalTime() {
+		return localTime;
+	}
+
+	public void setLocalTime(long localTime) {
+		this.localTime = localTime;
+	}
+
 	public String getFormatedTime() {
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.US);
 		return sdf.format(new Date((long)time * 1000));
 	}
 	
 	public static TimelineListItem fromMsg(Message msg) {
-		return new TimelineListItem(Utils.getTheOtherGuy(msg, Config.getMe().getEmail()), msg.getTime(), msg.getContent());
+		return new TimelineListItem(Utils.getTheOtherGuy(msg, Config.getMe().getEmail()), msg.getTime(), msg.getContent(), msg.getLocalTime());
 	}
 
 	@Override
 	public int compareTo(TimelineListItem another) {
-		if (time < another.getTime())
+		if (localTime < another.getLocalTime())
 			return 1;
-		if(time > another.getTime())
+		if(localTime > another.getLocalTime())
 			return -1;
 		return 0;
 	}

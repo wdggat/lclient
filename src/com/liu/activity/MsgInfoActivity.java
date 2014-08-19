@@ -71,10 +71,9 @@ public class MsgInfoActivity extends BaseActivity {
 		Database db = Database.getDatabase(this);
 		db.insertSingleMessage(msg);
 		Log.i(TAG, "new_quick_msg inserted into db, " + msg.toJson());
-		msgList.add(msg);
 		contentET.setText("");
 		contentET.clearFocus();
-		adapter.notifyDataSetChanged();
+		dataChange(msg);
 		msgsView.requestFocus();
 	}
 	
@@ -83,5 +82,6 @@ public class MsgInfoActivity extends BaseActivity {
 			return;
 		msgList.add(message);
 		adapter.notifyDataSetChanged();
+		TimelineActivity.dataChange(message);
 	}
 }

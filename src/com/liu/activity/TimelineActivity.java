@@ -38,7 +38,7 @@ public class TimelineActivity extends BaseActivity {
 	private static Database db;
 	private static TreeSet<TimelineListItem> treesetItems;
 	//This redundance items is just for TimelineAdapter, becaust treesetItems can't satisfy the apies in adapter
-	private static List<TimelineListItem> listItems;
+	private static List<TimelineListItem> listItems = new ArrayList<TimelineListItem>();
 	private static TimelineAdapter timelineAdapter;
 	private static PopupWindow popupWindow;
 	private static TreeMap<String, TreeSet<Message>> allMessages;
@@ -77,7 +77,7 @@ public class TimelineActivity extends BaseActivity {
 		treesetItems  = getListItems(allMessages);
 		listView = (ListView) findViewById(R.id.msg_items);
 //		ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, listItems);
-		listItems = new ArrayList<TimelineListItem>();
+		listItems.clear();
 		listItems.addAll(treesetItems);
 		timelineAdapter = new TimelineAdapter(this, listItems);
 		listView.setAdapter(timelineAdapter);

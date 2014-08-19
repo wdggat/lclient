@@ -51,7 +51,7 @@ public class ReplyMsgActivity extends BaseActivity{
 	public void onSubmit(View v) {
 		EditText receiverET = (EditText) findViewById(R.id.replymsg_uid);
 		EditText contentET = (EditText) findViewById(R.id.replymsg_content);
-		Message message = new Message(Config.getMe().getEmail(), Config.getMe().getUid(), receiverET.getText().toString().trim(), "", System.currentTimeMillis()/1000, contentET.getText().toString().trim(), DataType.REPLY);
+		Message message = new Message(Config.getMe().getEmail(), Config.getMe().getUid(), receiverET.getText().toString().trim(), "", System.currentTimeMillis()/1000, contentET.getText().toString().trim(), DataType.REPLY, System.currentTimeMillis()/1000);
 		if(!message.isValidMessage()) {
 			Toast.makeText(this, "字段不能为空", Toast.LENGTH_SHORT).show();
 			return;

@@ -37,7 +37,7 @@
     <string name="password_new">新密码</string>
     <string name="password_new_confirm">确认新密码</string>
     <string name="timeline_newmsg">新建消息</string>
-    <string name="timeline_replymsg">回复邮件</string>
+    <string name="timeline_replymsg">回复uid</string>
     <string name="crypt_key">.>zSpP#j[1>:Mx;[</string>
     
     <!-- for depends -->
