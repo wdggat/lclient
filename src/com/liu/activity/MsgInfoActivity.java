@@ -25,7 +25,7 @@ import com.liu.message.Response;
 public class MsgInfoActivity extends BaseActivity {
 	private static final String TAG = "MsgInfo";
 	private static String associate; 
-	private static ArrayList<Message> msgList;
+	private static ArrayList<Message> msgList = new ArrayList<Message>();
 	private static MsgInfoAdapter adapter;
 	private static ListView msgsView;
 	@Override
@@ -38,12 +38,12 @@ public class MsgInfoActivity extends BaseActivity {
 		
 		Intent intent = getIntent();
 		ArrayList<String> msgStrList  = intent.getExtras().getStringArrayList("msgs");
-		msgList = new ArrayList<Message>();
+		Log.d(TAG, "msgs read from bundle, " + msgStrList);
+		msgList.clear();
 		for(String msgStr : msgStrList)
 			msgList.add(JSON.parseObject(msgStr, Message.class));
 		associate = intent.getExtras().getString("uid");
 		((TextView)findViewById(R.id.msginfo_uid)).setText(associate);
-//		Log.d(TAG, "msgs read from bundle, " + msgList);
 		
 		adapter = new MsgInfoAdapter(this, msgList);
 		msgsView = (ListView)findViewById(R.id.msgs);
@@ -73,8 +73,8 @@ public class MsgInfoActivity extends BaseActivity {
 		Log.i(TAG, "new_quick_msg inserted into db, " + msg.toJson());
 		contentET.setText("");
 		contentET.clearFocus();
+		TimelineActivity.dataChange(msg);
 		dataChange(msg);
-		msgsView.requestFocus();
 	}
 	
 	public static void dataChange(Message message) {
@@ -82,6 +82,6 @@ public class MsgInfoActivity extends BaseActivity {
 			return;
 		msgList.add(message);
 		adapter.notifyDataSetChanged();
-		TimelineActivity.dataChange(message);
+		Log.d(TAG, "$data_changed," + message.toJson());
 	}
 }

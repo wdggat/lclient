@@ -59,15 +59,17 @@ public class TimelineListItem implements Comparable<TimelineListItem>{
 		return new TimelineListItem(Utils.getTheOtherGuy(msg, Config.getMe().getEmail()), msg.getTime(), msg.getContent(), msg.getLocalTime());
 	}
 
+	// NEVER return 0, or Treeset will reject equaled items.
 	@Override
 	public int compareTo(TimelineListItem another) {
 		if (localTime < another.getLocalTime())
 			return 1;
-		if(localTime > another.getLocalTime())
-			return -1;
-		return 0;
+		return -1;
+//		if(localTime >= another.getLocalTime())
+//			return -1;
+//		return 0;
 	}
-	
+
 	public String toString() {
 		return JSON.toJSONString(this);
 	}

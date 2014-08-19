@@ -69,9 +69,9 @@ public class TimelineActivity extends BaseActivity {
 //		}
 		
 		//TODO, delete
-		for(TreeSet<Message> msgs : allMessages.values())
-			for(Message msg : msgs)
-			    Log.d(TAG, "READ MSG: " + msg.toJson());
+		for(String theOtherGuy : allMessages.keySet())
+			for(Message msg : allMessages.get(theOtherGuy))
+			    Log.d(TAG, "READ MSG: " + theOtherGuy + " - " + msg.toJson());
 		Log.d(TAG, "Read " + allMessages.size() + " users' messages");
 		
 		treesetItems  = getListItems(allMessages);
@@ -80,6 +80,7 @@ public class TimelineActivity extends BaseActivity {
 		listItems.clear();
 		listItems.addAll(treesetItems);
 		timelineAdapter = new TimelineAdapter(this, listItems);
+		Log.d(TAG, "listItems for Timeline, " + listItems);
 		listView.setAdapter(timelineAdapter);
 		
 		Button newmsgBt = (Button)findViewById(R.id.timeline_create_msgbt);
@@ -115,7 +116,7 @@ public class TimelineActivity extends BaseActivity {
 		});
 	}
 	
-	private static TreeSet<TimelineListItem> getListItems(
+	public static TreeSet<TimelineListItem> getListItems(
 			TreeMap<String, TreeSet<Message>> allMessages) {
 		TreeSet<TimelineListItem> listItems = new TreeSet<TimelineListItem>();
 		for(TreeSet<Message> messages : allMessages.values()) {

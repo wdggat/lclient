@@ -68,7 +68,7 @@ public class Database {
     
     public void insertMessage(Message message) {
     	final String sql = "INSERT INTO messages(subject, time, content, sender, fromUid, receiver, type, localTime) VALUES (?, ?, ?, ?, ?, ?, ?, ?);";
-    	db.execSQL(sql, new Object[]{message.getSubject(), message.getTime(), message.getContent(), message.getFrom(), message.getFromUid(), message.getTo(), message.getDataType().getValue()});
+    	db.execSQL(sql, new Object[]{message.getSubject(), message.getTime(), message.getContent(), message.getFrom(), message.getFromUid(), message.getTo(), message.getDataType().getValue(), message.getLocalTime()});
     }
     
     public void insertSingleMessage(Message message) {
