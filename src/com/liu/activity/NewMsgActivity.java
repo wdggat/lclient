@@ -69,8 +69,7 @@ public class NewMsgActivity extends BaseActivity{
 			return;
 		} else {
 			Toast.makeText(this, "Succeed.", Toast.LENGTH_SHORT).show();
-			Database db = Database.getDatabase(NewMsgActivity.this);
-			db.insertSingleMessage(message);
+			Database.insertMessage(message);
 			Log.d(TAG, "New message to " + receiverET.getText().toString() + " wrote into db");
 			
 			TimelineActivity.dataChange(message);

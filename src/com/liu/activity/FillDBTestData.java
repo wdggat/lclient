@@ -15,6 +15,7 @@ public class FillDBTestData extends Activity{
 	protected void onCreate(Bundle savedInstanceState) {
 //		super.onCreate(savedInstanceState);
 		context = this;
+		Database.init(context);
 	}
 	
 	public static void fillTimelineMsgs() {
@@ -41,12 +42,8 @@ public class FillDBTestData extends Activity{
 	    Message message_13 = new Message(to, toUid, from, "", 1400967260, "哈哈，不是额，是你哥.", DataType.QUICK_MSG, 1400967260);
 	    Message message_14 = new Message(from, fromUid, to, "", 1400967350, "good, you have something to tell me?", DataType.QUICK_MSG, 1400967350);
 	    
-	    Database db = Database.getDatabase(context);
 	    Message[] messages = new Message[]{message_1, message_2, message_3, message_4, message_5, message_6, message_7, message_8, message_9, message_10, message_11, message_12, message_13, message_14};
-	    db.beginTransaction();
 	    for(Message message : messages)
-	    	db.insertMessage(message);
-	    db.commitTransaction();
-	    db.endTransaction();
+	    	Database.insertMessage(message);
 	}
 }

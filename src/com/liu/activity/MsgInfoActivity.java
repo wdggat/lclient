@@ -19,6 +19,7 @@ import com.liu.depends.WanDouJia;
 import com.liu.helper.Config;
 import com.liu.helper.Database;
 import com.liu.helper.RequestHelper;
+import com.liu.helper.Utils;
 import com.liu.message.Message;
 import com.liu.message.Response;
 
@@ -68,17 +69,25 @@ public class MsgInfoActivity extends BaseActivity {
 			Toast.makeText(this, "Message sent failed.", Toast.LENGTH_SHORT).show();
 			return;
 		}
-		Database db = Database.getDatabase(this);
-		db.insertSingleMessage(msg);
 		Log.i(TAG, "new_quick_msg inserted into db, " + msg.toJson());
 		contentET.setText("");
 		contentET.clearFocus();
-		TimelineActivity.dataChange(msg);
 		dataChange(msg);
+		TimelineActivity.dataChange(msg);
+		Database.insertMessage(msg);
+	}
+	
+	@Override
+	public void onDestroy() {
+		super.onDestroy();
+		//TODO
 	}
 	
 	public static void dataChange(Message message) {
-		if(msgList == null || !msgList.get(0).getFrom().equals(message.getFrom()))
+		//if not current user's msg, discard
+		if (msgList == null
+				|| (!msgList.isEmpty() && !Utils.getTheOtherGuy(message,Config.getMe().getEmail()).equals(
+						Utils.getTheOtherGuy(msgList.get(0), Config.getMe().getEmail()))))
 			return;
 		msgList.add(message);
 		adapter.notifyDataSetChanged();

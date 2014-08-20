@@ -19,6 +19,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.liu.helper.Config;
+import com.liu.helper.Database;
 import com.liu.helper.RequestHelper;
 import com.liu.helper.Utils;
 import com.liu.message.DataType;
@@ -32,6 +33,7 @@ public class IndexActivity extends BaseActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.layout_index);
+		Database.init(this);
 		
 		SharedPreferences sp = IndexActivity.this.getSharedPreferences(Config.SHAREDPREFERENCES_NAME, Context.MODE_PRIVATE);
 		if(sp.getBoolean(Config.LOGINED_KEY, false)) {

@@ -55,6 +55,7 @@ public class BaiduPushReceiver extends FrontiaPushMessageReceiver {
 		try {
 			Message msg = JSON.parseObject(message, Message.class);
 			msg.setLocalTime(System.currentTimeMillis()/1000);
+			Database.insertMessage(msg);
 			MsgInfoActivity.dataChange(msg);
 			TimelineActivity.dataChange(msg);
 		} catch (Throwable t) {

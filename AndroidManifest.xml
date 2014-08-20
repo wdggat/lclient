@@ -134,6 +134,7 @@
 		<meta-data android:name="BaiduMobAd_APP_SEC" android:value="debug" />
 		<activity android:name="com.baidu.mobads.AppActivity" 
 		    android:configChanges="keyboard|keyboardHidden|orientation" />
+		<!-- Baidu push end -->
 		
 		<!-- umeng -->
 		<meta-data android:value="53e33bf0fd98c5d33a027baa" android:name="UMENG_APPKEY"></meta-data>

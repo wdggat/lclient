@@ -35,7 +35,6 @@ import com.liu.message.TimelineListItem;
 
 public class TimelineActivity extends BaseActivity {
 	private static final String TAG = "TIMELINE";
-	private static Database db;
 	private static TreeSet<TimelineListItem> treesetItems;
 	//This redundance items is just for TimelineAdapter, becaust treesetItems can't satisfy the apies in adapter
 	private static List<TimelineListItem> listItems = new ArrayList<TimelineListItem>();
@@ -58,8 +57,7 @@ public class TimelineActivity extends BaseActivity {
 		WanDouJia.showBanner(TimelineActivity.this, bannerContainer);
 		
 //		Log.d(TAG, "come in timeline activity.");
-		db = Database.getDatabase(this);
-		allMessages = groupMessage(db.readAllMessages());
+		allMessages = groupMessage(Database.readAllMessages());
 		
 //		if(allMessages.isEmpty()) {
 //			Log.d(TAG, "read 0 messages, so fill some test data.");
@@ -175,7 +173,7 @@ public class TimelineActivity extends BaseActivity {
 			TreeSet<Message> uMsgs = new TreeSet<Message>();
 			String theOtherGuy = Utils.getTheOtherGuy(message, Config.getMe().getEmail());
 			if(StringUtils.isBlank(theOtherGuy)) {
-				db.dropMessage(message);
+				Database.dropMessage(message);
 				continue;
 			}
 			if(allMessages.containsKey(theOtherGuy))
@@ -208,7 +206,6 @@ public class TimelineActivity extends BaseActivity {
 			TimelineListItem newItem = TimelineListItem.fromMsg(newmsg);
 			treesetItems.add(newItem);
 		}
-		db.insertMessage(newmsg);
 		addMessage(newmsg);
 		treesetItems  = getListItems(allMessages);
 		listItems.clear();

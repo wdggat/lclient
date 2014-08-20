@@ -19,7 +19,13 @@ public class Database {
 		db = new DatabaseHelper(context).getWritableDatabase();
 	}
 
-	public static synchronized Database getDatabase(final Context context) {
+	public static void init(final Context context) {
+		if (null == database) {
+            database = new Database(context);
+        }
+	}
+	
+	private static synchronized Database getDatabase(final Context context) {
 		if (null == database) {
             database = new Database(context);
         }
@@ -35,19 +41,19 @@ public class Database {
 	
 	private static SQLiteDatabase db;
 	
-    public void beginTransaction() {
+	private static void beginTransaction() {
         db.beginTransaction();
     }
 
-    public void commitTransaction() {
+    private static void commitTransaction() {
         db.setTransactionSuccessful();
     }
 
-    public void endTransaction() {
+    private static void endTransaction() {
         db.endTransaction();
     }
     
-    public List<Message> readAllMessages() {
+    public static List<Message> readAllMessages() {
     	List<Message> messages = new ArrayList<Message>();
     	final String sql = "select sender,fromUid,receiver,subject,time,content,type,localTime from messages;";
     	Cursor cursor = db.rawQuery(sql, null);
@@ -66,19 +72,20 @@ public class Database {
     	return messages;
     }
     
-    public void insertMessage(Message message) {
+    public static void insertMessage(Message message) {
     	final String sql = "INSERT INTO messages(subject, time, content, sender, fromUid, receiver, type, localTime) VALUES (?, ?, ?, ?, ?, ?, ?, ?);";
     	db.execSQL(sql, new Object[]{message.getSubject(), message.getTime(), message.getContent(), message.getFrom(), message.getFromUid(), message.getTo(), message.getDataType().getValue(), message.getLocalTime()});
     }
     
-    public void insertSingleMessage(Message message) {
+    //Don't use transaction, performance killer.
+/*    public static void insertSingleMessage(Message message) {
     	beginTransaction();
     	insertMessage(message);
     	commitTransaction();
     	endTransaction();
-    }
+    }*/
     
-    public void dropMessage(Message message) {
+    public static void dropMessage(Message message) {
     	final String sql = "DELETE FROM messages where sender=? and fromUid=? and receiver=?;";
     	db.execSQL(sql, new Object[]{message.getFrom(), message.getFromUid(), message.getTo()});
     }
