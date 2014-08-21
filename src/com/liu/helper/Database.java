@@ -77,6 +77,14 @@ public class Database {
     	db.execSQL(sql, new Object[]{message.getSubject(), message.getTime(), message.getContent(), message.getFrom(), message.getFromUid(), message.getTo(), message.getDataType().getValue(), message.getLocalTime()});
     }
     
+    public static void insertMessage(Context context, Message message) {
+    	final String sql = "INSERT INTO messages(subject, time, content, sender, fromUid, receiver, type, localTime) VALUES (?, ?, ?, ?, ?, ?, ?, ?);";
+    	if(db == null) {
+    		init(context);
+    	}
+    	db.execSQL(sql, new Object[]{message.getSubject(), message.getTime(), message.getContent(), message.getFrom(), message.getFromUid(), message.getTo(), message.getDataType().getValue(), message.getLocalTime()});
+    }
+    
     //Don't use transaction, performance killer.
 /*    public static void insertSingleMessage(Message message) {
     	beginTransaction();

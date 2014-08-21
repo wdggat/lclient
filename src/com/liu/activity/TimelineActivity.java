@@ -194,6 +194,9 @@ public class TimelineActivity extends BaseActivity {
 	}
 	
 	public static void dataChange(Message newmsg) {
+		// not opened, receiver run in background
+		if(timelineAdapter == null)
+			return;
 		boolean matched = false;
 		for(TimelineListItem item : treesetItems){
 			if(item.getAssociate().equals(Utils.getTheOtherGuy(newmsg, Config.getMe().getEmail()))) {
@@ -214,4 +217,7 @@ public class TimelineActivity extends BaseActivity {
 		timelineAdapter.notifyDataSetChanged();
 	}
 	
+	public static boolean isAppInBackround() {
+		return timelineAdapter == null;
+	}
 }

@@ -1,5 +1,6 @@
 package com.liu.depends;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import android.content.Context;
@@ -22,6 +23,7 @@ public class BaiduPushReceiver extends FrontiaPushMessageReceiver {
 	private static final String TAG = BaiduPushReceiver.class.getName();
 	private static final int SUCCESS_CODE = 0;
 	private static final String TYPE_MESSAGE = "m";
+	private static List<Message> cacheMsgs = new ArrayList<Message>();
 
 	@Override
 	public void onBind(Context context, int errorCode, String appid,
@@ -55,7 +57,7 @@ public class BaiduPushReceiver extends FrontiaPushMessageReceiver {
 		try {
 			Message msg = JSON.parseObject(message, Message.class);
 			msg.setLocalTime(System.currentTimeMillis()/1000);
-			Database.insertMessage(msg);
+			Database.insertMessage(context, msg);
 			MsgInfoActivity.dataChange(msg);
 			TimelineActivity.dataChange(msg);
 		} catch (Throwable t) {

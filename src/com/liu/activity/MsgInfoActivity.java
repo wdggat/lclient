@@ -85,7 +85,7 @@ public class MsgInfoActivity extends BaseActivity {
 	
 	public static void dataChange(Message message) {
 		//if not current user's msg, discard
-		if (msgList == null
+		if (adapter == null || msgList == null
 				|| (!msgList.isEmpty() && !Utils.getTheOtherGuy(message,Config.getMe().getEmail()).equals(
 						Utils.getTheOtherGuy(msgList.get(0), Config.getMe().getEmail()))))
 			return;
