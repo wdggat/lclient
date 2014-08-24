@@ -83,9 +83,9 @@ public class RegistActivity extends BaseActivity {
 		int genderRadioId = ((RadioGroup)findViewById(R.id.gender_group)).getCheckedRadioButtonId();
 		String province = ((Spinner)findViewById(R.id.provinces_spinner)).getSelectedItem().toString();
 //		long birthday = ((DatePicker)findViewById(R.id.birthday)).getCalendarView().getDate() / 1000;
-		DatePicker datePicker = (DatePicker)findViewById(R.id.birthday);
-		Calendar c = Calendar.getInstance();
-		c.set(datePicker.getYear(), datePicker.getMonth(), datePicker.getDayOfMonth(), 0, 0, 0);
+//		DatePicker datePicker = (DatePicker)findViewById(R.id.birthday);
+//		Calendar c = Calendar.getInstance();
+//		c.set(datePicker.getYear(), datePicker.getMonth(), datePicker.getDayOfMonth(), 0, 0, 0);
 		String phone = ((EditText)findViewById(R.id.phone)).getText().toString();
 		String password = ((EditText)findViewById(R.id.password)).getText().toString();
 		String passwordConfirm = ((EditText)findViewById(R.id.password_confirm)).getText().toString();
@@ -109,7 +109,7 @@ public class RegistActivity extends BaseActivity {
 			handler.sendMessage(msg);
 			return false;
 		}
-		user = new User(emailAddr, getGender(genderRadioId), province, c.getTimeInMillis() / 1000, phone, password, "");
+		user = new User(emailAddr, getGender(genderRadioId), province, 0, phone, password, "");
 		return true;
 	}
 	

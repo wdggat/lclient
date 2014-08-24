@@ -29,8 +29,6 @@ public class MeActivity extends BaseActivity {
 		genderTV.setText(me.showGender());
 		TextView phoneTV = (TextView)findViewById(R.id.me_phone);
 		phoneTV.setText(me.getPhone());
-		TextView birthdayTV = (TextView)findViewById(R.id.me_birthday);
-		birthdayTV.setText(me.showBirthday());
 		TextView provinceTV = (TextView)findViewById(R.id.me_province);
 		provinceTV.setText(me.getProvince());
 		

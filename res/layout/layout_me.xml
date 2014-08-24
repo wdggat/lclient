@@ -74,20 +74,7 @@
                 android:layout_weight="8" />
         </TableRow>
 
-        <TableRow android:layout_marginTop="10dp" >
 
-            <TextView
-                android:layout_gravity="left|center"
-                android:layout_marginLeft="10dp"
-                android:text="@string/birthday_colon" />
-
-            <TextView
-                android:id="@+id/me_birthday"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="left"
-                android:layout_weight="8" />
-        </TableRow>
 
         <TableRow android:layout_marginTop="10dp" >
 
