@@ -49,6 +49,7 @@ public class MsgInfoActivity extends BaseActivity {
 		adapter = new MsgInfoAdapter(this, msgList);
 		msgsView = (ListView)findViewById(R.id.msgs);
 		msgsView.setAdapter(adapter);
+		msgsView.setSelection(msgList.size() - 1);
 		msgsView.requestFocus();
 	}
 	
@@ -92,5 +93,6 @@ public class MsgInfoActivity extends BaseActivity {
 		msgList.add(message);
 		adapter.notifyDataSetChanged();
 		Log.d(TAG, "$data_changed," + message.toJson());
+		msgsView.setSelection(msgList.size() - 1);
 	}
 }
