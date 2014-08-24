@@ -128,7 +128,7 @@
         
           		<!-- 在百度开发者中心查询应用的API Key -->
         <meta-data android:name="api_key" android:value="jwKG2Zrd1XXTKrZkzgnKoVk2" />
-         <meta-data android:name="BaiduPush_CHANNEL" android:value="qq" />
+         <meta-data android:name="BaiduPush_CHANNEL" android:value="wandoujia" />
          <!--　baidu mobile union -->
          <meta-data android:name="BaiduMobAd_APP_ID" android:value="debug" /> 
 		<meta-data android:name="BaiduMobAd_APP_SEC" android:value="debug" />
@@ -138,7 +138,7 @@
 		
 		<!-- umeng -->
 		<meta-data android:value="53e33bf0fd98c5d33a027baa" android:name="UMENG_APPKEY"></meta-data>
-        <meta-data android:value="qq" android:name="UMENG_CHANNEL"/>
+        <meta-data android:value="wandoujia" android:name="UMENG_CHANNEL"/>
 		<!-- umeng end -->
 		
         <!-- For wandoujia AdsSdk. -->
