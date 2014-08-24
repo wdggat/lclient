@@ -20,10 +20,10 @@ public class Config {
 	public static final String BAIDU_PUSH_UINFO_UPLOADED = "baidu_push_uinfo_uploaded";
 	
 	//wan dou jia
-	public static final String WDJ_APPID = "100011527";
-	public static final String WDJ_SECRETKEY = "41a3ddee1ae4d1f8332b76d553672cd1";
-	public static final String WDJ_ADSID_BANNER = "b32a84a8cef022e665004a02980753e6";
-	public static final String WDJ_ADSID_APPLIST = "f092c3bf496118d82d9f12315721a2e7";
+	public static final String WDJ_APPID = "100012295";
+	public static final String WDJ_SECRETKEY = "55a83578345e7791e5128b0d2a2fb3b4";
+	public static final String WDJ_ADSID_BANNER = "a5d2b0a5ef754ffa9a1d55a69675ecc9";
+	public static final String WDJ_ADSID_APPLIST = "88c01d5ad56c5e0b626cb185f4e58d93";
 	public static final String WDJ_APP = "APP";
 	
 	private static User me;

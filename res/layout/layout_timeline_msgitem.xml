@@ -18,7 +18,7 @@
             android:textStyle="bold"
             android:textSize="15sp"
             android:text="hzliuxiaolong@163.com" />
-
+        
         <TextView
             android:id="@+id/timeline_msgitem_datetime"
             android:layout_weight="1"

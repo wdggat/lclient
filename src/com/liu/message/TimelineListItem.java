@@ -5,7 +5,6 @@ import java.util.Date;
 import java.util.Locale;
 
 import com.alibaba.fastjson.JSON;
-import com.liu.activity.BaseActivity;
 import com.liu.helper.Config;
 import com.liu.helper.Utils;
 
