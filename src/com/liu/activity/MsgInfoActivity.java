@@ -16,6 +16,7 @@ import android.widget.Toast;
 
 import com.alibaba.fastjson.JSON;
 import com.liu.depends.WanDouJia;
+import com.liu.helper.Cache;
 import com.liu.helper.Config;
 import com.liu.helper.Database;
 import com.liu.helper.RequestHelper;
@@ -51,6 +52,8 @@ public class MsgInfoActivity extends BaseActivity {
 		msgsView.setAdapter(adapter);
 		msgsView.setSelection(msgList.size() - 1);
 		msgsView.requestFocus();
+		
+		unreadClear();
 	}
 	
 	public void onQuickReply(View v) {
@@ -81,15 +84,26 @@ public class MsgInfoActivity extends BaseActivity {
 	@Override
 	public void onDestroy() {
 		super.onDestroy();
-		//TODO
+		adapter = null;
+	}
+	
+	private static void unreadClear() {
+		if(msgList != null && !msgList.isEmpty()) {
+			String associate = Utils.getTheOtherGuy(msgList.get(0), Config.getMe().getEmail());
+			Cache.resetUnread(associate);
+			Log.d(TAG, "$unread_reset, " + associate);
+		}
 	}
 	
 	public static void dataChange(Message message) {
+		String associate = Utils.getTheOtherGuy(message,Config.getMe().getEmail());
 		//if not current user's msg, discard
 		if (adapter == null || msgList == null
-				|| (!msgList.isEmpty() && !Utils.getTheOtherGuy(message,Config.getMe().getEmail()).equals(
-						Utils.getTheOtherGuy(msgList.get(0), Config.getMe().getEmail()))))
+				|| (!msgList.isEmpty() && !associate.equals(
+						Utils.getTheOtherGuy(msgList.get(0), Config.getMe().getEmail())))){
 			return;
+		}
+		unreadClear();
 		msgList.add(message);
 		adapter.notifyDataSetChanged();
 		Log.d(TAG, "$data_changed," + message.toJson());

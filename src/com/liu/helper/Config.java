@@ -1,5 +1,7 @@
 package com.liu.helper;
 
+import android.content.Context;
+
 import com.liu.message.User;
 
 public class Config {
@@ -29,6 +31,12 @@ public class Config {
 	private static User me;
 
 	public static User getMe() {
+		return me;
+	}
+	
+	public static User getMe(Context context) {
+		if(me == null) 
+			me = Utils.getME(context);
 		return me;
 	}
 

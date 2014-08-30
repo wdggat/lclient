@@ -10,6 +10,8 @@ import org.apache.commons.lang.StringUtils;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.util.Log;
@@ -27,6 +29,7 @@ import android.widget.TableLayout;
 
 import com.liu.depends.Depends;
 import com.liu.depends.WanDouJia;
+import com.liu.helper.Cache;
 import com.liu.helper.Config;
 import com.liu.helper.Database;
 import com.liu.helper.Utils;
@@ -47,6 +50,8 @@ public class TimelineActivity extends BaseActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.layout_timeline);
+		
+		Cache.init(TimelineActivity.this, Config.SHAREDPREFERENCES_NAME, psListener);
 		
 		if(Config.getMe() == null)
 		    Config.setMe(Utils.getME(TimelineActivity.this));
@@ -119,6 +124,7 @@ public class TimelineActivity extends BaseActivity {
 		TreeSet<TimelineListItem> listItems = new TreeSet<TimelineListItem>();
 		for(TreeSet<Message> messages : allMessages.values()) {
 			TimelineListItem item = TimelineListItem.fromMsg(messages.last());
+			item.setUnread(Cache.getUnread(item.getAssociate()));
 			listItems.add(item);
 		}
 		return listItems;
@@ -198,19 +204,23 @@ public class TimelineActivity extends BaseActivity {
 		if(timelineAdapter == null)
 			return;
 		boolean matched = false;
+		addMessage(newmsg);
+		treesetItems  = getListItems(allMessages);
+		String associate = Utils.getTheOtherGuy(newmsg, Config.getMe().getEmail());
 		for(TimelineListItem item : treesetItems){
-			if(item.getAssociate().equals(Utils.getTheOtherGuy(newmsg, Config.getMe().getEmail()))) {
+			if(item.getAssociate().equals(associate)) {
 				item.setTime(newmsg.getTime());
 				item.setContent(newmsg.getContent());
+				item.setUnread(Cache.getUnread(item.getAssociate()));
+				Log.d(TAG, "$unread " + associate + "=" + Cache.getUnread(item.getAssociate()));
 				matched = true;
 			}
 		}
 		if (false == matched) {
 			TimelineListItem newItem = TimelineListItem.fromMsg(newmsg);
+			newItem.setUnread(Cache.getUnread(newItem.getAssociate()));
 			treesetItems.add(newItem);
 		}
-		addMessage(newmsg);
-		treesetItems  = getListItems(allMessages);
 		listItems.clear();
 		listItems.addAll(treesetItems);
 		Log.d(TAG, "data changed, " + listItems);
@@ -220,4 +230,21 @@ public class TimelineActivity extends BaseActivity {
 	public static boolean isAppInBackround() {
 		return timelineAdapter == null;
 	}
+	
+	private OnSharedPreferenceChangeListener psListener = new OnSharedPreferenceChangeListener() {  
+        @Override  
+        public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
+        	Log.i("Timeline.KEY_CHANGE detected, ", "key: " + key);
+        	//TODO, this may not be a string key
+            if(Cache.isUnReadMsgKey(key)) {
+            	Log.i("Timeline.KEY_CHANGE", "key: " + key + " = " + sharedPreferences.getInt(key, 0));
+            	String associate = Cache.getAssociateFromUnreadMsgKey(key);
+            	for(TimelineListItem item : listItems) {
+            		if(item.getAssociate().equals(associate)) 
+            			item.setUnread(Cache.getUnread(associate));
+            	}
+            	timelineAdapter.notifyDataSetChanged();
+            }
+        }
+    };  
 }

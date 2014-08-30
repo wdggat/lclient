@@ -17,7 +17,16 @@
             android:layout_weight="1"
             android:textStyle="bold"
             android:textSize="15sp"
+            android:layout_width="wrap_content"
             android:text="hzliuxiaolong@163.com" />
+        
+        <TextView
+            android:id="@+id/timeline_msgitem_unread"
+            android:layout_weight="1"
+            android:textStyle="bold"
+            android:textColor="#FF0000"
+            android:gravity="left"
+            android:textSize="15sp"/>
         
         <TextView
             android:id="@+id/timeline_msgitem_datetime"

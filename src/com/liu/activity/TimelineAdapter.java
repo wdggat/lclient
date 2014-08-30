@@ -46,6 +46,9 @@ public class TimelineAdapter extends BaseAdapter {
 		TableLayout layout = (TableLayout)inflater.inflate(R.layout.layout_timeline_msgitem, null);
 		TextView associateTV = (TextView)layout.findViewById(R.id.timeline_msgitem_associate);
 		associateTV.setText(item.getAssociate());
+		TextView unreadTv = (TextView)layout.findViewById(R.id.timeline_msgitem_unread);
+		if(item.getUnread() > 0)
+			unreadTv.setText("(" + item.getUnread() + ")");
 		TextView datetimeTV = (TextView)layout.findViewById(R.id.timeline_msgitem_datetime);
 		datetimeTV.setText(item.getFormatedTime());
 		TextView contentTV = (TextView)layout.findViewById(R.id.timeline_msgitem_msgglimpse);

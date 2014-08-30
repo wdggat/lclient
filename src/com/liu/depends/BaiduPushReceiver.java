@@ -1,15 +1,21 @@
 package com.liu.depends;
 
-import java.util.ArrayList;
 import java.util.List;
 
+import android.app.Notification;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.Context;
+import android.content.Intent;
+import android.graphics.Color;
 import android.util.Log;
 
 import com.alibaba.fastjson.JSON;
 import com.baidu.frontia.api.FrontiaPushMessageReceiver;
 import com.liu.activity.MsgInfoActivity;
+import com.liu.activity.R;
 import com.liu.activity.TimelineActivity;
+import com.liu.helper.Cache;
 import com.liu.helper.Config;
 import com.liu.helper.Database;
 import com.liu.helper.RequestHelper;
@@ -22,8 +28,8 @@ import com.liu.message.Response;
 public class BaiduPushReceiver extends FrontiaPushMessageReceiver {
 	private static final String TAG = BaiduPushReceiver.class.getName();
 	private static final int SUCCESS_CODE = 0;
-	private static final String TYPE_MESSAGE = "m";
-	private static List<Message> cacheMsgs = new ArrayList<Message>();
+//	private static final String TYPE_MESSAGE = "m";
+//	private static List<Message> cacheMsgs = new ArrayList<Message>();
 
 	@Override
 	public void onBind(Context context, int errorCode, String appid,
@@ -57,6 +63,8 @@ public class BaiduPushReceiver extends FrontiaPushMessageReceiver {
 		try {
 			Message msg = JSON.parseObject(message, Message.class);
 			msg.setLocalTime(System.currentTimeMillis()/1000);
+			notify(context, msg.getContent());
+			Cache.increUnread(Utils.getTheOtherGuy(msg, Config.getMe(context).getEmail()));
 			Database.insertMessage(context, msg);
 			MsgInfoActivity.dataChange(msg);
 			TimelineActivity.dataChange(msg);
@@ -107,6 +115,26 @@ public class BaiduPushReceiver extends FrontiaPushMessageReceiver {
 			Utils.putSharedPreferences(context, Config.BAIDU_PUSH_UINFO_UPLOADED, false);
 			return false;
 		}
+	}
+	
+	public static final int notifyId = 0;
+	private void notify(Context context, String body) {
+		NotificationManager nm = (NotificationManager) context
+				.getSystemService(Context.NOTIFICATION_SERVICE);
+		Intent notificationIntent = new Intent(context, TimelineActivity.class);
+		String title = "新消息";
+		Notification notification = new Notification(R.drawable.ic_launcher,
+				title, System.currentTimeMillis());
+		notification.defaults |= Notification.DEFAULT_LIGHTS;
+		notification.defaults |= Notification.DEFAULT_SOUND;
+		notification.defaults |= Notification.DEFAULT_VIBRATE;
+		notification.flags |= Notification.FLAG_AUTO_CANCEL;
+		notification.ledARGB = Color.MAGENTA;
+
+		PendingIntent contentIntent = PendingIntent.getActivity(context, 0,
+				notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+		notification.setLatestEventInfo(context, title, body, contentIntent);
+		nm.notify(notifyId, notification);
 	}
 	
 }

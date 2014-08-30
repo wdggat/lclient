@@ -13,12 +13,14 @@ public class TimelineListItem implements Comparable<TimelineListItem>{
 	private long time;
 	private String content;
 	private long localTime;
+	private int unread;
 	
-	public TimelineListItem(String associate, long time, String content, long localTime) {
+	public TimelineListItem(String associate, long time, String content, long localTime, int unread) {
 		this.associate = associate;
 		this.time = time;
 		this.content = content;
 		this.localTime = localTime;
+		this.unread = unread;
 	}
 	
 	public String getAssociate() {
@@ -49,13 +51,21 @@ public class TimelineListItem implements Comparable<TimelineListItem>{
 		this.localTime = localTime;
 	}
 
+	public int getUnread() {
+		return unread;
+	}
+
+	public void setUnread(int unread) {
+		this.unread = unread;
+	}
+
 	public String getFormatedTime() {
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.US);
 		return sdf.format(new Date((long)time * 1000));
 	}
 	
 	public static TimelineListItem fromMsg(Message msg) {
-		return new TimelineListItem(Utils.getTheOtherGuy(msg, Config.getMe().getEmail()), msg.getTime(), msg.getContent(), msg.getLocalTime());
+		return new TimelineListItem(Utils.getTheOtherGuy(msg, Config.getMe().getEmail()), msg.getTime(), msg.getContent(), msg.getLocalTime(), 0);
 	}
 
 	// NEVER return 0, or Treeset will reject equaled items.
