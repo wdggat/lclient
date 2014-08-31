@@ -166,6 +166,14 @@ public class TimelineActivity extends BaseActivity {
 	public void onClickME(View v) {
 		Intent intent = new Intent();
 		intent.setClass(TimelineActivity.this, MeActivity.class);
+		popupWindow.dismiss();
+		startActivity(intent);
+	}
+	
+	public void onReadmeClick(View v) {
+		Intent intent = new Intent();
+		intent.setClass(TimelineActivity.this, ReadmeActivity.class);
+		popupWindow.dismiss();
 		startActivity(intent);
 	}
 	

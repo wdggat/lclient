@@ -38,7 +38,9 @@
     <string name="password_new_confirm">确认新密码</string>
     <string name="timeline_newmsg">新建消息</string>
     <string name="timeline_replymsg">回复uid</string>
-    <string name="crypt_key">.>zSpP#j[1>:Mx;[</string>
+    <string name="timeline_readme">Readme</string>
+    <string name="readme_title">使用说明</string>
+    <string name="readme_content">应用提供了二种发消息的方式：\n1 新建消息: 已知对方邮箱，主动发消息.\n2 回复uid: 已知对方uid, 进行回复.\n\n如有需要,服务号uid: 10001</string>
     
     <!-- for depends -->
     <string name="appwall">应用墙</string>

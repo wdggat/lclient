@@ -85,6 +85,10 @@ public class Cache {
 		sp.commit();
 	}
 	
+	public static boolean inited() {
+		return inited;
+	}
+	
 	private static class SecondCache {
 		private static Map<String, Integer> unReadCache = new HashMap<String, Integer>();
 		public static void increUnread(String associate) {

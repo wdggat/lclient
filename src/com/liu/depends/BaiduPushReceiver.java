@@ -64,6 +64,8 @@ public class BaiduPushReceiver extends FrontiaPushMessageReceiver {
 			Message msg = JSON.parseObject(message, Message.class);
 			msg.setLocalTime(System.currentTimeMillis()/1000);
 			notify(context, msg.getContent());
+			if(!Cache.inited())
+				Cache.init(context, Config.SHAREDPREFERENCES_NAME);
 			Cache.increUnread(Utils.getTheOtherGuy(msg, Config.getMe(context).getEmail()));
 			Database.insertMessage(context, msg);
 			MsgInfoActivity.dataChange(msg);
@@ -117,10 +119,11 @@ public class BaiduPushReceiver extends FrontiaPushMessageReceiver {
 		}
 	}
 	
-	public static final int notifyId = 0;
+	private static final int notifyId = 0;
+	private static NotificationManager nm;
 	private void notify(Context context, String body) {
-		NotificationManager nm = (NotificationManager) context
-				.getSystemService(Context.NOTIFICATION_SERVICE);
+		if(nm == null)
+		    nm = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
 		Intent notificationIntent = new Intent(context, TimelineActivity.class);
 		String title = "新消息";
 		Notification notification = new Notification(R.drawable.ic_launcher,
@@ -135,6 +138,12 @@ public class BaiduPushReceiver extends FrontiaPushMessageReceiver {
 				notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);
 		notification.setLatestEventInfo(context, title, body, contentIntent);
 		nm.notify(notifyId, notification);
+	}
+	
+	public static void rmMsgNotify(Context context) {
+		if(nm == null)
+		    nm = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
+		nm.cancel(notifyId);
 	}
 	
 }

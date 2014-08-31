@@ -6,6 +6,9 @@ import java.util.Locale;
 
 import org.apache.commons.lang.StringUtils;
 
+import android.app.Activity;
+import android.app.ActivityManager;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
@@ -151,6 +154,7 @@ public class Utils {
         editor.commit();
     }
     
+    // This should never be used for core logic in an application
 /*    public static ComponentName getRunningActivity() {
     	ActivityManager activityManager = (ActivityManager)new Activity().getSystemService(Context.ACTIVITY_SERVICE);
     	return activityManager.getRunningTasks(1).get(0).topActivity;
